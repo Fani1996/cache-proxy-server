@@ -1,15 +1,21 @@
 #ifndef _SOCKET__H
-#define _SOCKET__H
+#define _HTTPSOCKET__H
+#include <iostream>
+#include <netdb.h>
+#include <unistd.h>
+#include <errno.h>
+#include <cstring>
 #include <sys/socket.h>
-#include <sys/types.h>
+#include <string.h>
 
-class socket{
+
+class HttpSocket{
 private:
   int fd;
   int opt;
 public:
-  socket(const char * port);
-  socket(const char * port,const char *hostname);
+  HttpSocket(const char * port);
+  HttpSocket(const char * port,const char *hostname);
 
   // build server.
   void create_as_server(const char * port);
@@ -24,7 +30,7 @@ public:
   int recv_msg(void *info, size_t size, int flag);
   //get_socket_fd();
   
-  ~socket();  
+  ~HttpSocket();  
 };
 
 #endif
