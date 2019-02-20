@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "socket.h"
+#include "httpsocket.h"
 
 
 class httpBase {
@@ -16,9 +16,10 @@ protected:
     std::vector<std::string> meta;
     std::unordered_map<std::string, std::string> headerpair;
 
+    std::vector<std::string> split(const std::string &s, char delim);
+
     void meta_parser(std::string meta);
-    void header_parser();
-    void payload_parser();
+    void header_parser(std::string line);
 
     void parser();
 };
