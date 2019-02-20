@@ -5,13 +5,17 @@
 #include <time.h>
 
 #include <string>
+#include <algorithm>
+#include <iostream>
+#include <list>
 #include <unordered_map>
 
 
 // cache class, base on LRU.
 class cache {
 private:
-    std::unordered_map<std::string, int> dataset;
+    std::unordered_map<std::string, int> lookup;
+    std::list<int> dataset;
 
     // given httpResponse, update the data from server.
     void update();
