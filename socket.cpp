@@ -8,13 +8,14 @@
 using namespace std;
 
 socket::socket(const char * port){
-  creat_as_server(port);
+  create_as_server(port);
   
 }
-socket::socket(const char * port,const char *hostname){
-  creat_as_client(port,hostname);
+socket::socket(const char * port, const char *hostname){
+  create_as_client(port, hostname);
 }
-void socket::creat_as_server(const char * port){
+
+void socket::create_as_server(const char * port){
   int status;
 
   struct addrinfo host_info;
@@ -27,18 +28,17 @@ void socket::creat_as_server(const char * port){
   status = getaddrinfo("0.0.0.0", port, &host_info, &host_info_list);
   if (status != 0) {
     cerr << "Error: cannot get address info for host" << endl;
-    cerr << "  (" << hostname << "," << port << ")" << endl;
-    return -1;
+    // TO-DO: throw.
+    return;
   } 
 
-    
   fd = socket(host_info_list->ai_family, 
 		     host_info_list->ai_socktype, 
 		     host_info_list->ai_protocol);
   if (fd == -1) {
     cerr << "Error: cannot create socket" << endl;
-    cerr << "  (" << hostname << "," << port << ")" << endl;
-    return -1;
+    // TO-DO: throw.
+    return;
   } 
 
   opt= 1;
@@ -47,11 +47,11 @@ void socket::creat_as_server(const char * port){
   status = bind(fd, host_info_list->ai_addr, host_info_list->ai_addrlen);
   if (status == -1) {
     cerr << "Error: cannot bind socket" << endl;
-    cerr << "  (" << hostname << "," << port << ")" << endl;
-    return -1;
+    // TO-DO: throw.
+    return;
   }
 }
-void socket::creat_as_client(const char * port,const char *hostname){
+void socket::create_as_client(const char * port,const char *hostname){
   struct addrinfo host_info;
   struct addrinfo *host_info_list;
   memset(&host_info, 0, sizeof(host_info));
@@ -61,23 +61,27 @@ void socket::creat_as_client(const char * port,const char *hostname){
 
   if (getaddrinfo(hostname, port, &host_info, &host_info_list) != 0) {
     cerr<<"Cannot get address info for host\n"<<endl;
-    return -1;
+    // TO-DO: throw
+    return;
   } 
 
   fd = socket(host_info_list->ai_family, 
 		     host_info_list->ai_socktype, 
 		     host_info_list->ai_protocol);
   if (fd == -1) {
-    return -1;
+    // TO-DO: throw
+    return;
   }
  
   if (connect(fd, host_info_list->ai_addr, host_info_list->ai_addrlen) == -1) {
     freeaddrinfo(host_info_list);
     close(fd);
-    return -1;
+    // TO-DO: throw.
+    return;
   }
   freeaddrinfo(host_info_list);
 }
+
 int socket::accept_connect(){
   struct sockaddr_storage socket_addr;
   socklen_t socket_addr_len = sizeof(socket_addr);
@@ -87,13 +91,16 @@ int socket::accept_connect(){
      return -1;
    }
 }
+
 void socket::listen_to(int nums_client){
-   if(listen(socket_fd, nums_client)==-1){
-     cerr<<"Cannot listen on socket."<<endl;
-     return -1;
-     }
+  if (listen(socket_fd, nums_client) == -1)
+  {
+    cerr << "Cannot listen on socket." << endl;
+    // TO-DO: throw.
+    return;
   }
 }
+
 int socket::send_msg(void *info,size_t size){
   int actual_byte;
   if((actual_byte = send(sock_fd, info, size, 0)) == -1){
@@ -109,8 +116,8 @@ int socket::recv_msg(void *info,size_t size,int flag){
     //throw recvError();
   }
   return actual_byte;
-
 }
+
 socket::~socket(){
   close(fd);
 }
