@@ -1,21 +1,22 @@
-#include "socket.h"
+#include "httpsocket.h"
 #include <iostream>
 #include <unistd.h>
+#include <netdb.h>
 #include <errno.h>
 #include <cstring>
 #include <sys/socket.h>
 #include <string.h>
 using namespace std;
 
-socket::socket(const char * port){
+HttpSocket::HttpSocket(const char * port){
   create_as_server(port);
   
 }
-socket::socket(const char * port, const char *hostname){
+HttpSocket::HttpSocket(const char * port, const char *hostname){
   create_as_client(port, hostname);
 }
 
-void socket::create_as_server(const char * port){
+void HttpSocket::create_as_server(const char * port){
   int status;
 
   struct addrinfo host_info;
@@ -32,9 +33,7 @@ void socket::create_as_server(const char * port){
     return;
   } 
 
-  fd = socket(host_info_list->ai_family, 
-		     host_info_list->ai_socktype, 
-		     host_info_list->ai_protocol);
+  fd = socket(host_info_list->ai_family,host_info_list->ai_socktype,host_info_list->ai_protocol);
   if (fd == -1) {
     cerr << "Error: cannot create socket" << endl;
     // TO-DO: throw.
@@ -51,7 +50,7 @@ void socket::create_as_server(const char * port){
     return;
   }
 }
-void socket::create_as_client(const char * port,const char *hostname){
+void HttpSocket::create_as_client(const char * port,const char *hostname){
   struct addrinfo host_info;
   struct addrinfo *host_info_list;
   memset(&host_info, 0, sizeof(host_info));
@@ -65,9 +64,7 @@ void socket::create_as_client(const char * port,const char *hostname){
     return;
   } 
 
-  fd = socket(host_info_list->ai_family, 
-		     host_info_list->ai_socktype, 
-		     host_info_list->ai_protocol);
+  fd = socket(host_info_list->ai_family, host_info_list->ai_socktype, host_info_list->ai_protocol);
   if (fd == -1) {
     // TO-DO: throw
     return;
@@ -82,18 +79,20 @@ void socket::create_as_client(const char * port,const char *hostname){
   freeaddrinfo(host_info_list);
 }
 
-int socket::accept_connect(){
+int HttpSocket::accept_connect(){
   struct sockaddr_storage socket_addr;
   socklen_t socket_addr_len = sizeof(socket_addr);
-  int client_fd= accept(ringmaster_fd, (struct sockaddr *)&socket_addr, &socket_addr_len);
+  int client_fd= accept(fd, (struct sockaddr *)&socket_addr, &socket_addr_len);
   if(client_fd==-1){
     //throw acceptError;
      return -1;
    }
+  return client_fd;
 }
 
-void socket::listen_to(int nums_client){
-  if (listen(socket_fd, nums_client) == -1)
+void HttpSocket::listen_to(int nums_client)
+{
+  if (listen(fd, nums_client) == -1)
   {
     cerr << "Cannot listen on socket." << endl;
     // TO-DO: throw.
@@ -101,23 +100,23 @@ void socket::listen_to(int nums_client){
   }
 }
 
-int socket::send_msg(void *info,size_t size){
+int HttpSocket::send_msg(void *info,size_t size){
   int actual_byte;
-  if((actual_byte = send(sock_fd, info, size, 0)) == -1){
+  if((actual_byte = send(fd, info, size, 0)) == -1){
     perror("");
     std::cerr<<"Cannot send."<<std::endl;
   }
   return actual_byte;
 }
-int socket::recv_msg(void *info,size_t size,int flag){
+int HttpSocket::recv_msg(void *info,size_t size,int flag){
   int actual_byte;
-  if((actual_byte = recv(sock_fd, info, size, flag)) == -1){
+  if((actual_byte = recv(fd, info, size, flag)) == -1){
     std::cerr<<"Cannot receive."<<std::endl;
     //throw recvError();
   }
   return actual_byte;
 }
 
-socket::~socket(){
+HttpSocket::~HttpSocket(){
   close(fd);
 }
