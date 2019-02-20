@@ -4,7 +4,6 @@
 #include <errno.h>
 #include <cstring>
 #include <sys/socket.h>
-#include <netdb.h>xs
 #include <string.h>
 using namespace std;
 
