@@ -8,8 +8,8 @@
 
 // given request, check cache has data / time has expired.
 bool check(Request request){
-    
-}
+      
+}  11
 
 // given httpResponse, update the data from server.
 void cache::update(Request request){
