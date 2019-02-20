@@ -10,15 +10,17 @@
 
 class httpBase {
 protected:
-    std::vector<char> payload;
+    std::string content;
+    std::string payload;
 
     std::vector<std::string> meta;
     std::unordered_map<std::string, std::string> headerpair;
 
-    void meta_parser(std::string line);
-    void header_parser(std::string header);
+    void meta_parser(std::string meta);
+    void header_parser();
+    void payload_parser();
 
-    void payload_parser(std::vector<char> content);
+    void parser();
 };
 
 #endif
