@@ -1,4 +1,4 @@
-#ifndef _SOCKET__H
+#ifndef _HTTPSOCKET__H
 #define _HTTPSOCKET__H
 #include <iostream>
 #include <netdb.h>
