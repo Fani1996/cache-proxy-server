@@ -18,6 +18,7 @@ protected:
 
     std::vector<std::string> split(const std::string &s, char delim);
 
+    httpBase(std::string ct):content(ct){};
     void meta_parser(std::string meta);
     void header_parser(std::string line);
 
@@ -29,6 +30,7 @@ protected:
     void recv_length(HttpSocket& sk);
 
     void send_400_bad_request(HttpSocket& sk);
+    void send(HttpSocket sk);
 };
 
 #endif
