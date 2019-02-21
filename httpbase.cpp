@@ -96,6 +96,7 @@ void httpBase::recv_header(HttpSocket &sk){
         }
 
     }
+    
 }
 void httpBase::recv_http1-0(HttpSocket & sk){
    // std::string content;
@@ -121,4 +122,17 @@ void httpBase::recv_http1-0(HttpSocket & sk){
         header_parser(line);
     }
     payload = content.substr(pos+1);
+}
+
+void httpBase::recv_http1-1(HttpSocket & sk){
+    if(how_to_read() == "chunk"){
+        recv_chunked_encoding(sock);
+    }
+    else if(how_to_read() == "length"){
+        recv_content_length(sock);
+    }
+    else{
+        std::cerr<<"Bad Header!"<<std::endl;
+        throw badHeader();
+    }
 }
