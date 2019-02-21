@@ -22,6 +22,8 @@ protected:
     void header_parser(std::string line);
     void recv_header(HttpSocket &sk);
     void parser();
+
+    
 };
 
 #endif
