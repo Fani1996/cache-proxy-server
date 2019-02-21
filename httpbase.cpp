@@ -56,6 +56,7 @@ void httpBase::parser() {
 void httpBase::recv_header(HttpSocket &sk){
     std::string header;
     std::string meta;
+    int flag_firstline=0;
     while(1){
         char buffer[2];
         int actual_byte=sk.recv_msg(buffer,1,0);
@@ -63,9 +64,53 @@ void httpBase::recv_header(HttpSocket &sk){
             std::cerr<<"connect closed"<<std::endl;
             //throw 
         }
-        if(!strncmp(buffer,"\n",1)){
-            meta.append(buffer);
+        if(!strncmp(buffer,"\r",1)){
+            char check[2];
+            int actual_byte=sk.recv_msg(check,1,0);
+            if(actual_byte==0){
+                std::cerr<<"connect closed"<<std::endl;
+            //throw 
+            }
+            if(!strcmp(check,"\n",1)){
+                if(flag_firstline==0){
+                    flag_firstline=1;
+                    meta_parser(meta);
+                }
+                else{
+                    header_parser(header);
+                    header.clear();
+                    char check_end[3];
+                    int actual_byte=sk.recv_msg(check_end,2,0);
+                    if(actual_byte==0){
+                        std::cerr<<"connect closed"<<std::endl;
+                        //throw 
+                    }
+                    if(!strcmp(check_end,"\r\n",2)){
+                        break;
+                    }
+                    else{
+                        header.append(buffer);
+                    }
+                }
+            }
+            else
+            {   
+                if(flag_firstline==0)
+                    meta.bush_back(check[0]);
+                else
+                    header.bush_back(check[0]);
+            }
+            
+        }
+        else{
+            if(flag_firstline==0){
+                meta.push_back(buffer[0]);
+            }
+            else{
+                header.push_back(buffer[0]);
+            }
         }
 
     }
 }
+
