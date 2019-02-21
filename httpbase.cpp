@@ -2,6 +2,8 @@
 #include <iostream>
 #include <sstream>
 #include <cassert>
+#include <string>
+
 
 std::vector<std::string> split (const std::string &s, char delim) {
     std::vector<std::string> result;
@@ -54,7 +56,7 @@ void httpBase::recv_header(HttpSocket &sk){
                 std::cerr<<"connect closed"<<std::endl;
             //throw 
             }
-            if(!strcmp(check,"\n",1)){
+            if(!strncmp(check,"\n",1)){
                 if(flag_firstline==0){
                     flag_firstline=1;
                     meta_parser(meta);
@@ -69,7 +71,7 @@ void httpBase::recv_header(HttpSocket &sk){
                         std::cerr<<"connect closed"<<std::endl;
                         //throw 
                     }
-                    if(!strcmp(check_end,"\r\n",2)){
+                    if(!strncmp(check_end,"\r\n",2)){
                         break;
                     }
                     else{
@@ -80,9 +82,9 @@ void httpBase::recv_header(HttpSocket &sk){
             else
             {   
                 if(flag_firstline==0)
-                    meta.bush_back(check[0]);
+                    meta.push_back(check[0]);
                 else
-                    header.bush_back(check[0]);
+                    header.push_back(check[0]);
             }
             
         }
@@ -98,7 +100,7 @@ void httpBase::recv_header(HttpSocket &sk){
     }
     
 }
-void httpBase::recv_http1-0(HttpSocket & sk){
+void httpBase::recv_http_1_0(HttpSocket & sk){
    // std::string content;
     while(1){
         char buffer[127];
@@ -124,7 +126,7 @@ void httpBase::recv_http1-0(HttpSocket & sk){
     payload = content.substr(pos+1);
 }
 
-void httpBase::recv_http1-1(HttpSocket & sk){
+void httpBase::recv_http_1_1(HttpSocket & sk){
     if(how_to_read() == "chunk"){
         recv_chunked_encoding(sock);
     }
@@ -134,5 +136,38 @@ void httpBase::recv_http1-1(HttpSocket & sk){
     else{
         std::cerr<<"Bad Header!"<<std::endl;
         throw badHeader();
+    }
+}
+
+void httpBase::recv_chunk(HttpSocket& sk){
+    std::string data;
+    while(1){
+        char buffer[2] = {0};
+        sk.recv_msg(buffer, 1, 0);
+
+        data.push_back(buffer[0]);
+        payload.push_back(buffer[0]);
+
+        unsigned long length = 0;
+
+        // check for length.
+        if(buffer[0] == '\n'){ // finish reciving.
+            std::size_t pos = data.find_first_of(" \r");
+            std::string lenstr = data.substr(0, pos);
+            length = strtoul(lenstr.c_str(), NULL, 16);
+
+            if(length == 0){ // finish reading.
+                return;
+            }
+            else{ // storing data into payload.
+                char* contentbuf = new char[length];
+                memset(reinterpret_cast<void*>(contentbuf), 0, length);
+
+                sk.recv_msg(contentbuf, length+2, MSG_WAITALL);
+                payload.append(contentbuf, length);
+
+                data = "";
+            }
+        }
     }
 }
