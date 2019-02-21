@@ -21,7 +21,7 @@ protected:
     void meta_parser(std::string meta);
     void header_parser(std::string line);
     void recv_header(HttpSocket &sk);
-    void parser();
+    void recv_http1-1(HttpSocket & sk);
 
     
 };
