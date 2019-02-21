@@ -26,6 +26,8 @@ protected:
 
     void recv_header(HttpSocket& sk);
     void recv_chunk(HttpSocket& sk);
+    void recv_length(HttpSocket& sk);
+
 };
 
 #endif

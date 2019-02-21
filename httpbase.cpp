@@ -1,8 +1,12 @@
 #include "httpbase.h"
 #include <iostream>
 #include <sstream>
-#include <cassert>
 #include <string>
+
+#include <cassert>
+
+#include <stdexcept>      // std::length_error
+#include <exception>
 
 
 std::vector<std::string> split (const std::string &s, char delim) {
@@ -139,7 +143,7 @@ void httpBase::recv_http_1_1(HttpSocket & sk){
     }
 }
 
-void httpBase::recv_chunk(HttpSocket& sk){
+void httpBase::recv_chunk(HttpSocket& sk) {
     std::string data;
     while(1){
         char buffer[2] = {0};
@@ -160,14 +164,30 @@ void httpBase::recv_chunk(HttpSocket& sk){
                 return;
             }
             else{ // storing data into payload.
-                char* contentbuf = new char[length];
-                memset(reinterpret_cast<void*>(contentbuf), 0, length);
+                char* contentbuf = new char[length+3];
+                memset(reinterpret_cast<void*>(contentbuf), 0, length+3);
 
                 sk.recv_msg(contentbuf, length+2, MSG_WAITALL);
-                payload.append(contentbuf, length);
+                payload.append(contentbuf, length+2);
 
                 data = "";
             }
         }
+    }
+}
+
+void httpBase::recv_length(HttpSocket& sk) {
+    int length = -1;
+    length = std::stoi(headerpair["Content-Length"]);
+
+    if(length == -1){
+        throw std::invalid_argument("invalid length");
+    }
+    else if(length > 0){
+        char* contentbuf = new char[length+1];
+        memset(reinterpret_cast<void*>(contentbuf), 0, length+1);
+
+        sk.recv_msg(contentbuf, length, MSG_WAITALL);
+        payload.append(contentbuf, length);
     }
 }
