@@ -20,8 +20,8 @@ protected:
 
     void meta_parser(std::string meta);
     void header_parser(std::string line);
-
-    void parser();
+    void recv_header(HttpSocket &sk);
+    void recv_http1-0(HttpSocket & sk);
 
     void recv_header(HttpSocket& sk);
     void recv_chunk(HttpSocket& sk);
