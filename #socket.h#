@@ -1,0 +1,138 @@
+#ifndef _SOCKET__H
+#define _SOCKET__H
+#include <sys/socket.h>
+#include <sys/types.h>
+
+class socket{
+  private:
+  int fd;
+  int opt;
+  public:
+  socket();
+  create_as_server(const char * port);
+  create_as_client(     ┌────────────────────────────────────────────────────────────────────┐
+     │                        • MobaXterm 10.9 •                          │
+     │            (SSH client, X-server and networking tools)             │
+     │                                                                    │
+     │ ➤ SSH session to qc36@vcm-8250.vm.duke.edu                         │
+     │   • SSH compression : ✔                                            │
+     │   • SSH-browser     : ✔                                            │
+     │   • X11-forwarding  : ✔  (remote display is forwarded through SSH) │
+     │   • DISPLAY         : ✔  (automatically set on remote server)      │
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Session stopped
+    - Press <return> to exit tab
+    - Press R to restart session
+    - Press S to save terminal output to file
+
+Network error: Software caused connection abort
+
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Session stopped
+    - Press <return> to exit tab
+    - Press R to restart session
+    - Press S to save terminal output to file
+
+Network error: Connection timed out
+     ┌────────────────────────────────────────────────────────────────────┐
+     │                        • MobaXterm 10.9 •                          │
+     │            (SSH client, X-server and networking tools)             │
+     │                                                                    │
+     │ ➤ SSH session to qc36@vcm-8250.vm.duke.edu                         │
+     │   • SSH compression : ✔                                            │
+     │   • SSH-browser     : ✔                                            │
+     │   • X11-forwarding  : ✔  (remote display is forwarded through SSH) │
+     │   • DISPLAY         : ✔  (automatically set on remote server)      │
+     │                                                                    │
+     │ ➤ For more info, ctrl+click on help or visit our website           │
+     └────────────────────────────────────────────────────────────────────┘
+
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-20-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+ * 'snap info' now shows the freshness of each channel.
+   Try 'snap info microk8s' for all the latest goodness.
+
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+Last login: Tue Feb 19 23:02:19 2019 from cpe-174-109-127-152.nc.res.rr.com
+qc36@vcm-8250:~$ cd caching_proxy/
+qc36@vcm-8250:~/caching_proxy$ ls
+socket.cpp  socket.h  socket.h~
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+^[OAqc36@vcm-8250:~/caching_proxy$ emacs socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+
+[1]+  Stopped                 emacs -nw socket.h
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+
+[2]+  Stopped                 emacs -nw socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.cpp
+qc36@vcm-8250:~/caching_proxy$ emacs socket.h
+File Edit Options Buffers Tools C Help
+#ifndef _SOCKET__H
+#define _SOCKET__H
+#include <sys/socket.h>
+#include <sys/types.h>
+
+class socket{
+  private:
+  int fd;
+  int opt;
+  public:
+  socket();
+  create_as_server(const char * port);
+  create_as_client(;
+  listen_to(int nums_client);
+  accept_connect();
+  send_msg();
+  recv_msg();
+  get_socket_fd();
+  ~socket();
+};
+#endif();
+
+
+
+
+
+
+
+
+
+
+
+-UU-:**--F1  socket.h       All L13    (C/l Abbrev) --------------------------------------------------------------;
+  listen_to(int nums_client);
+  accept_connect();
+  send_msg();
+  recv_msg();
+  get_socket_fd();
+  ~socket();  
+};
+#endif();

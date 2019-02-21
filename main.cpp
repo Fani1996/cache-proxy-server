@@ -7,10 +7,13 @@
 #include "httprequest.h"
 #include "httpresponse.h"
 
-main(){
-    HttpSocket server_sk("50010");
+int main(){
+    HttpSocket server_sk("12345");
     server_sk.listen_to(100);
-    server_sk.accept_connect();
-    HttpRequest this_request();
-    this_request.receive(server_sk);
+    int client_fd=server_sk.accept_connect();
+    HttpSocket client_sk(client_fd);
+    HttpRequest this_request;
+
+    std::cout<<"enter recieve"<<std::endl;
+    this_request.receive(client_sk);
 }

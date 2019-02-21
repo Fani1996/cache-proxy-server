@@ -15,6 +15,7 @@ private:
   int opt;
 public:
   HttpSocket(const char * port);
+  HttpSocket(int sk_fd);
   HttpSocket(const char * port,const char *hostname);
 
   // build server.

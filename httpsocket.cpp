@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "httpsocket.h"
 #include <iostream>
 #include <unistd.h>
@@ -14,6 +15,9 @@ HttpSocket::HttpSocket(const char * port){
 }
 HttpSocket::HttpSocket(const char * port, const char *hostname){
   create_as_client(port, hostname);
+}
+HttpSocket::HttpSocket(int sk_fd):fd(sk_fd){
+
 }
 
 void HttpSocket::create_as_server(const char * port){
@@ -45,6 +49,7 @@ void HttpSocket::create_as_server(const char * port){
   status = setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(int));
   status = bind(fd, host_info_list->ai_addr, host_info_list->ai_addrlen);
   if (status == -1) {
+    fprintf(stderr,"error:%s\n",strerror(errno));
     cerr << "Error: cannot bind socket" << endl;
     // TO-DO: throw.
     return;
@@ -112,6 +117,7 @@ int HttpSocket::send_msg(void *info,size_t size){
 int HttpSocket::recv_msg(void *info,size_t size,int flag){
   int actual_byte;
   if((actual_byte = recv(fd, info, size, flag)) == -1){
+     fprintf(stderr,"error:%s\n",strerror(errno));
     std::cerr<<"Cannot receive."<<std::endl;
     //throw recvError();
   }
