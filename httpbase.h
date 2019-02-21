@@ -28,6 +28,8 @@ protected:
     void recv_chunk(HttpSocket& sk);
     void recv_length(HttpSocket& sk);
 
+    std::string get_content();
+
     void send_400_bad_request(HttpSocket& sk);
 };
 

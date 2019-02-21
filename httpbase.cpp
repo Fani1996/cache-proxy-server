@@ -192,6 +192,11 @@ void httpBase::recv_length(HttpSocket& sk) {
     }
 }
 
+std::string httpBase::get_content(){
+    
+    return content;
+}
+
 void httpBase::send_400_bad_request(HttpSocket& sk){
     std::string error("HTTP/1.1 400 Bad Request\r\nContent-Type:text/html\r\nContent-Length: 15\r\n\r\n400 Bad Request");
     sk.send_msg(const_cast<char *>(error.c_str()), error.size());
