@@ -49,6 +49,7 @@ void HttpSocket::create_as_server(const char * port){
     // TO-DO: throw.
     return;
   }
+  freeaddrinfo(host_info_list);
 }
 void HttpSocket::create_as_client(const char * port,const char *hostname){
   struct addrinfo host_info;

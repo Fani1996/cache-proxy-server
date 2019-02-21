@@ -12,6 +12,7 @@ class HttpResponse : public httpBase{
 private:
   std::string content;
  public:
+    httpResponse()=default;
     void receive();
     
 };
