@@ -6,11 +6,12 @@
 #include <vector>
 
 #include "httpsocket.h"
+#include "httpbase.h"
 
-clasee HttpResponse:public httpBase{
- private:
+class HttpResponse : public httpBase{
+private:
   std::string content;
  public:
     std::string get_version(){};
-}
+};
 #endif

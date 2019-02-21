@@ -123,11 +123,11 @@ void httpBase::recv_http_1_0(HttpSocket & sk){
 }
 
 void httpBase::recv_http_1_1(HttpSocket & sk, int type){
-    if(type==1{
+    if(type == 1){
         recv_chunk(sk);
     }
-    else if(type==0){
-        recv_content_length(sk);
+    else if(type == 0){
+        recv_length(sk);
     }
     else{
         std::cerr<<"Invalid Header!"<<std::endl;
