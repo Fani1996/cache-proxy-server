@@ -12,7 +12,10 @@ class HttpResponse : public httpBase {
 private:
 
 public:
-    HttpResponse(std::string ct):httpBase(ct){};
+    // constructor
+    HttpResponse() {}
+    HttpResponse(std::string ct) : httpBase(ct) {}
+
     void receive(HttpSocket &sk);
 };
 

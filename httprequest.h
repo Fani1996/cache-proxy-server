@@ -15,7 +15,10 @@ private:
 
 
 public:
-    HttpRequest(std::string ct):httpBase(ct){};
+    // constructor.
+    HttpRequest(){}
+    HttpRequest(std::string ct) : httpBase(ct){}
+
     // return identifier for request to id the request in cache.
     std::string get_identifier();
     // receive request.

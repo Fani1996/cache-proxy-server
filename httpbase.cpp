@@ -82,6 +82,7 @@ int httpBase::recv_header(HttpSocket &sk){
                     }
                     else{
                         header.append(check_end);
+                        content.append(check_end);
                     }
                 }
             }
@@ -90,6 +91,7 @@ int httpBase::recv_header(HttpSocket &sk){
                     meta.push_back(check[0]);
                 else
                     header.push_back(check[0]);
+                content.push_back(check[0]);
             }
             
         }
@@ -100,6 +102,7 @@ int httpBase::recv_header(HttpSocket &sk){
             else{
                 header.push_back(buffer[0]);
             }
+            content.push_back(buffer[0]);
         }
 
     }
@@ -193,7 +196,6 @@ void httpBase::recv_length(HttpSocket& sk) {
 }
 
 std::string httpBase::get_content(){
-
     return content;
 }
 
@@ -202,9 +204,14 @@ void httpBase::send_400_bad_request(HttpSocket& sk){
     sk.send_msg(const_cast<char *>(error.c_str()), error.size());
 }
 
+void httpBase::send_502_bad_gateway(HttpSocket& sk){
+    std::string error("HTTP/1.1 502 Bad Gateway\r\nContent-Type:text/html\r\nContent-Length: 15\r\n\r\n502 Bad Gateway");
+    sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+}
+
 void httpBase::send(HttpSocket sk){
     char * buffer = new char [content.length()+1];
     std::strcpy (buffer, content.c_str());
-    sk.send_msg(buffer, sizeof(char) * content.length() + sizeof(char));
+    sk.send_msg(buffer, sizeof(char) * content.length());
     delete[] buffer;
 }
