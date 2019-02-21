@@ -22,9 +22,9 @@ protected:
     void header_parser(std::string line);
 
     void recv_http_1_0(HttpSocket & sk);
-    void recv_http_1_1(HttpSocket & sk);
+    void  httpBase::recv_http_1_0(HttpSocket & sk);
 
-    void recv_header(HttpSocket& sk);
+    int recv_header(HttpSocket& sk);
     void recv_chunk(HttpSocket& sk);
 };
 

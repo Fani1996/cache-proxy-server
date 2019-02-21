@@ -36,7 +36,8 @@ void httpBase::header_parser(std::string line) {
     headerpair[splitted[0]] = splitted[1];
 }
 
-void httpBase::recv_header(HttpSocket &sk){
+//return value:1 chunk -1 length 0 none
+int httpBase::recv_header(HttpSocket &sk){
     std::string header;
     std::string meta;
     int flag_firstline=0;
@@ -98,44 +99,35 @@ void httpBase::recv_header(HttpSocket &sk){
         }
 
     }
+    if(headerpair.find("Transfer-Encoding") != headerpair.end())
+        return 1;
+    else if(headerpair.find("Content-Length") != headerpair.end())
+        return -1;
+    else
+        return 0;
     
 }
 void httpBase::recv_http_1_0(HttpSocket & sk){
-   // std::string content;
     while(1){
         char buffer[127];
         memset(&buffer,0,sizeof(buffer));
         if(sk.recv_msg(buffer, 127, 0) == 0){
             break;
         }
-        content.append(buffer);
+        payload.append(buffer);
     }
-    std::size_t pos = content.find_first_of('\n');
-    std::string meta = content.substr(0, pos);
-    meta_parser(meta);
-
-    std::size_t pre = pos + 1;
-    pos = content.find_first_of('\n', pre);
-    while(pos != std::string::npos){
-        std::string line = content.substr(pre, pos-pre);
-        if(pos - pre == 1)
-            break;
-
-        header_parser(line);
-    }
-    payload = content.substr(pos+1);
 }
 
-void httpBase::recv_http_1_1(HttpSocket & sk){
-    if(how_to_read() == "chunk"){
-        recv_chunked_encoding(sock);
+void httpBase::recv_http_1_1(HttpSocket & sk, int type){
+    if(type==1{
+        recv_chunk(sk);
     }
-    else if(how_to_read() == "length"){
-        recv_content_length(sock);
+    else if(type==0){
+        recv_content_length(sk);
     }
     else{
-        std::cerr<<"Bad Header!"<<std::endl;
-        throw badHeader();
+        std::cerr<<"Invalid Header!"<<std::endl;
+        //throw badHeader();
     }
 }
 
