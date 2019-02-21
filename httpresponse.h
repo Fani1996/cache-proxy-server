@@ -11,6 +11,6 @@ clasee HttpResponse:public httpBase{
  private:
   std::string content;
  public:
-
+    std::string get_version(){};
 }
 #endif
