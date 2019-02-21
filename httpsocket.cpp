@@ -58,7 +58,6 @@ void HttpSocket::create_as_client(const char * port,const char *hostname){
   host_info.ai_family   = AF_UNSPEC;
   host_info.ai_socktype = SOCK_STREAM;
 
-
   if (getaddrinfo(hostname, port, &host_info, &host_info_list) != 0) {
     cerr<<"Cannot get address info for host\n"<<endl;
     // TO-DO: throw
@@ -80,7 +79,7 @@ void HttpSocket::create_as_client(const char * port,const char *hostname){
   freeaddrinfo(host_info_list);
 }
 
-int HttpSocket::accept_connect(){
+int HttpSocket::accept_connect() {
   struct sockaddr_storage socket_addr;
   socklen_t socket_addr_len = sizeof(socket_addr);
   int client_fd= accept(fd, (struct sockaddr *)&socket_addr, &socket_addr_len);
@@ -91,8 +90,7 @@ int HttpSocket::accept_connect(){
   return client_fd;
 }
 
-void HttpSocket::listen_to(int nums_client)
-{
+void HttpSocket::listen_to(int nums_client) {
   if (listen(fd, nums_client) == -1)
   {
     cerr << "Cannot listen on socket." << endl;
@@ -101,7 +99,7 @@ void HttpSocket::listen_to(int nums_client)
   }
 }
 
-int HttpSocket::send_msg(void *info,size_t size){
+int HttpSocket::send_msg(void *info,size_t size) {
   int actual_byte;
   if((actual_byte = send(fd, info, size, 0)) == -1){
     perror("");
@@ -109,7 +107,7 @@ int HttpSocket::send_msg(void *info,size_t size){
   }
   return actual_byte;
 }
-int HttpSocket::recv_msg(void *info,size_t size,int flag){
+int HttpSocket::recv_msg(void *info,size_t size,int flag) {
   int actual_byte;
   if((actual_byte = recv(fd, info, size, flag)) == -1){
     std::cerr<<"Cannot receive."<<std::endl;
@@ -118,6 +116,6 @@ int HttpSocket::recv_msg(void *info,size_t size,int flag){
   return actual_byte;
 }
 
-HttpSocket::~HttpSocket(){
+HttpSocket::~HttpSocket() {
   close(fd);
 }

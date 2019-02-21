@@ -7,10 +7,13 @@
 #include "httprequest.h"
 #include "httpresponse.h"
 
-main(){
+int main(){
     HttpSocket server_sk("50010");
     server_sk.listen_to(100);
     server_sk.accept_connect();
-    HttpRequest this_request();
+
+    HttpRequest this_request;
     this_request.receive(server_sk);
+
+    return 0;
 }
