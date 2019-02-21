@@ -1,12 +1,16 @@
 #include "httprequest.h"
 #include <exception>
 
+HttpRequest(std::string ct):content(ct){
+}
+
+
 // get hostname from request.
-void HttpRequest::get_host() {
+std::string HttpRequest::get_host() {
     std::string host;
     if(headerpair.count("Host") == 0) {
         hostname = host;
-        return;
+        return host;
     }
     
     host = headerpair["Host"];
@@ -17,12 +21,13 @@ void HttpRequest::get_host() {
         hostname = host.substr(0, pos);
         port = host.substr(pos+1);
     }
+    return host;
 }
 
 // get port from request.
-void HttpRequest::get_port() {
+std::string HttpRequest::get_port() {
     if(port != ""){
-        return;
+        return "";
     }
     if(meta.size() == 3 && meta[2] == "HTTPS"){
         port = "443";
@@ -30,6 +35,7 @@ void HttpRequest::get_port() {
     if(meta.size() == 3 && meta[2] == "HTTP"){
         port = "80";
     }
+    return port;
     // other situation will make the port empty string, we can check empty for exception.
 }
 

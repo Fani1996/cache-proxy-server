@@ -13,16 +13,17 @@ private:
     std::string hostname;
     std::string port;
 
-    // get hostname from request.
-    void get_host();
-    // get port from request.
-    void get_port();
 
 public:
+    HttpRequest(std::string ct):httpBase(ct){};
     // return identifier for request to id the request in cache.
     std::string get_identifier();
     // receive request.
     void receive(HttpSocket& sk);
+    // get hostname from request.
+    std::string get_host();
+    // get port from request.
+    std::string get_port();
 };
 
 #endif
