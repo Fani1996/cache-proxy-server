@@ -53,3 +53,19 @@ void httpBase::parser() {
 
     payload = this->content.substr(pos+1);
 }
+void httpBase::recv_header(HttpSocket &sk){
+    std::string header;
+    std::string meta;
+    while(1){
+        char buffer[2];
+        int actual_byte=sk.recv_msg(buffer,1,0);
+        if(actual_byte==0){
+            std::cerr<<"connect closed"<<std::endl;
+            //throw 
+        }
+        if(!strncmp(buffer,"\n",1)){
+            meta.append(buffer);
+        }
+
+    }
+}
