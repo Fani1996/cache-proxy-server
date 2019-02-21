@@ -20,16 +20,25 @@
 // cache class, base on LRU.
 class cache {
 protected:
-    int capacity;
+    std::size_t capacity;
     
     // uid, Response
     std::unordered_map<std::string, std::list<std::pair<std::string, HttpResponse> >::iterator> lookup;
     std::list<std::pair<std::string, HttpResponse> > dataset;
 
-    // given httpResponse, update the data from server.
-    void update(HttpRequest request);
+    // LRU operation. get/store will update the position of data.
+    // get the response from cache.
+    HttpResponse get(std::string identifier);
+
+    // store the request, response pait into cache.
+    void store(HttpRequest request, HttpResponse response);
+
+    // Data-related operation.
     // given string, check cache has data / time has expired.
     bool check(HttpRequest request);
+
+    // given httpRequest, update the data from server.
+    HttpResponse update(HttpRequest request);
 
     // revalidate the data.
     HttpResponse revalidate(HttpSocket& server_sock,

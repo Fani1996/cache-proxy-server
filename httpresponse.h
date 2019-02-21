@@ -8,10 +8,11 @@
 #include "httpsocket.h"
 #include "httpbase.h"
 
-class HttpResponse : public httpBase{
- private:
-  std::string content;
- public:
+class HttpResponse : public httpBase {
+private:
+
+public:
     void receive(HttpSocket &sk);
 };
+
 #endif

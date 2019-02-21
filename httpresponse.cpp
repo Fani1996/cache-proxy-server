@@ -6,7 +6,8 @@
 #include <string>
 #include <vector>
 #include "httpsocket.h"
-#include "httpbase.h"
+
+
 
 void HttpResponse::receive(HttpSocket &sk){
     int recv_type = recv_header(sk);

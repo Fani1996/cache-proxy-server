@@ -1,6 +1,7 @@
 #include "httprequest.h"
 #include <exception>
 
+// get hostname from request.
 void HttpRequest::get_host() {
     std::string host;
     if(headerpair.count("Host") == 0) {
@@ -18,6 +19,7 @@ void HttpRequest::get_host() {
     }
 }
 
+// get port from request.
 void HttpRequest::get_port() {
     if(port != ""){
         return;
@@ -31,6 +33,12 @@ void HttpRequest::get_port() {
     // other situation will make the port empty string, we can check empty for exception.
 }
 
+// return identifier for request to id the request in cache.
+std::string HttpRequest::get_identifier(){
+    return meta[1];
+}
+
+// receive request.
 void HttpRequest::receive(HttpSocket& sk) {
     int id = 0;
     try {
