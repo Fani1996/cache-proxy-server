@@ -193,7 +193,7 @@ void httpBase::recv_length(HttpSocket& sk) {
 }
 
 std::string httpBase::get_content(){
-    
+
     return content;
 }
 
@@ -205,6 +205,6 @@ void httpBase::send_400_bad_request(HttpSocket& sk){
 void httpBase::send(HttpSocket sk){
     char * buffer = new char [content.length()+1];
     std::strcpy (buffer, content.c_str());
-    sk.send_msg(buffer,sizeof(char*content.length()+char),0);
+    sk.send_msg(buffer, sizeof(char) * content.length() + sizeof(char));
     delete[] buffer;
 }
