@@ -10,9 +10,8 @@
 
 class HttpResponse : public httpBase{
 private:
-  std::string content;
- public:
-    void receive();
-    
+
+public:
+    void receive(HttpSocket &sk);
 };
 #endif
