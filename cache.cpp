@@ -6,16 +6,19 @@
 #include <errno.h>
 #include <sys/types.h>
 
-// given request, check cache has data / time has expired.
-      
-} 
+
 
 // given httpResponse, update the data from server.
-void cache::update(Request request){
-    
+void cache::update(HttpRequest request){
+
 }
 
-Response cache::returndata(Request request){
+// given string, check cache has data / time has expired.
+bool cache::check(HttpRequest request){
+
+}
+
+HttpResponse cache::returndata(HttpRequest request){
 
 }
 

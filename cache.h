@@ -8,31 +8,37 @@
 #include <algorithm>
 #include <iostream>
 #include <list>
-#include<iterator>
+#include <iterator>
 #include <utility> 
 #include <unordered_map>
+
+#include "httprequest.h"
+#include "httpresponse.h"
+
 
 
 // cache class, base on LRU.
 class cache {
 protected:
+    int capacity;
+    
     // uid, Response
-    std::unordered_map<std::string, std::list<std::pair<std::string, Response>>::iterator> lookup;
-    std::list<std::pair<std::string, Response>> dataset;
+    std::unordered_map<std::string, std::list<std::pair<std::string, HttpResponse> >::iterator> lookup;
+    std::list<std::pair<std::string, HttpResponse> > dataset;
 
     // given httpResponse, update the data from server.
-    void update(Request request);
+    void update(HttpRequest request);
     // given string, check cache has data / time has expired.
-    bool check(Request request);
+    bool check(HttpRequest request);
 
     // revalidate the data.
-    httpResponse revalidate(socketkeeper & server_sock,
-                            ttpRequest & info,
-                            std::unordered_map<std::string, httpResponse>::iterator to_valid);
+    HttpResponse revalidate(HttpSocket& server_sock,
+                            HttpRequest& info,
+                            std::unordered_map<std::string, HttpResponse>::iterator to_valid);
 public:
 
     // given request, return the response ready to send back.
-    Response returndata(Request request);
+    HttpResponse returndata(HttpRequest request);
 };
 
 #endif
