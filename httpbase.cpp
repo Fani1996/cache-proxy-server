@@ -54,8 +54,9 @@ int httpBase::recv_header(HttpSocket &sk){
     while(1){
         char buffer[2];
         memset(&buffer,0,sizeof(buffer));
-        int actual_byte=sk.recv_msg(buffer,1,0);
-        if(actual_byte==0){
+
+	int actual_byte=sk.recv_msg(buffer,1,0);
+	if(actual_byte==0){
             std::cerr<<"connect closed"<<std::endl;
             //throw 
         }
@@ -73,6 +74,7 @@ int httpBase::recv_header(HttpSocket &sk){
                     meta_parser(meta);
                 }
                 else{
+		  std::cout<<"header::"<<header<<std::endl;
                     header_parser(header);
                     header.clear();
                     char check_end[3];
@@ -86,7 +88,7 @@ int httpBase::recv_header(HttpSocket &sk){
                         break;
                     }
                     else{
-                        header.append(buffer);
+		      header.append(check_end);
                     }
                 }
             }
@@ -132,7 +134,7 @@ void httpBase::recv_http_1_1(HttpSocket & sk, int type){
     if(type == 1){
         recv_chunk(sk);
     }
-    else if(type == 0){
+    else if(type == -1){
         recv_length(sk);
     }
     else{
