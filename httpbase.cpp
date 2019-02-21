@@ -97,7 +97,7 @@ void httpBase::recv_header(HttpSocket &sk){
 
     }
 }
-void httpBase::recv_http1-1(HttpSocket & sk){
+void httpBase::recv_http1-0(HttpSocket & sk){
    // std::string content;
     while(1){
         char buffer[127];
