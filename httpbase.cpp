@@ -68,7 +68,6 @@ int httpBase::recv_header(HttpSocket &sk){
                     meta_parser(meta);
                 }
                 else{
-		  std::cout<<"header::"<<header<<std::endl;
                     header_parser(header);
                     header.clear();
                     char check_end[3];
@@ -82,12 +81,11 @@ int httpBase::recv_header(HttpSocket &sk){
                         break;
                     }
                     else{
-		      header.append(check_end);
+                        header.append(check_end);
                     }
                 }
             }
-            else
-            {   
+            else{   
                 if(flag_firstline==0)
                     meta.push_back(check[0]);
                 else
