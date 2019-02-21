@@ -28,6 +28,7 @@ protected:
     void recv_chunk(HttpSocket& sk);
     void recv_length(HttpSocket& sk);
 
+    void send_400_bad_request(HttpSocket& sk);
 };
 
 #endif

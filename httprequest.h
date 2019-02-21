@@ -10,8 +10,11 @@
 
 class HttpRequest : public httpBase{
 private:
-    std::string get_method();
-    std::string get_protocol();
+    std::string hostname;
+    std::string port;
+
+    void get_host();
+    void get_port();
 
 public:
     void receive(HttpSocket& sk);

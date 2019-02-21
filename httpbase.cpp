@@ -9,7 +9,7 @@
 #include <exception>
 
 
-std::vector<std::string> split (const std::string &s, char delim) {
+std::vector<std::string> httpBase::split (const std::string &s, char delim) {
     std::vector<std::string> result;
     std::stringstream ss (s);
     std::string item;
@@ -33,11 +33,17 @@ void httpBase::meta_parser(std::string meta) {
     //     pre = found + 1;
     //     found = meta.find_first_of(' ', pre);
     // }
+
+    for(auto metaa:this->meta){
+        std::cout<<"meta received: "<<metaa<<std::endl;
+    }
 }
 
 void httpBase::header_parser(std::string line) {
     std::vector<std::string> splitted = split(line, ':');
     headerpair[splitted[0]] = splitted[1];
+
+    std::cout<<"header parsed: key: "<<splitted[0]<<", valie: "<<splitted[1]<<std::endl;
 }
 
 //return value:1 chunk -1 length 0 none
@@ -162,6 +168,10 @@ void httpBase::recv_chunk(HttpSocket& sk) {
                 sk.recv_msg(contentbuf, length+2, MSG_WAITALL);
                 payload.append(contentbuf, length+2);
 
+                std::cout<<"=== chuck received. ==="<<std::endl;
+                std::cout<<"length: "<<length<<std::endl;
+                std::cout<<"content: "<<std::string(contentbuf)<<std::endl;
+
                 data = "";
             }
         }
@@ -181,6 +191,14 @@ void httpBase::recv_length(HttpSocket& sk) {
 
         sk.recv_msg(contentbuf, length, MSG_WAITALL);
         payload.append(contentbuf, length);
+
+        std::cout<<"=== content length received. ==="<<std::endl;
+        std::cout<<"length: "<<length<<std::endl;
+        std::cout<<"content: "<<std::string(contentbuf)<<std::endl;
     }
 }
 
+void httpBase::send_400_bad_request(HttpSocket& sk){
+    std::string error("HTTP/1.1 400 Bad Request\r\nContent-Type:text/html\r\nContent-Length: 15\r\n\r\n400 Bad Request");
+    sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+}

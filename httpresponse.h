@@ -9,11 +9,9 @@
 #include "httpbase.h"
 
 class HttpResponse : public httpBase{
-private:
+ private:
   std::string content;
  public:
-    httpResponse()=default;
-    void receive();
-    
+    void receive(HttpSocket &sk);
 };
 #endif
