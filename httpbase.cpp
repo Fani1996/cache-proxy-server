@@ -25,25 +25,19 @@ void httpBase::meta_parser(std::string meta) {
     // split into vector of meta.
     this->meta = split(meta, ' ');
 
-    // std::size_t pre = 0;
-    // std::size_t found = meta.find_first_of(' ');
-
-    // while (found != std::string::npos) {
-    //     this->meta.push_back(meta.substr(pre, found-pre));
-    //     pre = found + 1;
-    //     found = meta.find_first_of(' ', pre);
-    // }
-
     for(auto metaa:this->meta){
         std::cout<<"meta received: "<<metaa<<std::endl;
     }
 }
 
 void httpBase::header_parser(std::string line) {
-    std::vector<std::string> splitted = split(line, ':');
-    headerpair[splitted[0]] = splitted[1];
+    std::size_t pos = line.find_first_of(':');
+    std::string key = line.substr(0, pos);
+    std::string value = line.substr(pos+1);
 
-    std::cout<<"header parsed: key: "<<splitted[0]<<", valie: "<<splitted[1]<<std::endl;
+    headerpair[key] = value;
+
+    std::cout<<"header parsed: key: "<<key<<", value: "<<value<<std::endl;
 }
 
 //return value:1 chunk -1 length 0 none
