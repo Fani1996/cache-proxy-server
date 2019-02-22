@@ -1,5 +1,6 @@
 #include "httprequest.h"
 #include <exception>
+#include <algorithm>
 
 
 // get hostname from request.
@@ -18,31 +19,39 @@ std::string HttpRequest::get_host() {
         hostname = host.substr(0, pos);
         port = host.substr(pos+1);
     }
-    return host;
+
+    std::string::iterator end_pos = std::remove(hostname.begin(), hostname.end(), ' ');
+    hostname.erase(end_pos, hostname.end());
+
+    return hostname;
 }
 
 // get port from request.
 std::string HttpRequest::get_port() {
-    if(port != ""){
-        return "";
+  std::size_t pos;
+  if(headerpair.find("Host") != headerpair.end()){
+    if( (pos = headerpair["Host"].find_first_of(':')) != std::string::npos ){
+      return port = headerpair["Host"].substr(pos+1);
+              
     }
+        
+  }
 
-    if(meta.size() == 3){
-        std::size_t pos;
-        if( (pos = meta[1].find_first_of(':')) != std::string::npos ){
-            return port = meta[1].substr(pos+1);
-        }
-
-        if(meta[2].find("HTTP") != std::string::npos){
-            return port = "80";
-        }
-        if(meta[2].find("HTTPS") != std::string::npos){
-            return port = "443";
-        }
+  // using meta to determine port.
+  if(meta.size() == 3){
+    if(meta[2].find("HTTP") != std::string::npos){
+      return port = "80";
+              
     }
+    if(meta[2].find("HTTPS") != std::string::npos){
+      return port = "443";
+              
+    }
+        
+  }
 
-    return port;
-    // other situation will make the port empty string, we can check empty for exception.
+  return "";
+  // other situation will make the port empty string, we can check empty for exception.
 }
 
 // return identifier for request to id the request in cache.

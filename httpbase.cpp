@@ -106,6 +106,10 @@ int httpBase::recv_header(HttpSocket &sk){
         }
 
     }
+
+    std::cout<<"received: "<<header<<std::endl;
+    std::cout<<"received: "<<meta<<std::endl;
+
     if(headerpair.find("Transfer-Encoding") != headerpair.end())
         return 1;
     else if(headerpair.find("Content-Length") != headerpair.end())
@@ -215,9 +219,11 @@ void httpBase::send_502_bad_gateway(HttpSocket& sk){
 
 void httpBase::send(HttpSocket sk){
     std::cout<<"send: "<<content<<std::endl;
+    std::cout<<"end send"<<std::endl;
+    
     char * buffer = new char [content.length()+1];
     std::strcpy (buffer, content.c_str());
 
-    sk.send_msg(buffer, content.length() + 1);
+    sk.send_msg(buffer, content.length()+1);
     delete[] buffer;
 }

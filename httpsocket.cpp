@@ -27,7 +27,7 @@ void HttpSocket::create_as_server(const char * port){
   struct addrinfo *host_info_list;
   memset(&host_info, 0, sizeof(host_info));
 
-  host_info.ai_family   = AF_UNSPEC;
+  host_info.ai_family   = AF_INET;
   host_info.ai_socktype = SOCK_STREAM;
   host_info.ai_flags    = AI_CANONNAME;
   status = getaddrinfo("0.0.0.0", port, &host_info, &host_info_list);
@@ -61,7 +61,7 @@ void HttpSocket::create_as_client(const char * port,const char *hostname){
   struct addrinfo host_info;
   struct addrinfo *host_info_list;
   memset(&host_info, 0, sizeof(host_info));
-  host_info.ai_family   = AF_UNSPEC;
+  host_info.ai_family   = AF_INET;
   host_info.ai_socktype = SOCK_STREAM;
 
   if (getaddrinfo(hostname, port, &host_info, &host_info_list) != 0) {
@@ -75,14 +75,14 @@ void HttpSocket::create_as_client(const char * port,const char *hostname){
     // TO-DO: throw
     return;
   }
- 
+
   if (connect(fd, host_info_list->ai_addr, host_info_list->ai_addrlen) == -1) {
     freeaddrinfo(host_info_list);
     close(fd);
     // TO-DO: throw.
     return;
   }
-  freeaddrinfo(host_info_list);
+freeaddrinfo(host_info_list);
 }
 
 int HttpSocket::accept_connect() {
@@ -124,5 +124,5 @@ int HttpSocket::recv_msg(void *info,size_t size,int flag) {
 }
 
 HttpSocket::~HttpSocket() {
-  close(fd);
+  //close(fd);
 }
