@@ -6,9 +6,8 @@
 // get hostname from request.
 std::string HttpRequest::get_host() {
     std::string host;
-    if(headerpair.count("Host") == 0) {
-        hostname = host;
-        return host;
+    if(headerpair.count("Host") == 0) { // host not exist.
+        return hostname = host;
     }
     
     host = headerpair["Host"];
@@ -20,32 +19,28 @@ std::string HttpRequest::get_host() {
         port = host.substr(pos+1);
     }
 
-    std::string::iterator end_pos = std::remove(hostname.begin(), hostname.end(), ' ');
-    hostname.erase(end_pos, hostname.end());
-
+    hostname.erase(std::remove(hostname.begin(), hostname.end(), ' '), hostname.end());
     return hostname;
 }
 
 // get port from request.
 std::string HttpRequest::get_port() {
-  std::size_t pos;
-  if(headerpair.find("Host") != headerpair.end()){
-    if( (pos = headerpair["Host"].find_first_of(':')) != std::string::npos ){
-      return port = headerpair["Host"].substr(pos+1);
-              
+    std::size_t pos;
+    if(headerpair.find("Host") != headerpair.end()){
+        if( (pos = headerpair["Host"].find_first_of(':')) != std::string::npos ){
+            return port = headerpair["Host"].substr(pos+1);
+        }
     }
-        
   }
 
-  // using meta to determine port.
-  if(meta.size() == 3){
-    if(meta[2].find("HTTP") != std::string::npos){
-      return port = "80";
-              
-    }
-    if(meta[2].find("HTTPS") != std::string::npos){
-      return port = "443";
-              
+    // using meta to determine port.
+    if(meta.size() == 3){
+        if(meta[2].find("HTTPS") != std::string::npos){
+            port = "80";
+        }
+        else if(meta[2].find("HTTP") != std::string::npos){
+            port = "443";
+        }
     }
         
   }
