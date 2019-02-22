@@ -1,5 +1,6 @@
 #include "httprequest.h"
 #include <exception>
+#include <algorithm>
 
 
 // get hostname from request.
@@ -17,6 +18,8 @@ std::string HttpRequest::get_host() {
         hostname = host.substr(0, pos);
         port = host.substr(pos+1);
     }
+
+    hostname.erase(std::remove(hostname.begin(), hostname.end(), ' '), hostname.end());
     return hostname;
 }
 
@@ -31,15 +34,15 @@ std::string HttpRequest::get_port() {
 
     // using meta to determine port.
     if(meta.size() == 3){
-        if(meta[2].find("HTTP") != std::string::npos){
-            return port = "80";
-        }
         if(meta[2].find("HTTPS") != std::string::npos){
-            return port = "443";
+            port = "80";
+        }
+        else if(meta[2].find("HTTP") != std::string::npos){
+            port = "443";
         }
     }
 
-    return "";
+    return port;
     // other situation will make the port empty string, we can check empty for exception.
 }
 
