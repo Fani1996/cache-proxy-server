@@ -35,14 +35,14 @@ std::string HttpRequest::get_port() {
     // using meta to determine port.
     if(meta.size() == 3){
         if(meta[2].find("HTTPS") != std::string::npos){
-            port = "80";
+            port = "443";
         }
         else if(meta[2].find("HTTP") != std::string::npos){
-            port = "443";
+            port = "80";
         }
     }
 
-  return "";
+  return port;
   // other situation will make the port empty string, we can check empty for exception.
 }
 
