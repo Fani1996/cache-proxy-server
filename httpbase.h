@@ -28,7 +28,6 @@ protected:
     void recv_chunk(HttpSocket& sk);
     void recv_length(HttpSocket& sk);
 
-    std::string get_content();
 
     void send_400_bad_request(HttpSocket& sk);
     void send_502_bad_gateway(HttpSocket& sk);
@@ -37,6 +36,8 @@ public:
     //constructor.
     httpBase() {}
     httpBase(std::string ct) : content(ct) {}
+
+    std::string get_content();
 
     void send(HttpSocket sk);
 };

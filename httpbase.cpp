@@ -122,6 +122,7 @@ void httpBase::recv_http_1_0(HttpSocket & sk){
             break;
         }
         payload.append(buffer);
+        content.append(buffer);
     }
 }
 
@@ -146,6 +147,7 @@ void httpBase::recv_chunk(HttpSocket& sk) {
 
         data.push_back(buffer[0]);
         payload.push_back(buffer[0]);
+        content.push_back(buffer[0]);
 
         unsigned long length = 0;
 
@@ -164,10 +166,11 @@ void httpBase::recv_chunk(HttpSocket& sk) {
 
                 sk.recv_msg(contentbuf, length+2, MSG_WAITALL);
                 payload.append(contentbuf, length+2);
+                content.append(contentbuf, length+2);
 
                 std::cout<<"=== chuck received. ==="<<std::endl;
                 std::cout<<"length: "<<length<<std::endl;
-                std::cout<<"content: "<<std::string(contentbuf)<<std::endl;
+                std::cout<<"content: "<<content<<std::endl;
 
                 data = "";
             }
@@ -188,10 +191,11 @@ void httpBase::recv_length(HttpSocket& sk) {
 
         sk.recv_msg(contentbuf, length, MSG_WAITALL);
         payload.append(contentbuf, length);
+        content.append(contentbuf, length);
 
         std::cout<<"=== content length received. ==="<<std::endl;
         std::cout<<"length: "<<length<<std::endl;
-        std::cout<<"content: "<<std::string(contentbuf)<<std::endl;
+        std::cout<<"content: "<<content<<std::endl;
     }
 }
 
@@ -210,8 +214,10 @@ void httpBase::send_502_bad_gateway(HttpSocket& sk){
 }
 
 void httpBase::send(HttpSocket sk){
+    std::cout<<content<<std::endl;
     char * buffer = new char [content.length()+1];
     std::strcpy (buffer, content.c_str());
-    sk.send_msg(buffer, sizeof(char) * content.length());
+
+    sk.send_msg(buffer, content.length() + 1);
     delete[] buffer;
 }
