@@ -23,16 +23,15 @@ std::string HttpRequest::get_host() {
 
 // get port from request.
 std::string HttpRequest::get_port() {
-    if(port != ""){
-        return "";
+    std::size_t pos;
+    if(headerpair.find("Host") != headerpair.end()){
+        if( (pos = headerpair["Host"].find_first_of(':')) != std::string::npos ){
+            return port = headerpair["Host"].substr(pos+1);
+        }
     }
 
+    // using meta to determine port.
     if(meta.size() == 3){
-        std::size_t pos;
-        if( (pos = meta[1].find_first_of(':')) != std::string::npos ){
-            return port = meta[1].substr(pos+1);
-        }
-
         if(meta[2].find("HTTP") != std::string::npos){
             return port = "80";
         }
@@ -41,7 +40,7 @@ std::string HttpRequest::get_port() {
         }
     }
 
-    return port;
+    return "";
     // other situation will make the port empty string, we can check empty for exception.
 }
 
