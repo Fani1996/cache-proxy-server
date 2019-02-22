@@ -26,12 +26,21 @@ std::string HttpRequest::get_port() {
     if(port != ""){
         return "";
     }
-    if(meta.size() == 3 && meta[2].find("HTTPS") != std::string::npos){
-        port = "443";
+
+    if(meta.size() == 3){
+        std::size_t pos;
+        if( (pos = meta[1].find_first_of(':')) != std::string::npos ){
+            return port = meta[1].substr(pos+1);
+        }
+
+        if(meta[2].find("HTTP") != std::string::npos){
+            return port = "80";
+        }
+        if(meta[2].find("HTTPS") != std::string::npos){
+            return port = "443";
+        }
     }
-    if(meta.size() == 3 && meta[2].find("HTTP") != std::string::npos){
-        port = "80";
-    }
+
     return port;
     // other situation will make the port empty string, we can check empty for exception.
 }

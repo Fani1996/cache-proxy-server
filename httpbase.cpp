@@ -214,7 +214,7 @@ void httpBase::send_502_bad_gateway(HttpSocket& sk){
 }
 
 void httpBase::send(HttpSocket sk){
-  std::cout<<"send: "<<content<<std::endl;
+    std::cout<<"send: "<<content<<std::endl;
     char * buffer = new char [content.length()+1];
     std::strcpy (buffer, content.c_str());
 
