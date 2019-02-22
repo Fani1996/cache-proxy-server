@@ -31,7 +31,6 @@ std::string HttpRequest::get_port() {
             return port = headerpair["Host"].substr(pos+1);
         }
     }
-  }
 
     // using meta to determine port.
     if(meta.size() == 3){
@@ -42,8 +41,6 @@ std::string HttpRequest::get_port() {
             port = "443";
         }
     }
-        
-  }
 
   return "";
   // other situation will make the port empty string, we can check empty for exception.
