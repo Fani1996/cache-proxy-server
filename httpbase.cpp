@@ -54,6 +54,7 @@ int httpBase::recv_header(HttpSocket &sk){
             std::cerr<<"connect closed"<<std::endl;
             //throw 
         }
+	content.push_back(buffer[0]);
         if(!strncmp(buffer,"\r",1)){
             char check[2];
             memset(&check,0,sizeof(check));
@@ -62,6 +63,7 @@ int httpBase::recv_header(HttpSocket &sk){
                 std::cerr<<"connect closed"<<std::endl;
             //throw 
             }
+	    content.push_back(check[0]);
             if(!strncmp(check,"\n",1)){
                 if(flag_firstline==0){
                     flag_firstline=1;
@@ -77,12 +79,12 @@ int httpBase::recv_header(HttpSocket &sk){
                         std::cerr<<"connect closed"<<std::endl;
                         //throw 
                     }
+		    content.append(check_end);
                     if(!strncmp(check_end,"\r\n",2)){
                         break;
                     }
                     else{
                         header.append(check_end);
-                        content.append(check_end);
                     }
                 }
             }
@@ -91,7 +93,6 @@ int httpBase::recv_header(HttpSocket &sk){
                     meta.push_back(check[0]);
                 else
                     header.push_back(check[0]);
-                content.push_back(check[0]);
             }
             
         }
@@ -102,7 +103,6 @@ int httpBase::recv_header(HttpSocket &sk){
             else{
                 header.push_back(buffer[0]);
             }
-            content.push_back(buffer[0]);
         }
 
     }
@@ -214,7 +214,7 @@ void httpBase::send_502_bad_gateway(HttpSocket& sk){
 }
 
 void httpBase::send(HttpSocket sk){
-    std::cout<<content<<std::endl;
+  std::cout<<"send: "<<content<<std::endl;
     char * buffer = new char [content.length()+1];
     std::strcpy (buffer, content.c_str());
 
