@@ -5,9 +5,8 @@
 // get hostname from request.
 std::string HttpRequest::get_host() {
     std::string host;
-    if(headerpair.count("Host") == 0) {
-        hostname = host;
-        return host;
+    if(headerpair.count("Host") == 0) { // host not exist.
+        return hostname = host;
     }
     
     host = headerpair["Host"];
@@ -18,7 +17,7 @@ std::string HttpRequest::get_host() {
         hostname = host.substr(0, pos);
         port = host.substr(pos+1);
     }
-    return host;
+    return hostname;
 }
 
 // get port from request.
