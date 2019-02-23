@@ -2,10 +2,6 @@
 #include <exception>
 #include <algorithm>
 
-
-std::string HttpRequest::get_method(){
-  return meta[0];
-}
 // get hostname from request.
 std::string HttpRequest::get_host() {
     std::string host;
