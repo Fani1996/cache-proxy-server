@@ -12,10 +12,11 @@ class httpBase {
 protected:
     std::string content;
     std::string payload;
+    std::string header;
 
     std::vector<std::string> meta;
     std::unordered_map<std::string, std::string> headerpair;
-    std::vector<std::string> cache_control;
+    std::unordered_map<std::string, std::string> cache_control;
 
     std::vector<std::string> split(const std::string &s, char delim);
 
@@ -40,6 +41,13 @@ public:
     httpBase(std::string ct) : content(ct) {}
 
     std::string get_content();
+    std::string get_header_kv(std::string key);
+    void set_header_kv(std::string key, std::string value);
+
+    void update_header(std::string header);
+    void refresh();
+    
+    std::string get_cahce_control(std::string key);
 
     void send(HttpSocket sk);
     bool can_cache();

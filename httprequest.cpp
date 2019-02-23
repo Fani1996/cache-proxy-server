@@ -2,8 +2,11 @@
 #include <exception>
 #include <algorithm>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 0b96c7ea474d90dea8a06763feb924d0d1502224
 // get hostname from request.
 std::string HttpRequest::get_host() {
     std::string host;

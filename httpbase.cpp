@@ -42,19 +42,19 @@ void httpBase::header_parser(std::string line) {
 
 //return value:1 chunk -1 length 0 none
 int httpBase::recv_header(HttpSocket &sk){
-    std::string header;
+    std::string headerline;
     std::string meta;
     int flag_firstline=0;
     while(1){
         char buffer[2];
         memset(&buffer,0,sizeof(buffer));
 
-	int actual_byte=sk.recv_msg(buffer,1,0);
-	if(actual_byte==0){
+        int actual_byte=sk.recv_msg(buffer,1,0);
+        if(actual_byte==0){
             std::cerr<<"connect closed"<<std::endl;
             //throw 
         }
-	content.push_back(buffer[0]);
+        content.push_back(buffer[0]);
         if(!strncmp(buffer,"\r",1)){
             char check[2];
             memset(&check,0,sizeof(check));
@@ -63,15 +63,15 @@ int httpBase::recv_header(HttpSocket &sk){
                 std::cerr<<"connect closed"<<std::endl;
             //throw 
             }
-	    content.push_back(check[0]);
+            content.push_back(check[0]);
             if(!strncmp(check,"\n",1)){
                 if(flag_firstline==0){
                     flag_firstline=1;
                     meta_parser(meta);
                 }
                 else{
-                    header_parser(header);
-                    header.clear();
+                    header_parser(headerline);
+                    headerline.clear();
                     char check_end[3];
                     memset(&check_end,0,sizeof(check_end));
                     int actual_byte=sk.recv_msg(check_end,2,0);
@@ -79,11 +79,12 @@ int httpBase::recv_header(HttpSocket &sk){
                         std::cerr<<"connect closed"<<std::endl;
                         //throw 
                     }
-		    content.append(check_end);
+                    content.append(check_end);
                     if(!strncmp(check_end,"\r\n",2)){
                         break;
                     }
                     else{
+                        headerline.append(check_end);
                         header.append(check_end);
                     }
                 }
@@ -92,15 +93,16 @@ int httpBase::recv_header(HttpSocket &sk){
                 if(flag_firstline==0)
                     meta.push_back(check[0]);
                 else
+                    headerline.push_back(check[0]);
                     header.push_back(check[0]);
             }
-            
         }
         else{
             if(flag_firstline==0){
                 meta.push_back(buffer[0]);
             }
             else{
+                headerline.push_back(buffer[0]);
                 header.push_back(buffer[0]);
             }
         }
@@ -115,8 +117,8 @@ int httpBase::recv_header(HttpSocket &sk){
         return -1;
     else
         return 0;
-    
 }
+
 void httpBase::recv_http_1_0(HttpSocket & sk){
     while(1){
         char buffer[127];
@@ -206,6 +208,37 @@ std::string httpBase::get_content(){
     return content;
 }
 
+std::string httpBase::get_header_kv(std::string key){
+    if(headerpair.find(key) != headerpair.end())
+        return headerpair[key];
+    return "";
+}
+
+void httpBase::set_header_kv(std::string key, std::string value){
+    headerpair[key] = value;
+}
+
+void httpBase::update_header(std::string line){
+    if(std::size_t pos = header.find("\r\n\r\n") != std::string::npos){
+        std::string newline("\r\n" + line + "\r\n\r\n");
+        header.replace(pos, 4, newline);
+    }
+    else if(std::size_t pos = header.find("\n\n") != std::string::npos){
+        std::string newline("\n" + line + "\n\n");
+        header.replace(pos, 2, newline);
+    }
+}
+
+void httpBase::refresh(){
+    content = header + payload;
+}
+
+std::string httpBase::get_cahce_control(std::string key){
+    if(cache_control.find(key) != cache_control.end())
+        return cache_control[key];
+    return "";
+}
+
 void httpBase::send_400_bad_request(HttpSocket& sk){
     std::string error("HTTP/1.1 400 Bad Request\r\nContent-Type:text/html\r\nContent-Length: 15\r\n\r\n400 Bad Request");
     sk.send_msg(const_cast<char *>(error.c_str()), error.size());
@@ -228,33 +261,39 @@ void httpBase::send(HttpSocket sk){
 }
 
 void httpBase::cache_control_parser(){
-  std::unordered_map<std::string, std::string>::const_iterator temp=headerpair.find("Cache-Control");
-  if(temp!=headerpair.end()){
-    std::string whole_cache_control=temp->second;
-    size_t pos=whole_cache_control.find(",");
-    while(pos!=std::string::npos){
-      cache_control.push_back(whole_cache_control.substr(0,pos));
-      std::cout<<"cache_control:"<<whole_cache_control.substr(0,pos)<<std::endl;
-      whole_cache_control=whole_cache_control.substr(pos+1);
-      pos=whole_cache_control.find(",");
+  if(headerpair.find("Cache-Control") != headerpair.end()){
+    std::string whole_cache_control = headerpair["Cache-Control"];
+    
+    size_t pos = whole_cache_control.find(",");
+    while(pos != std::string::npos){
+        std::string single_control = whole_cache_control.substr(0, pos);
+        
+        size_t position = single_control.find('=');
+        if(position != std::string::npos){
+            cache_control[single_control.substr(0, position)] = single_control.substr(pos+1);
+        }
+        else{
+            throw std::invalid_argument("invalid cache control format.");
+        }
+
+        whole_cache_control = whole_cache_control.substr(pos+1);
+        pos = whole_cache_control.find(",");
     }    
   }
 }
+
 bool httpBase::can_cache(){
-  int length=cache_control.size();
-  for(int i=0;i<length;i++){
-    if(cache_control[i].find("no-cache")!= std::string::npos){
-      return false;
-    }
-    if(cache_control[i].find("no-store")!= std::string::npos){
-      return false;
-    }
-    if(cache_control[i].find("private")!= std::string::npos){
-      return false;
-    }
-    if(cache_control[i].find("must_revalidate")!= std::string::npos){
-      return false;
-    }
-  }
-  return true;
+    if(cache_control.find("no-cache") != cache_control.end())
+        return false;
+
+    if(cache_control.find("no-store") != cache_control.end())
+        return false;
+
+    if(cache_control.find("private") != cache_control.end())
+        return false;
+
+    if(cache_control.find("must_revalidate") != cache_control.end())
+        return false;
+
+    return true;
 }
