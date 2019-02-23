@@ -35,17 +35,17 @@ protected:
 
     // Data-related operation.
     // given string, check cache has data / time has expired.
-    bool check(HttpRequest request);
+    // bool check(HttpRequest request);
 
     // given httpRequest, update the data from server.
-    HttpResponse update(HttpRequest request);
+    // HttpResponse update(HttpRequest request);
 
     // revalidate the data.
     HttpResponse revalidate(HttpSocket& server_sock,
                             HttpRequest& info,
                             std::unordered_map<std::string, HttpResponse>::iterator to_valid);
 public:
-
+    bool can_store(HttpRequest &httprequest,HttpResponse &httpresponse);
     // given request, return the response ready to send back.
     HttpResponse returndata(HttpRequest request);
 };

@@ -41,7 +41,7 @@ void cache::store(HttpRequest request, HttpResponse response){
 
 
 // given string, check cache has data / time has expired.
-bool cache::check(HttpRequest request){
+/*bool cache::check(HttpRequest request){
 
 }
 
@@ -49,6 +49,7 @@ bool cache::check(HttpRequest request){
 HttpResponse cache::update(HttpRequest request){
 
 }
+
 
 // given request, return the response ready to send back.
 HttpResponse cache::returndata(HttpRequest request){
@@ -66,8 +67,9 @@ HttpResponse cache::returndata(HttpRequest request){
     return response;
 }
 
-bool cache::can_store(HttpReqest &httprequest,HttpResponse &httpresponse){
-  if(httprequest.get_mothod()=="GET"&&httpresponse.get_code()=="200"){
+*/
+bool cache::can_store(HttpRequest &httprequest,HttpResponse &httpresponse){
+  if(httprequest.get_method()=="GET"&&httpresponse.get_code()=="200"){
     if(httprequest.can_cache()&&httpresponse.can_cache()){
       return true;
     }

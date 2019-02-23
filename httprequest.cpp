@@ -3,9 +3,7 @@
 #include <algorithm>
 
 
-std::string HttpRequest::get_method(){
-  return meta[0];
-}
+
 // get hostname from request.
 std::string HttpRequest::get_host() {
     std::string host;
@@ -71,7 +69,37 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
 
     client.send_msg(const_cast<char *>(response.c_str()), response.size());
 
-    // connect_blind_transmit
+    int client_fd=client.get_fd();
+    int server_fd=server.get_fd();
+    //connect server and client
+    while(1){
+      fd_set read_fd;
+      FD_ZERO(&read_fd);
+      int max_fd=client_fd>server_fd ? client_fd:server_fd;
+      FD_SET (client_fd, &read_fd);
+      FD_SET (server_fd, &read_fd);
+      int active=select(max_fd+1,&read_fd,NULL,NULL,NULL);
+      if(active>0){
+        if(FD_ISSET(client_fd, &read_fd)){
+	  char buffer[5001];
+	  memset(&buffer,0,sizeof(buffer));
+	  int actual_byte=client.recv_msg(buffer,sizeof(buffer),0);
+	  //if connect closed
+	  if(actual_byte==0||actual_byte==-1)
+	    break;
+	  server.send_msg(buffer,sizeof(buffer));
+	}
+	if(FD_ISSET(server_fd, &read_fd)){
+	  char buffer[5001];
+          memset(&buffer,0,sizeof(buffer));
+          int actual_byte=server.recv_msg(buffer,sizeof(buffer),0);
+	  //if connect close
+          if(actual_byte==0||actual_byte==-1)
+            break;
+          client.send_msg(buffer,sizeof(buffer));
+	}
+      }
+    }
 }
 
 // receive request.
