@@ -15,11 +15,13 @@ protected:
 
     std::vector<std::string> meta;
     std::unordered_map<std::string, std::string> headerpair;
+    std::vector<std::string> cache_control;
 
     std::vector<std::string> split(const std::string &s, char delim);
 
     void meta_parser(std::string meta);
     void header_parser(std::string line);
+    void cache_control_parser();
 
     void recv_http_1_0(HttpSocket & sk);
     void recv_http_1_1(HttpSocket & sk, int type);
@@ -31,7 +33,7 @@ protected:
 
     void send_400_bad_request(HttpSocket& sk);
     void send_502_bad_gateway(HttpSocket& sk);
-
+    
 public:
     //constructor.
     httpBase() {}
@@ -40,6 +42,7 @@ public:
     std::string get_content();
 
     void send(HttpSocket sk);
+    bool can_cache();
 };
 
 #endif

@@ -27,6 +27,7 @@ public:
     std::string get_host();
     // get port from request.
     std::string get_port();
+    std::string get_method();
 };
 
 #endif

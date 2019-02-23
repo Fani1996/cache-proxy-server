@@ -25,3 +25,6 @@ void HttpResponse::receive(HttpSocket &sk){
     }
     
 }
+std::string HttpResponse::get_code(){
+  return meta[1];
+}

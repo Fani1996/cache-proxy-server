@@ -107,8 +107,7 @@ int httpBase::recv_header(HttpSocket &sk){
 
     }
 
-    std::cout<<"received: "<<header<<std::endl;
-    std::cout<<"received: "<<meta<<std::endl;
+    cache_control_parser();
 
     if(headerpair.find("Transfer-Encoding") != headerpair.end())
         return 1;
@@ -226,4 +225,36 @@ void httpBase::send(HttpSocket sk){
 
     sk.send_msg(buffer, content.length()+1);
     delete[] buffer;
+}
+
+void httpBase::cache_control_parser(){
+  std::unordered_map<std::string, std::string>::const_iterator temp=headerpair.find("Cache-Control");
+  if(temp!=headerpair.end()){
+    std::string whole_cache_control=temp->second;
+    size_t pos=whole_cache_control.find(",");
+    while(pos!=std::string::npos){
+      cache_control.push_back(whole_cache_control.substr(0,pos));
+      std::cout<<"cache_control:"<<whole_cache_control.substr(0,pos)<<std::endl;
+      whole_cache_control=whole_cache_control.substr(pos+1);
+      pos=whole_cache_control.find(",");
+    }    
+  }
+}
+bool httpBase::can_cache(){
+  int length=cache_control.size();
+  for(int i=0;i<length;i++){
+    if(cache_control[i].find("no-cache")!= std::string::npos){
+      return false;
+    }
+    if(cache_control[i].find("no-store")!= std::string::npos){
+      return false;
+    }
+    if(cache_control[i].find("private")!= std::string::npos){
+      return false;
+    }
+    if(cache_control[i].find("must_revalidate")!= std::string::npos){
+      return false;
+    }
+  }
+  return true;
 }
