@@ -49,9 +49,29 @@ std::string HttpRequest::get_port() {
   // other situation will make the port empty string, we can check empty for exception.
 }
 
+// return request's method.
+std::string HttpRequest::get_method(){
+    return meta[0];
+}
+
 // return identifier for request to id the request in cache.
 std::string HttpRequest::get_identifier(){
     return meta[1];
+}
+
+// return request's version.
+std::string HttpRequest::get_version(){
+    return meta[2];
+}
+
+// deal with CONNECT method of the request.
+void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
+    std::string response(get_version() + " 200 OK\r\n\r\n");
+    std::cout<<"CONNECT Response: "<<response<<std::endl;
+
+    client.send_msg(const_cast<char *>(response.c_str()), response.size());
+
+    // connect_blind_transmit
 }
 
 // receive request.
