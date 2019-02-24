@@ -57,7 +57,7 @@ void httpBase::header_parser(std::string line) {
 //return value:1 chunk -1 length 0 none
 int httpBase::recv_header(HttpSocket &sk){
     std::string headerline;
-    std::string meta;
+    std::string metaline;
 
     int flag_firstline=0;
     while(1){
@@ -85,7 +85,7 @@ int httpBase::recv_header(HttpSocket &sk){
             if(!strncmp(check,"\n",1)){
                 if(flag_firstline == 0){
                     flag_firstline = 1;
-                    meta_parser(meta);
+                    meta_parser(metaline);
                 }
                 else{
                     header_parser(headerline);
@@ -112,14 +112,14 @@ int httpBase::recv_header(HttpSocket &sk){
             }
             else{   
                 if(flag_firstline==0)
-                    meta.push_back(check[0]);
+                    metaline.push_back(check[0]);
                 else
                     headerline.push_back(check[0]);
             }
         }
         else{
             if(flag_firstline==0){
-                meta.push_back(buffer[0]);
+                metaline.push_back(buffer[0]);
             }
             else{
                 headerline.push_back(buffer[0]);
