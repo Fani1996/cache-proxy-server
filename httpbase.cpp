@@ -74,7 +74,7 @@ int httpBase::recv_header(HttpSocket &sk){
         if(!strncmp(buffer, "\r", 1)){
             char check[2];
             memset(&check, 0, sizeof(check));
-            int actual_byte = sk.recv_msg(check, 1, 0);
+            actual_byte = sk.recv_msg(check, 1, 0);
             if(actual_byte==0){
                 std::cerr<<"connect closed"<<std::endl;
             //throw 
@@ -93,7 +93,7 @@ int httpBase::recv_header(HttpSocket &sk){
 
                     std::vector<char> check_end(3,0);
                     // memset(&check_end,0,sizeof(check_end));
-                    int actual_byten = sk.recv_msg(&check_end.data()[0], 2, 0);
+                    actual_byte = sk.recv_msg(&check_end.data()[0], 2, 0);
                     if(actual_byte==0){
                         std::cerr<<"connect closed"<<std::endl;
                         //throw 
