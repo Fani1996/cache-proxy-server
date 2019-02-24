@@ -15,7 +15,7 @@ private:
 public:
     // constructor
     HttpResponse() {}
-    HttpResponse(std::string ct) : httpBase(ct) {}
+
     std::string get_code();
     double get_current_age();
     void calculate_initial_age(time_t request_time);
