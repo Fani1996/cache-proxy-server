@@ -14,9 +14,12 @@
 
 #include "httprequest.h"
 #include "httpresponse.h"
+#include "httpsocket.h"
+#include "cache.h"
 
 class proxy{
  public:
+ void handle_request(HttpRequest &request,HttpSocket &server,HttpSocket &client, cache &mycache);
  private:
 
 
