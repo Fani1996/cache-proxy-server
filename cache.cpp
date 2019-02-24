@@ -78,6 +78,7 @@ bool cache::can_store(HttpRequest& httprequest, HttpResponse& httpresponse){
   return false;
 }
 
+/*
 // request to revalidate the data.
 HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
     HttpResponse response = get(request.get_identifier());
@@ -99,3 +100,4 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
     res.receive(server);
     
 }
+*/

@@ -25,6 +25,21 @@ void HttpResponse::receive(HttpSocket &sk){
     }
     
 }
+
+
 std::string HttpResponse::get_code(){
   return meta[1];
 }
+
+/*
+std::string HttpResponse::check_age(){
+
+}
+
+std::string HttpResponse::get_current_age(){
+
+}
+std::string HttpResponse::calculate_initial_age(){
+
+}
+*/

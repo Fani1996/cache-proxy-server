@@ -42,19 +42,18 @@ void httpBase::header_parser(std::string line) {
 
 //return value:1 chunk -1 length 0 none
 int httpBase::recv_header(HttpSocket &sk){
-    std::string headerline;
+    std::string header;
     std::string meta;
     int flag_firstline=0;
     while(1){
         char buffer[2];
         memset(&buffer,0,sizeof(buffer));
 
-        int actual_byte=sk.recv_msg(buffer,1,0);
-        if(actual_byte==0){
+	int actual_byte=sk.recv_msg(buffer,1,0);
+	if(actual_byte==0){
             std::cerr<<"connect closed"<<std::endl;
             //throw 
         }
-        content.push_back(buffer[0]);
         if(!strncmp(buffer,"\r",1)){
             char check[2];
             memset(&check,0,sizeof(check));
@@ -63,15 +62,14 @@ int httpBase::recv_header(HttpSocket &sk){
                 std::cerr<<"connect closed"<<std::endl;
             //throw 
             }
-            content.push_back(check[0]);
             if(!strncmp(check,"\n",1)){
                 if(flag_firstline==0){
                     flag_firstline=1;
                     meta_parser(meta);
                 }
                 else{
-                    header_parser(headerline);
-                    headerline.clear();
+                    header_parser(header);
+                    header.clear();
                     char check_end[3];
                     memset(&check_end,0,sizeof(check_end));
                     int actual_byte=sk.recv_msg(check_end,2,0);
@@ -79,12 +77,10 @@ int httpBase::recv_header(HttpSocket &sk){
                         std::cerr<<"connect closed"<<std::endl;
                         //throw 
                     }
-                    content.append(check_end);
                     if(!strncmp(check_end,"\r\n",2)){
                         break;
                     }
                     else{
-                        headerline.append(check_end);
                         header.append(check_end);
                     }
                 }
@@ -93,30 +89,27 @@ int httpBase::recv_header(HttpSocket &sk){
                 if(flag_firstline==0)
                     meta.push_back(check[0]);
                 else
-                    headerline.push_back(check[0]);
                     header.push_back(check[0]);
             }
+            
         }
         else{
             if(flag_firstline==0){
                 meta.push_back(buffer[0]);
             }
             else{
-                headerline.push_back(buffer[0]);
                 header.push_back(buffer[0]);
             }
         }
 
     }
-
-    cache_control_parser();
-
     if(headerpair.find("Transfer-Encoding") != headerpair.end())
         return 1;
     else if(headerpair.find("Content-Length") != headerpair.end())
         return -1;
     else
         return 0;
+    
 }
 
 void httpBase::recv_http_1_0(HttpSocket & sk){

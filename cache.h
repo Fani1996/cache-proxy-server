@@ -36,8 +36,6 @@ protected:
     // Data-related operation.
     // given string, check cache has data / time has expired.
     // bool check(HttpRequest request);
-
-    bool can_store(HttpRequest& httprequest, HttpResponse& httpresponse);
     
     // given httpRequest, update the data from server.
     // HttpResponse update(HttpRequest request);
