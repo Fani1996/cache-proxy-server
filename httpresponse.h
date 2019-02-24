@@ -10,15 +10,17 @@
 
 class HttpResponse : public httpBase {
 private:
-  //  t_time response_time;
-  // t_time initial_age;
+   time_t response_time;
+   double initial_age;
 public:
     // constructor
     HttpResponse() {}
     HttpResponse(std::string ct) : httpBase(ct) {}
     std::string get_code();
-
+    double get_current_age();
+    void calculate_initial_age(time_t request_time);
     void receive(HttpSocket &sk);
+    bool is_fresh();
 };
 
 #endif

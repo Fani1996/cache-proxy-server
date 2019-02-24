@@ -79,8 +79,15 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
         FD_SET (client_fd, &read_fd);
         FD_SET (server_fd, &read_fd);
 
-        int active = select(max_fd+1, &read_fd, NULL, NULL, NULL);
-        if(active > 0){
+	/*struct timeval timeout;
+	timeout.tv_sec = 1;
+	timeout.tv_usec = 500000;//500ms
+	*/
+        int active = select(max_fd+1, &read_fd, NULL, NULL,NULL);
+	if(active==0){
+	  break;
+	}
+        else{
             std::cout<<"select active\n"<<std::endl;
             if(FD_ISSET(client_fd, &read_fd)){
                 std::cout<<"=== CLIENT Active ==="<<std::endl;
@@ -94,7 +101,7 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
                     break;
                 server.send_msg(&buffer.data()[0], actual_byte);
             }
-            if(FD_ISSET(server_fd, &read_fd)){
+            else if(FD_ISSET(server_fd, &read_fd)){
                 std::cout<<"=== SERVER Active ==="<<std::endl;
                 std::vector<char> buffer(8192,0);
 
