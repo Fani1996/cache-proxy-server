@@ -94,5 +94,16 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
     server.send_msg(const_cast<char *>(request.get_content().c_str()), request.get_content().size());
     HttpResponse res;
     res.receive(server);
-    
+
+    // make time.
+    time_t rawtime;
+    struct tm * ptm;
+
+    time ( &rawtime );
+    ptm = gmtime ( &rawtime );  
+    time_t request_time = mktime(ptm); 
+
+    res.caltime(request_time);
+
+    return res;
 }

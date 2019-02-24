@@ -55,6 +55,7 @@ int httpBase::recv_header(HttpSocket &sk){
             //throw 
         }
         content.push_back(buffer[0]);
+        header.push_back(buffer[0]);
         if(!strncmp(buffer,"\r",1)){
             char check[2];
             memset(&check,0,sizeof(check));
@@ -64,6 +65,7 @@ int httpBase::recv_header(HttpSocket &sk){
             //throw 
             }
             content.push_back(check[0]);
+            header.push_back(check[0]);
             if(!strncmp(check,"\n",1)){
                 if(flag_firstline==0){
                     flag_firstline=1;
@@ -80,12 +82,12 @@ int httpBase::recv_header(HttpSocket &sk){
                         //throw 
                     }
                     content.append(check_end);
+                    header.append(check_end);
                     if(!strncmp(check_end,"\r\n",2)){
                         break;
                     }
                     else{
                         headerline.append(check_end);
-                        header.append(check_end);
                     }
                 }
             }
@@ -94,7 +96,6 @@ int httpBase::recv_header(HttpSocket &sk){
                     meta.push_back(check[0]);
                 else
                     headerline.push_back(check[0]);
-                    header.push_back(check[0]);
             }
         }
         else{
@@ -103,7 +104,6 @@ int httpBase::recv_header(HttpSocket &sk){
             }
             else{
                 headerline.push_back(buffer[0]);
-                header.push_back(buffer[0]);
             }
         }
 
