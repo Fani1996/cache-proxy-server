@@ -19,7 +19,9 @@ HttpSocket::HttpSocket(const char * port, const char *hostname){
 HttpSocket::HttpSocket(int sk_fd):fd(sk_fd){
 
 }
-
+int HttpSocket::get_fd(){
+  return fd;
+}
 void HttpSocket::create_as_server(const char * port){
   int status;
 

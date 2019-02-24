@@ -18,6 +18,7 @@ public:
   HttpSocket(int sk_fd);
   HttpSocket(const char * port,const char *hostname);
 
+  int get_fd();
   // build server.
   void create_as_server(const char * port);
   void create_as_client(const char * port,const char *hostname);

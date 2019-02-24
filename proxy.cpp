@@ -13,8 +13,3 @@
 #include "httpresponse.h"
 
 
-void proxy::request_server(HttpRequest& httprequest){
-  
-
-
-}

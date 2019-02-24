@@ -21,6 +21,12 @@ int main(){
     HttpSocket server_sk(this_request.get_port().c_str(), this_request.get_host().c_str());
     HttpResponse this_response;
 
+    if(this_request.get_method()=="CONNECT"){
+      std::cout<<"this is connect"<<std::endl;
+      this_request.connect(client_sk,server_sk);
+    }
+
+    
     std::cout<<"\n=== to server ==="<<std::endl;
     // //send to server
     this_request.send(server_sk);
