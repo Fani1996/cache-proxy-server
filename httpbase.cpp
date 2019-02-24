@@ -219,15 +219,22 @@ void httpBase::recv_length(HttpSocket& sk) {
     }
 }
 
-std::string httpBase::get_content(){
-    return std::string(content.begin(), content.end());
+std::vector<char> httpBase::get_content(){
+  return content;
 }
+
 
 std::string httpBase::get_header_kv(std::string key){
     if(headerpair.find(key) != headerpair.end())
         return headerpair[key];
     return "";
 }
+
+
+/*
+std::stirng httpBase::update_header(httpBase updated){
+}
+*/
 
 // set the value of header key in the map, but not update the data in vector yet.
 void httpBase::set_header_kv(std::string key, std::string value){
@@ -326,9 +333,7 @@ void httpBase::cache_control_parser(){
   }
 }
 
-bool httpBase::can_cache(){
-    if(cache_control.find("no-cache") != cache_control.end())
-        return false;
+bool httpBase::can_store(){
 
     if(cache_control.find("no-store") != cache_control.end())
         return false;
@@ -336,8 +341,10 @@ bool httpBase::can_cache(){
     if(cache_control.find("private") != cache_control.end())
         return false;
 
-    if(cache_control.find("must_revalidate") != cache_control.end())
-        return false;
-
     return true;
+}
+bool httpBase::no_cache(){
+  if(cache_control.find("no-cache") != cache_control.end())
+        return true;
+  return false;
 }
