@@ -42,7 +42,7 @@ void httpBase::header_parser(std::string line) {
 
 //return value:1 chunk -1 length 0 none
 int httpBase::recv_header(HttpSocket &sk){
-    std::string header;
+    std::string headerline;
     std::string meta;
     int flag_firstline=0;
     while(1){
@@ -72,8 +72,8 @@ int httpBase::recv_header(HttpSocket &sk){
                     meta_parser(meta);
                 }
                 else{
-                    header_parser(header);
-                    header.clear();
+                    header_parser(headerline);
+                    headerline.clear();
                     char check_end[3];
                     memset(&check_end,0,sizeof(check_end));
                     int actual_byte=sk.recv_msg(check_end,2,0);

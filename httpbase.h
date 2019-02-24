@@ -13,7 +13,6 @@ protected:
     std::string content;
     std::string payload;
     std::string header;
-    std::string headerline;
     std::vector<std::string> meta;
     std::unordered_map<std::string, std::string> headerpair;
     std::unordered_map<std::string, std::string> cache_control;

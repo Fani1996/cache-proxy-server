@@ -73,28 +73,37 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
     while(1){
       fd_set read_fd;
       FD_ZERO(&read_fd);
-      int max_fd=client_fd>server_fd ? client_fd:server_fd;
+      int max_fd=client_fd > server_fd ? client_fd:server_fd;
       FD_SET (client_fd, &read_fd);
       FD_SET (server_fd, &read_fd);
       int active=select(max_fd+1,&read_fd,NULL,NULL,NULL);
       if(active>0){
+	std::cout<<"select active\n"<<std::endl;
         if(FD_ISSET(client_fd, &read_fd)){
-	  char buffer[5001];
-	  memset(&buffer,0,sizeof(buffer));
-	  int actual_byte=client.recv_msg(buffer,sizeof(buffer),0);
+	  std::cout<<"client active!!!"<<std::endl;
+	  std::vector<char> buffer(8192,0);
+	  //memset(&buffer,0,sizeof(buffer));
+	  int actual_byte=client.recv_msg(&buffer.data()[0],8192,0);
+	  buffer.resize(actual_byte);
+	  std::cout<<"actual byte"<<actual_byte<<std::endl;
+	  //std::cout<<"buffer::"<<(std::string)(buffer)<<std::endl;
 	  //if connect closed
 	  if(actual_byte==0||actual_byte==-1)
 	    break;
-	  server.send_msg(buffer,sizeof(buffer));
+	  server.send_msg(&buffer.data()[0],actual_byte);
 	}
 	if(FD_ISSET(server_fd, &read_fd)){
-	  char buffer[5001];
-          memset(&buffer,0,sizeof(buffer));
-          int actual_byte=server.recv_msg(buffer,sizeof(buffer),0);
+	  std::cout<<"server active!!!!"<<std::endl;
+	  std::vector<char> buffer(8192,0);
+          //memset(&buffer,0,sizeof(buffer));
+          int actual_byte=server.recv_msg(&buffer.data()[0],8192,0);
+	   buffer.resize(actual_byte);
+	  std::cout<<"actual byte"<<actual_byte<<std::endl;
+	  // std::cout<<"buffer::"<<(std::string)(buffer)<<std::endl;
 	  //if connect close
           if(actual_byte==0||actual_byte==-1)
             break;
-          client.send_msg(buffer,sizeof(buffer));
+          client.send_msg(&buffer.data()[0],actual_byte);
 	}
       }
     }

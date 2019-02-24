@@ -8,6 +8,7 @@
 #include "httpresponse.h"
 
 int main(){
+  while(1){
     HttpSocket im_server_sk("12345");
     im_server_sk.listen_to(100);
     int client_fd = im_server_sk.accept_connect();
@@ -23,7 +24,8 @@ int main(){
 
     if(this_request.get_method()=="CONNECT"){
       std::cout<<"this is connect"<<std::endl;
-      this_request.connect(client_sk,server_sk);
+      this_request.connect(server_sk,client_sk);
+      break;
     }
 
     
@@ -36,5 +38,5 @@ int main(){
     //send to client
     this_response.send(client_sk);
     //this_request.send(client_sk);
-
+  }
 }

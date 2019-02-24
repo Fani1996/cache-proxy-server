@@ -30,7 +30,6 @@ public:
   // send/rec info.
   int send_msg(void *info, size_t size);
   int recv_msg(void *info, size_t size, int flag);
-  //get_socket_fd();
   
   ~HttpSocket();  
 };
