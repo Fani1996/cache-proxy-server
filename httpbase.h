@@ -20,7 +20,7 @@ protected:
 
     std::vector<std::string> split(const std::string &s, char delim);
 
-    void meta_parser(std::string meta);
+    void meta_parser(std::string metaline);
     void header_parser(std::string line);
     void cache_control_parser();
 
