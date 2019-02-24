@@ -277,7 +277,7 @@ void httpBase::refresh(){
     content.insert(content.end(), payload.begin(), payload.end());
 }
 
-std::string httpBase::get_cahce_control(std::string key){
+std::string httpBase::get_cache_control(std::string key){
     if(cache_control.find(key) != cache_control.end())
         return cache_control[key];
     return "";

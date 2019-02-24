@@ -46,7 +46,7 @@ public:
     std::vector<char> generate_header();
     void refresh();
     
-    std::string get_cahce_control(std::string key);
+    std::string get_cache_control(std::string key);
 
     void send(HttpSocket sk);
     bool can_cache();
