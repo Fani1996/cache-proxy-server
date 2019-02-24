@@ -26,18 +26,18 @@ void httpBase::meta_parser(std::string metaline) {
     // this->meta = split(meta, ' ');
     std::size_t pre = 0;
     std::size_t pos = metaline.find_first_of(' ');
-    meta[0] = metaline.substr(pre, pos);
+    meta.push_back(metaline.substr(pre, pos));
 
     pre = pos + 1;
     pos = metaline.find_first_of(' ', pre);
-    meta[1] = metaline.substr(pre, pos);
+    meta.push_back(metaline.substr(pre, pos));
 
     if(pos == std::string::npos)
         return;
 
     pre = pos + 1;
     pos = metaline.find_first_of(' ', pre);
-    meta[2] = metaline.substr(pre, pos);
+    meta.push_back(metaline.substr(pre, pos));
 
     for(auto metaa:this->meta){
         std::cout<<"meta received: "<<metaa<<std::endl;
