@@ -91,7 +91,7 @@ int httpBase::recv_header(HttpSocket &sk){
                     header_parser(headerline);
                     headerline.clear();
 
-                    std::vector<char> check_end(3,0);
+                    std::vector<char> check_end(2,0);
                     // memset(&check_end,0,sizeof(check_end));
                     actual_byte = sk.recv_msg(&check_end.data()[0], 2, 0);
                     if(actual_byte==0){
