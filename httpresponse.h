@@ -15,7 +15,7 @@ private:
 public:
     // constructor
     HttpResponse() {}
-    HttpResponse(std::string ct) : httpBase(ct) {}
+
     std::string get_code();
 
     void receive(HttpSocket &sk);
