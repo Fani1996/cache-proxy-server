@@ -10,9 +10,10 @@
 
 class httpBase {
 protected:
-    std::string content;
-    std::string payload;
-    std::string header;
+    std::vector<char> content;
+    std::vector<char> header;
+    std::vector<char> payload;
+
     std::vector<std::string> meta;
     std::unordered_map<std::string, std::string> headerpair;
     std::unordered_map<std::string, std::string> cache_control;
@@ -30,20 +31,19 @@ protected:
     void recv_chunk(HttpSocket& sk);
     void recv_length(HttpSocket& sk);
 
-
     void send_400_bad_request(HttpSocket& sk);
     void send_502_bad_gateway(HttpSocket& sk);
     
 public:
     //constructor.
     httpBase() {}
-    httpBase(std::string ct) : content(ct) {}
 
     std::string get_content();
     std::string get_header_kv(std::string key);
     void set_header_kv(std::string key, std::string value);
 
     void update_header(std::string header);
+    std::vector<char> generate_header();
     void refresh();
     
     std::string get_cahce_control(std::string key);
