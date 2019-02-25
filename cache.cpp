@@ -49,15 +49,18 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
     std::string identifier = request.get_identifier();
     if(lookup.find(identifier) != lookup.end()){ // found request id.
         // if found, check valid and no_cache.
+      std::cout<<"===find a response in cache==="<<std::endl;
        HttpResponse response_in=get(identifier);
        if(response_in.is_fresh()&&!no_cache(request,response_in)){ // valid, return response.
+	 std::cout<<"===response is fresh and can cache==="<<std::endl;
             return response_in;
         }
 	else{
+	  std::cout<<"===need re-validated==="<<std::endl;
 	  return revalidate(server,request);
 	}
     }
-    
+       std::cout<<"===cannot find response in cache==="<<std::endl;
     // otherwise, we have to fetch data from server and store in cache.
     HttpResponse response;
     request.send(server);
@@ -89,7 +92,7 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
         //request.update_header("If-Modified-Since: " + response.get_header_kv("Last-Modified"));
     }
     request.refresh();
-
+    std::cout<<"===send re-validated request==="<<std::endl;
     server.send_msg(&request.get_content().data()[0], request.get_content().size());
     HttpResponse revalidate_response;
     revalidate_response.receive(server);
@@ -106,11 +109,13 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
     revalidate_response.calculate_initial_age(request_time);
 
     if(revalidate_response.get_code()=="200"){
+      std::cout<<"===get 200 from server==="<<std::endl;
       if(revalidate_response.can_store())
 	 store(request, revalidate_response);
       return revalidate_response;
     }
     else if(revalidate_response.get_code()=="304"){
+      std::cout<<"===get 304 from server==="<<std::endl;
       //把revalidate_response的更新过的头给response??
       if(response.can_store())
 	store(request, response);
