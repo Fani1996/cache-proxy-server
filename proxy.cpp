@@ -47,8 +47,13 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
     }
     else if(request.get_method()=="POST"){
         request.send(server);
-        // recv frm server
-        response.receive(server);
+        // recv from server
+        try{
+            response.receive(server);
+        }
+        catch(...){
+            return;
+        }
         // send to client
         response.send(client);
     }
