@@ -10,6 +10,7 @@
 #include <list>
 #include <iterator>
 #include <utility> 
+#include <thread>
 #include <unordered_map>
 
 #include "httpsocket.h"
@@ -35,6 +36,8 @@ public:
     HttpResponse recv_response_from(HttpSocket sk);
     // void send_request_to(HttpSocket sk, HttpRequest req);
 
+    void handle(HttpSocket& client_sk, cache& cache);
+    std::thread create_thread(HttpSocket client_sk, cache cache);
 };
 
 #endif

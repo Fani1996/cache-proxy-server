@@ -55,3 +55,17 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
   }
 
 }
+
+void Proxy::handle(HttpSocket& client_sk, cache& cache){
+    HttpRequest this_request = recv_request_from(client_sk);
+
+    std::cout<<"port: "<<this_request.get_port()<<", host: "<<this_request.get_host()<<std::endl;
+    HttpSocket server_sk(this_request.get_port().c_str(), this_request.get_host().c_str());
+    
+    handle_request(this_request, server_sk, client_sk, cache);
+}
+
+// std::thread Proxy::create_thread(HttpSocket client_sk, cache cache){
+//     return std::thread(&Proxy::handle, this, client_sk, cache);
+// }
+

@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <thread>
 
 #include "proxy.h"
 #include "cache.h"
@@ -8,7 +9,13 @@
 #include "httprequest.h"
 #include "httpresponse.h"
 
+
 int main(){
+  Proxy proxy;
+  cache cache;
+
+  proxy.compose_up();
+
   while(1){
     // HttpSocket im_server_sk("12345");
     // im_server_sk.listen_to(100);
@@ -20,19 +27,11 @@ int main(){
     // HttpRequest this_request;
     // this_request.receive(client_sk);
 
-    Proxy proxy;
-    cache cache;
-
-    proxy.compose_up();
-
     HttpSocket client_sk = proxy.accept_client();
     // TO-DO : handle pthread here.
-    HttpRequest this_request = proxy.recv_request_from(client_sk);
+    std::thread th = std::thread(&Proxy::handle, &proxy, std::ref(client_sk), std::ref(cache));
 
-    std::cout<<"port: "<<this_request.get_port()<<", host: "<<this_request.get_host()<<std::endl;
-    HttpSocket server_sk(this_request.get_port().c_str(), this_request.get_host().c_str());
-    
-    proxy.handle_request(this_request, server_sk, client_sk, cache);
+    th.detach();
     // if(this_request.get_method()=="CONNECT"){
     //   std::cout<<"this is connect"<<std::endl;
     //   this_request.connect(server_sk,client_sk);
@@ -55,4 +54,6 @@ int main(){
     //send to client
     // this_response.send(client_sk);
   }
+
+  return EXIT_SUCCESS;
 }
