@@ -39,7 +39,7 @@ public:
 
     // void handle(HttpSocket& client_sk, cache& cache);
     void handle(int client_fd, cache& cache);
-    std::thread create_thread(int client_fd, cache cache);
+    // std::thread create_thread(int client_fd, cache cache);
 };
 
 #endif

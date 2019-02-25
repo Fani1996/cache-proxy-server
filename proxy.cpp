@@ -37,25 +37,24 @@ HttpResponse Proxy::recv_response_from(HttpSocket sk){
 
 //handle all request
 void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket &client, cache &mycache){
-  HttpResponse response;
-  if(request.get_method()=="GET"){
+    HttpResponse response;
+    if(request.get_method()=="GET"){
     response=mycache.returndata(server,request);
     response.send(client);
-  }
-  else if(request.get_method()=="CONNECT"){
+    }
+    else if(request.get_method()=="CONNECT"){
     request.connect(server,client);
-  }
-  else if(request.get_method()=="POST"){
+    }
+    else if(request.get_method()=="POST"){
     request.send(server);
     // //recv frm server
     response.receive(server);
     //send to client
     response.send(client);
-  }
-  else{
+    }
+    else{
     //throw
-  }
-
+    }
 }
 
 void Proxy::handle(int client_fd, cache& cache){
@@ -75,7 +74,7 @@ void Proxy::handle(int client_fd, cache& cache){
     }
 }
 
-std::thread Proxy::create_thread(int client_fd, cache cache){
-    return std::thread(&Proxy::handle, this, client_fd, cache);
-}
+// std::thread Proxy::create_thread(int client_fd, cache cache){
+//     return std::thread(&Proxy::handle, this, client_fd, cache);
+// }
 
