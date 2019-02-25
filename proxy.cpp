@@ -10,11 +10,13 @@ void Proxy::compose_up(){
 
 
 // accept client, and connect.
-HttpSocket Proxy::accept_client(){
+// HttpSocket Proxy::accept_client(){
+int Proxy::accept_client(){
     int client_fd = im_server_sk.accept_connect();
-    HttpSocket client_sk(client_fd);
+    // HttpSocket client_sk(client_fd);
 
-    return client_sk;
+    // return client_sk;
+    return client_fd;
 }
 
 // receive a request from ...
@@ -56,13 +58,21 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
 
 }
 
-void Proxy::handle(HttpSocket& client_sk, cache& cache){
-    HttpRequest this_request = recv_request_from(client_sk);
+void Proxy::handle(int client_fd, cache& cache){
+    try{
+        HttpSocket client_sk(client_fd);
 
-    std::cout<<"port: "<<this_request.get_port()<<", host: "<<this_request.get_host()<<std::endl;
-    HttpSocket server_sk(this_request.get_port().c_str(), this_request.get_host().c_str());
-    
-    handle_request(this_request, server_sk, client_sk, cache);
+        HttpRequest this_request = recv_request_from(client_sk);
+
+        std::cout<<"port: "<<this_request.get_port()<<", host: "<<this_request.get_host()<<std::endl;
+        HttpSocket server_sk(this_request.get_port().c_str(), this_request.get_host().c_str());
+        
+        handle_request(this_request, server_sk, client_sk, cache);
+    }
+    catch(...){
+        close(client_fd);
+        return;
+    }
 }
 
 // std::thread Proxy::create_thread(HttpSocket client_sk, cache cache){

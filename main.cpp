@@ -27,9 +27,11 @@ int main(){
     // HttpRequest this_request;
     // this_request.receive(client_sk);
 
-    HttpSocket client_sk = proxy.accept_client();
+    // HttpSocket client_sk = proxy.accept_client();
+    int client_fd = proxy.accept_client();
+
     // TO-DO : handle pthread here.
-    std::thread th = std::thread(&Proxy::handle, &proxy, std::ref(client_sk), std::ref(cache));
+    std::thread th = std::thread(&Proxy::handle, &proxy, client_fd, &cache);
 
     th.detach();
     // if(this_request.get_method()=="CONNECT"){
