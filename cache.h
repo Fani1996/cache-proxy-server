@@ -33,13 +33,16 @@ protected:
     // store the request, response pait into cache.
     void store(HttpRequest request, HttpResponse response);
 
-   
-
     // request to revalidate the data.
     HttpResponse revalidate(HttpSocket& server, HttpRequest& request);
 
 public:
+    cache() : capacity(256) {}
+    cache(std::size_t cap) : capacity(cap) {}
+
+    // check if the request have no cache.
     bool no_cache(HttpRequest &httprequest,HttpResponse &httpresponse);
+
     // given request, return the response ready to send back.
     HttpResponse returndata(HttpSocket& server,HttpRequest &request);
 
