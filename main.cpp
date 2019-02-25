@@ -31,7 +31,9 @@ int main(){
     int client_fd = proxy.accept_client();
 
     // TO-DO : handle pthread here.
-    std::thread th = std::thread(&Proxy::handle, &proxy, client_fd, &cache);
+    std::thread th(&Proxy::handle, &proxy, client_fd, std::ref(cache));
+    
+    // std::thread th = proxy.create_thread(client_fd, cache);
 
     th.detach();
     // if(this_request.get_method()=="CONNECT"){

@@ -75,7 +75,7 @@ void Proxy::handle(int client_fd, cache& cache){
     }
 }
 
-// std::thread Proxy::create_thread(HttpSocket client_sk, cache cache){
-//     return std::thread(&Proxy::handle, this, client_sk, cache);
-// }
+std::thread Proxy::create_thread(int client_fd, cache cache){
+    return std::thread(&Proxy::handle, this, client_fd, cache);
+}
 
