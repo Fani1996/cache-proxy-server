@@ -49,13 +49,13 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
     std::string identifier = request.get_identifier();
     if(lookup.find(identifier) != lookup.end()){ // found request id.
         // if found, check valid and no_cache.
-       HttpResponse response_in=get(identifier);
-       if(response_in.is_fresh()&&!no_cache(request,response_in)){ // valid, return response.
-            return response_in;
+        HttpResponse response_in=get(identifier);
+        if(response_in.is_fresh()&&!no_cache(request,response_in)){ // valid, return response.
+              return response_in;
+          }
+        else{
+          return revalidate(server,request);
         }
-	else{
-	  return revalidate(server,request);
-	}
     }
     
     // otherwise, we have to fetch data from server and store in cache.
@@ -107,13 +107,13 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
 
     if(revalidate_response.get_code()=="200"){
       if(revalidate_response.can_store())
-	 store(request, revalidate_response);
+        store(request, revalidate_response);
       return revalidate_response;
     }
     else if(revalidate_response.get_code()=="304"){
       //把revalidate_response的更新过的头给response??
       if(response.can_store())
-	store(request, response);
+        store(request, response);
       return response;
     }
     else{

@@ -66,7 +66,8 @@ int httpBase::recv_header(HttpSocket &sk){
         int actual_byte = sk.recv_msg(buffer, 1, 0);
         if(actual_byte == 0){
             std::cerr<<"connect closed"<<std::endl;
-            //throw 
+            //throw
+            throw std::exception();
         }
         content.push_back(buffer[0]);
         header.push_back(buffer[0]);
@@ -77,7 +78,8 @@ int httpBase::recv_header(HttpSocket &sk){
             actual_byte = sk.recv_msg(check, 1, 0);
             if(actual_byte==0){
                 std::cerr<<"connect closed"<<std::endl;
-            //throw 
+                //throw
+                throw std::exception(); 
             }
             content.push_back(check[0]);
             header.push_back(check[0]);
@@ -96,7 +98,8 @@ int httpBase::recv_header(HttpSocket &sk){
                     actual_byte = sk.recv_msg(&check_end.data()[0], 2, 0);
                     if(actual_byte==0){
                         std::cerr<<"connect closed"<<std::endl;
-                        //throw 
+                        //throw
+                        throw std::exception();
                     }
                     content.insert(content.end(), check_end.begin(), check_end.end());
                     header.insert(header.end(), check_end.begin(), check_end.end());
@@ -158,6 +161,7 @@ void httpBase::recv_http_1_1(HttpSocket & sk, int type){
     else{
         std::cerr<<"Invalid Header!"<<std::endl;
         //throw badHeader();
+        throw std::invalid_argument("invalid header");
     }
 }
 
@@ -343,6 +347,7 @@ bool httpBase::can_store(){
 
     return true;
 }
+
 bool httpBase::no_cache(){
   if(cache_control.find("no-cache") != cache_control.end())
         return true;
