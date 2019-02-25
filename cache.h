@@ -33,20 +33,15 @@ protected:
     // store the request, response pait into cache.
     void store(HttpRequest request, HttpResponse response);
 
-    // Data-related operation.
-    // given string, check cache has data / time has expired.
-    // bool check(HttpRequest request);
-    
-    // given httpRequest, update the data from server.
-    // HttpResponse update(HttpRequest request);
+   
 
     // request to revalidate the data.
     HttpResponse revalidate(HttpSocket& server, HttpRequest& request);
 
 public:
-    bool can_store(HttpRequest &httprequest,HttpResponse &httpresponse);
+    bool no_cache(HttpRequest &httprequest,HttpResponse &httpresponse);
     // given request, return the response ready to send back.
-    HttpResponse returndata(HttpRequest request);
+    HttpResponse returndata(HttpSocket& server,HttpRequest &request);
 
 };
 

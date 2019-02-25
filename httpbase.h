@@ -37,19 +37,19 @@ protected:
 public:
     //constructor.
     httpBase() {}
-
-    std::string get_content();
+    std::vector<char> get_content();
     std::string get_header_kv(std::string key);
     void set_header_kv(std::string key, std::string value);
 
-    void update_header(std::string header);
+    //    void update_header(std::string header);
     std::vector<char> generate_header();
     void refresh();
     
     std::string get_cache_control(std::string key);
 
     void send(HttpSocket sk);
-    bool can_cache();
+    bool can_store();
+    bool no_cache();
 };
 
 #endif

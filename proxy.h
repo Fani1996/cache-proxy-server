@@ -15,13 +15,15 @@
 #include "httpsocket.h"
 #include "httprequest.h"
 #include "httpresponse.h"
+#include "httpsocket.h"
+#include "cache.h"
 
-class Proxy {
+class Proxy{
 private:
     HttpSocket im_server_sk;
-
-
 public:
+    void handle_request(HttpRequest &request,HttpSocket &server,HttpSocket &client, cache &mycache);
+
     Proxy() : im_server_sk("12345") {}
 
     // make the server up and listen.
