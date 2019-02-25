@@ -34,7 +34,7 @@ HttpResponse Proxy::recv_response_from(HttpSocket sk){
 }
 
 //handle all request
-void Proxy::handle_request(HttpRequest &request,HttpSocket &server,HttpSocket &client, cache &mycache){
+void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket &client, cache &mycache){
   HttpResponse response;
   if(request.get_method()=="GET"){
     response=mycache.returndata(server,request);
