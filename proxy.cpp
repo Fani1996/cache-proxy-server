@@ -4,7 +4,7 @@
 #include "proxy.h"
 
 // make the server up and listen.
-HttpSocket Proxy::compose_up(){
+void Proxy::compose_up(){
     im_server_sk.listen_to(100);
 }
 

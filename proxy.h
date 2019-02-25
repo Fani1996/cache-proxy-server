@@ -27,7 +27,7 @@ public:
     Proxy() : im_server_sk("12345") {}
 
     // make the server up and listen.
-    HttpSocket compose_up();
+    void compose_up();
     // accept client, and connect.
     HttpSocket accept_client();
 
