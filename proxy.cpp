@@ -5,7 +5,7 @@
 
 // make the server up and listen.
 void Proxy::compose_up(){
-    im_server_sk.listen_to(100);
+    im_server_sk.listen_to(10000);
 }
 
 

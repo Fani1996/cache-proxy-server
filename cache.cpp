@@ -88,6 +88,7 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
         request.set_header_kv("If-Modified-Since", response.get_header_kv("Last-Modified"));
         //request.update_header("If-Modified-Since: " + response.get_header_kv("Last-Modified"));
     }
+    request.generate_header();
     request.refresh();
 
     server.send_msg(&request.get_content().data()[0], request.get_content().size());

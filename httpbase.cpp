@@ -260,10 +260,13 @@ void httpBase::set_header_kv(std::string key, std::string value){
 std::vector<char> httpBase::generate_header(){
     std::vector<char> newheader;
     // write meta data.
-    for(auto m:meta){
+    for(std::size_t i=0; i<meta.size()-1; i++){
+        auto m = meta[i];
         std::copy(m.begin(), m.end(), std::back_inserter(newheader));
         newheader.push_back(' ');
     }
+    auto m = meta[meta.size()-1];
+    std::copy(m.begin(), m.end(), std::back_inserter(newheader));
 
     // write return to new line.
     std::string endline("\r\n"); 
