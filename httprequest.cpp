@@ -125,7 +125,7 @@ void HttpRequest::receive(HttpSocket& sk) {
     }
     catch (...) {
         send_400_bad_request(sk);
-        return;
+        throw;
     }
 
     if(meta[0] == "POST"){

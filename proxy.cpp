@@ -22,7 +22,12 @@ int Proxy::accept_client(){
 // receive a request from ...
 HttpRequest Proxy::recv_request_from(HttpSocket sk){
     HttpRequest this_request;
-    this_request.receive(sk);
+    try{
+        this_request.receive(sk);
+    }
+    catch(...){
+        throw;
+    }
 
     return this_request;
 }
