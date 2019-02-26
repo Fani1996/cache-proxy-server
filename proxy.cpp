@@ -5,17 +5,26 @@
 
 // make the server up and listen.
 void Proxy::compose_up(){
-    im_server_sk.listen_to(10000);
+    try{
+        im_server_sk.listen_to(10000);
+    }
+    catch(...){
+        throw;
+    }
 }
 
 
 // accept client, and connect.
 // HttpSocket Proxy::accept_client(){
 int Proxy::accept_client(){
-    int client_fd = im_server_sk.accept_connect();
-    // HttpSocket client_sk(client_fd);
+    int client_fd;
+    try{
+        client_fd = im_server_sk.accept_connect();
+    }
+    catch(...){
+        throw;
+    }
 
-    // return client_sk;
     return client_fd;
 }
 
@@ -26,6 +35,7 @@ HttpRequest Proxy::recv_request_from(HttpSocket sk){
         this_request.receive(sk);
     }
     catch(...){
+        // re-throw.
         throw;
     }
 
@@ -35,8 +45,13 @@ HttpRequest Proxy::recv_request_from(HttpSocket sk){
 // receive a response from ...
 HttpResponse Proxy::recv_response_from(HttpSocket sk){
     HttpResponse this_response;
-    this_response.receive(sk);
-
+    try{
+        this_response.receive(sk);
+    }
+    catch(...){
+        // re-throw.
+        throw;
+    }
     return this_response;
 }
 
@@ -44,9 +59,15 @@ HttpResponse Proxy::recv_response_from(HttpSocket sk){
 void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket &client, cache &mycache){
     HttpResponse response;
     if(request.get_method()=="GET"){
+
       if(request.can_store()){
-        response = mycache.returndata(server,request);
-        response.send(client);
+        try{
+            response = mycache.returndata(server, request);
+            response.send(client);
+        }
+        catch(...){
+            throw std::exception();
+        }
       }
       else{
 	request.send(server);
@@ -60,39 +81,54 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
         // send to client
         response.send(client);
       }
+        std::cout<<" -------- GET -------- "<<std::endl;
     }
     else if(request.get_method()=="CONNECT"){
-        request.connect(server,client);
-    }
-    else if(request.get_method()=="POST"){
-        request.send(server);
-        // recv from server
+        std::cout<<" -------- CONNECT -------- "<<std::endl;
         try{
-            response.receive(server);
+            request.connect(server, client);
         }
         catch(...){
-            return;
+            throw std::exception();
         }
-        // send to client
-        response.send(client);
+    }
+    else if(request.get_method()=="POST"){
+        std::cout<<" -------- POST -------- "<<std::endl;
+        try{
+            request.send(server);
+            // recv from server
+            response.receive(server);
+            // send to client
+            response.send(client);
+        }
+        catch(...){
+            // return;
+            throw std::exception();
+        }
     }
     else{
-    //throw
+        //throw
+        throw std::invalid_argument("invalid method.");
     }
 }
 
 void Proxy::handle(int client_fd, cache& cache){
+    std::cout<<" ----- Handling Client_FD = "<<client_fd<<" -----"<<std::endl;
+    std::cout<<"  ---- In Thread "<<std::this_thread::get_id()<<" ---- "<<std::endl;
+
     try{
         HttpSocket client_sk(client_fd);
 
         HttpRequest this_request = recv_request_from(client_sk);
 
-        std::cout<<"port: "<<this_request.get_port()<<", host: "<<this_request.get_host()<<std::endl;
+        std::cout<<" ---- Connect to Port: "<<this_request.get_port()<<", Host: "<<this_request.get_host()<<" ---- "<<std::endl;
         HttpSocket server_sk(this_request.get_port().c_str(), this_request.get_host().c_str());
         
         handle_request(this_request, server_sk, client_sk, cache);
     }
     catch(...){
+        // LOG err.
+
         close(client_fd);
         return;
     }
