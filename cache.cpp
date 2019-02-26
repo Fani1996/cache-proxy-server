@@ -14,12 +14,8 @@ HttpResponse cache::get(std::string identifier){
     dataset.splice(dataset.begin(), dataset, lookup[identifier]); // send to front.
     
     return response;
-    }
+}
 
-
-//TO DO:
-//if response exist, update it
-//if not exist, add it to cache
 // store the request, response pait into cache.
 void cache::store(HttpRequest request, HttpResponse response){
     std::string id = request.get_identifier();
@@ -49,34 +45,45 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
     std::string identifier = request.get_identifier();
     if(lookup.find(identifier) != lookup.end()){ // found request id.
         // if found, check valid and no_cache.
-
-     
-      std::cout<<"===find a response in cache==="<<std::endl;
-       HttpResponse response_in=get(identifier);
-       if(response_in.is_fresh()&&!no_cache(request,response_in)){ // valid, return response.
-	 std::cout<<"===response is fresh and can cache==="<<std::endl;
+		std::cout<<"===find a response in cache==="<<std::endl;
+		HttpResponse response_in = get(identifier);
+		if(response_in.is_fresh() && !no_cache(request,response_in)){ // valid, return response.
+			std::cout<<"===response is fresh and can cache==="<<std::endl;
             return response_in;
         }
-	else{
-	  std::cout<<"===need re-validated==="<<std::endl;
-	  return revalidate(server,request);
-	}
+		else{
+			std::cout<<"===need re-validated==="<<std::endl;
+			return revalidate(server,request);
+		}
     }
-       std::cout<<"===cannot find response in cache==="<<std::endl;
+
+	std::cout<<"===cannot find response in cache==="<<std::endl;
     // otherwise, we have to fetch data from server and store in cache.
     HttpResponse response;
-    request.send(server);
-    response.receive(server);
+	try{
+		request.send(server);
+	}
+	catch(...){
+		throw std::exception();
+	}
+
+	try{
+		response.receive(server);
+	}
+	catch(...){
+		throw std::exception();
+	}
+
     //if request no_store and not sutisfied by cache, the new response can not be store
-    if(request.can_store()&&response.can_store()&&response.get_code()=="200")
-      store(request, response);
+    if(request.can_store() && response.can_store() && response.get_code() == "200")
+		store(request, response);
     return response;
 }
 
 
 
 bool cache::no_cache(HttpRequest& httprequest, HttpResponse& httpresponse){
-  return httprequest.no_cache()||httprequest.no_cache();
+	return httprequest.no_cache() || httprequest.no_cache();
 }  
 
 // request to revalidate the data.
@@ -88,7 +95,6 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
         request.set_header_kv("If-None-Match", response.get_header_kv("ETag"));
         //request.update_header("If-None-Match: " + response.get_header_kv("ETag"));
     }
-
     if (response.get_header_kv("Last-Modified") != "") {
         request.set_header_kv("If-Modified-Since", response.get_header_kv("Last-Modified"));
         //request.update_header("If-Modified-Since: " + response.get_header_kv("Last-Modified"));

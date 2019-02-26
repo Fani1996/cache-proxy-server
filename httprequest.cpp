@@ -129,10 +129,22 @@ void HttpRequest::receive(HttpSocket& sk) {
     }
 
     if(meta[0] == "POST"){
-        if(meta[2] == "HTTP/1.0")
-            recv_http_1_0(sk);
-        if(meta[2] == "HTTP/1.1")
-            recv_http_1_1(sk, id);
+        if(meta[2] == "HTTP/1.0"){
+            try{
+                recv_http_1_0(sk);
+            }
+            catch(...){
+                throw;
+            }
+        }
+        if(meta[2] == "HTTP/1.1"){
+            try{
+                recv_http_1_1(sk, id);
+            }
+            catch(...){
+                throw;
+            }
+        }
         else
             throw std::invalid_argument("invlalid protocol.");
     }
