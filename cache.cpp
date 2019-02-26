@@ -82,13 +82,9 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
 	}
 
     //if request no_store and not sutisfied by cache, the new response can not be store
-<<<<<<< HEAD
-    if(response.can_store()&&response.get_code()=="200")
-      store(request, response);
-=======
-    if(request.can_store() && response.can_store() && response.get_code() == "200")
+    if(request.can_store() && response.can_store() && response.get_code() == "200"){
 		store(request, response);
->>>>>>> 944de093d6e2cb102f8c55e813bfbc37db2a6299
+    }
     return response;
 }
 
