@@ -18,6 +18,13 @@ HttpResponse cache::get(std::string identifier){
 
 // store the request, response pait into cache.
 void cache::store(HttpRequest request, HttpResponse response){
+    try {
+        std::lock_guard<std::mutex> lck (mtx);
+    }	
+    catch (std::logic_error&) {
+        std::cout << "[exception caught] when add to cache\n";
+    }
+
     std::string id = request.get_identifier();
     // key exists.
     if(lookup.find(id) != lookup.end()){
