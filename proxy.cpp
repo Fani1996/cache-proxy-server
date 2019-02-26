@@ -5,17 +5,26 @@
 
 // make the server up and listen.
 void Proxy::compose_up(){
-    im_server_sk.listen_to(10000);
+    try{
+        im_server_sk.listen_to(10000);
+    }
+    catch(...){
+        throw;
+    }
 }
 
 
 // accept client, and connect.
 // HttpSocket Proxy::accept_client(){
 int Proxy::accept_client(){
-    int client_fd = im_server_sk.accept_connect();
-    // HttpSocket client_sk(client_fd);
+    int client_fd;
+    try{
+        client_fd = im_server_sk.accept_connect();
+    }
+    catch(...){
+        throw;
+    }
 
-    // return client_sk;
     return client_fd;
 }
 
