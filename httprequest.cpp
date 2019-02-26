@@ -72,7 +72,6 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
         send_502_bad_gateway(server);
         return;
     }
-    
 
     int client_fd = client.get_fd();
     int server_fd = server.get_fd();
@@ -88,12 +87,12 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
 
         int max_fd = client_fd > server_fd ? client_fd : server_fd;
 	
-    struct timeval timeout;
-	timeout.tv_sec = 1;
-	timeout.tv_usec = 500000;//500ms
+    // struct timeval timeout;
+	// timeout.tv_sec = 1;
+	// timeout.tv_usec = 500000;//500ms
 	
-        active = select(max_fd+1, &read_fd, NULL, NULL, &timeout);
-        // int active = select(max_fd+1, &read_fd, NULL, NULL,NULL);
+        // active = select(max_fd+1, &read_fd, NULL, NULL, &timeout);
+        int active = select(max_fd+1, &read_fd, NULL, NULL,NULL);
 	if(active==0){
 	  break;
 	}
@@ -147,10 +146,10 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
             }
         }
     }
-            if(active == 0){
-				std::cout<<"Tunnel closed"<<std::endl;
-				close(server_fd);	
-			}
+            // if(active == 0){
+			// 	std::cout<<"Tunnel closed"<<std::endl;
+			// 	close(server_fd);	
+			// }
 }
 
 // receive request.
