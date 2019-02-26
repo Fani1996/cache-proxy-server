@@ -30,9 +30,6 @@ protected:
     int recv_header(HttpSocket& sk);
     void recv_chunk(HttpSocket& sk);
     void recv_length(HttpSocket& sk);
-
-    void send_400_bad_request(HttpSocket& sk);
-    void send_502_bad_gateway(HttpSocket& sk);
     
 public:
     //constructor.
@@ -50,6 +47,9 @@ public:
     void send(HttpSocket sk);
     bool can_store();
     bool no_cache();
+
+    void send_400_bad_request(HttpSocket& sk);
+    void send_502_bad_gateway(HttpSocket& sk);
 };
 
 #endif

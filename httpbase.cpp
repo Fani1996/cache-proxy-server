@@ -342,12 +342,22 @@ std::string httpBase::get_cache_control(std::string key){
 
 void httpBase::send_400_bad_request(HttpSocket& sk){
     std::string error("HTTP/1.1 400 Bad Request\r\nContent-Type:text/html\r\nContent-Length: 15\r\n\r\n400 Bad Request");
-    sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+    try{
+        sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+    }
+    catch(...){
+        return;
+    }
 }
 
 void httpBase::send_502_bad_gateway(HttpSocket& sk){
     std::string error("HTTP/1.1 502 Bad Gateway\r\nContent-Type:text/html\r\nContent-Length: 15\r\n\r\n502 Bad Gateway");
-    sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+    try{
+        sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+    }
+    catch(...){
+        return;
+    }
 }
 
 void httpBase::send(HttpSocket sk){
@@ -356,8 +366,12 @@ void httpBase::send(HttpSocket sk){
     
     // char * buffer = new char [content.length()+1];
     // std::strcpy (buffer, content.c_str());
-
-    sk.send_msg(&content.data()[0], content.size()+1);
+    try{
+        sk.send_msg(&content.data()[0], content.size()+1);
+    }
+    catch(...){
+        throw std::bad_exception();
+    }
     // delete[] buffer;
 }
 

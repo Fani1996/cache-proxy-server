@@ -112,7 +112,12 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
     request.refresh();
 	
     std::cout<<"=== send re-validated request ==="<<std::endl;
-    server.send_msg(&request.get_content().data()[0], request.get_content().size());
+    try{
+        server.send_msg(&request.get_content().data()[0], request.get_content().size());
+    }
+    catch(...){
+        throw;
+    }
     
 	HttpResponse revalidate_response;
 	try{

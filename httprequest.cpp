@@ -65,7 +65,14 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
     std::string response(get_version() + " 200 OK\r\n\r\n");
     std::cout<<"CONNECT Response: "<<response<<std::endl;
 
-    client.send_msg(const_cast<char *>(response.c_str()), response.size());
+    try{
+        client.send_msg(const_cast<char *>(response.c_str()), response.size());
+    }
+    catch(...){
+        send_502_bad_gateway(server);
+        return;
+    }
+    
 
     int client_fd = client.get_fd();
     int server_fd = server.get_fd();
@@ -97,9 +104,17 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
                 buffer.resize(actual_byte);
                 //std::cout<<"actual byte"<<actual_byte<<std::endl;
                 //if connect closed
-                if(actual_byte == 0)
+                if(actual_byte == 0){
                     break;
-                server.send_msg(&buffer.data()[0], actual_byte);
+                }
+
+                try{
+                    server.send_msg(&buffer.data()[0], actual_byte);
+                }
+                catch(...){
+                    send_502_bad_gateway(client);
+                    return;
+                }
             }
             else if(FD_ISSET(server_fd, &read_fd)){
 	      //std::cout<<"=== SERVER Active ==="<<std::endl;
@@ -109,9 +124,17 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
                 buffer.resize(actual_byte);
                 //std::cout<<"actual byte"<<actual_byte<<std::endl;
                 //if connect close
-                if(actual_byte == 0)
+                if(actual_byte == 0){
                     break;
-                client.send_msg(&buffer.data()[0], actual_byte);
+                }
+
+                try{
+                    client.send_msg(&buffer.data()[0], actual_byte);
+                }
+                catch(...){
+                    send_502_bad_gateway(server);
+                    return;
+                }
             }
         }
     }
@@ -145,8 +168,10 @@ void HttpRequest::receive(HttpSocket& sk) {
                 throw;
             }
         }
-        else
+        else{
+            send_400_bad_request(sk);
             throw std::invalid_argument("invlalid protocol.");
+        }
     }
 
 }

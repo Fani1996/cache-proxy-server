@@ -108,6 +108,7 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
     }
     else{
         //throw
+        request.send_400_bad_request(client);
         throw std::invalid_argument("invalid method.");
     }
 }
