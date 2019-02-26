@@ -76,7 +76,7 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
     int client_fd = client.get_fd();
     int server_fd = server.get_fd();
 
-    int active;
+    // int active;
     //connect server and client
     while(1){
         fd_set read_fd;
@@ -102,8 +102,14 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
 	      // std::cout<<"=== CLIENT Active ==="<<std::endl;
                 std::vector<char> buffer(10000,0);
 
-                int actual_byte = client.recv_msg(&buffer.data()[0], 10000, 0);
+                int actual_byte;
+                try{
+                actual_byte = client.recv_msg(&buffer.data()[0], 10000, 0);
                 buffer.resize(actual_byte);
+                }
+                catch(...){
+                    close(client_fd);close(server_fd);  break;
+                }
                 //std::cout<<"actual byte"<<actual_byte<<std::endl;
                 //if connect closed
                 if(actual_byte == 0){
@@ -115,7 +121,7 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
                 }
                 catch(...){
                     send_502_bad_gateway(client);
-                    return;
+                    close(client_fd);close(server_fd);  break;
                 }
             }
             else if(FD_ISSET(server_fd, &read_fd)){
