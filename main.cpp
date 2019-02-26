@@ -14,7 +14,12 @@ int main(){
 	Proxy proxy;
 	cache cache;
 
-	proxy.compose_up();
+	try{
+		proxy.compose_up();
+	}
+	catch(...){
+		return EXIT_FAILURE;
+	}
 
 	while(1){
 	// HttpSocket im_server_sk("12345");
@@ -28,7 +33,15 @@ int main(){
 	// this_request.receive(client_sk);
 
 	// HttpSocket client_sk = proxy.accept_client();
-	int client_fd = proxy.accept_client();
+
+	int client_fd;
+	try{
+		client_fd = proxy.accept_client();
+	}
+	catch(...){
+		// try again, and attempt to create new thread.
+		continue;
+	}
 
 	// TO-DO : handle pthread here.
 	std::thread th(&Proxy::handle, &proxy, client_fd, std::ref(cache));
