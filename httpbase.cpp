@@ -380,13 +380,14 @@ void httpBase::cache_control_parser(){
     std::string whole_cache_control = headerpair["Cache-Control"];
     std::cout<<"cache_control!!!!!"<<whole_cache_control<<std::endl;
     whole_cache_control.erase(std::remove(whole_cache_control.begin(), whole_cache_control.end(), ' '), whole_cache_control.end());
+    
     size_t pos = whole_cache_control.find(",");
     while(pos != std::string::npos){
         std::string single_control = whole_cache_control.substr(0, pos);
 	std::cout<<"single_control====="<<single_control<<std::endl;
         size_t position = single_control.find('=');
         if(position != std::string::npos){
-            cache_control[single_control.substr(0, position)] = single_control.substr(pos+1);
+            cache_control[single_control.substr(0, position)] = single_control.substr(position+1);
 	    std::cout<<single_control.substr(0, position)<<std::endl;
         }
         else{
@@ -399,7 +400,7 @@ void httpBase::cache_control_parser(){
     std::string single_control = whole_cache_control;
     size_t position = single_control.find('=');
         if(position != std::string::npos){
-            cache_control[single_control.substr(0, position)] = single_control.substr(pos+1);
+            cache_control[single_control.substr(0, position)] = single_control.substr(position+1);
             std::cout<<single_control.substr(0, position)<<std::endl;
         }
         else{
