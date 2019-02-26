@@ -134,11 +134,7 @@ int httpBase::recv_header(HttpSocket &sk){
         }
 
     }
-<<<<<<< HEAD
     cache_control_parser();
-=======
-
->>>>>>> 944de093d6e2cb102f8c55e813bfbc37db2a6299
     if(headerpair.find("Transfer-Encoding") != headerpair.end())
         return 1;
     else if(headerpair.find("Content-Length") != headerpair.end())
@@ -380,12 +376,7 @@ void httpBase::cache_control_parser(){
 	    std::cout<<single_control.substr(0, position)<<std::endl;
         }
         else{
-<<<<<<< HEAD
-	  cache_control[single_control]=single_control;
-=======
-            // throw std::invalid_argument("invalid cache control format.");
-            cache_control[single_control] = single_control;
->>>>>>> 944de093d6e2cb102f8c55e813bfbc37db2a6299
+            cache_control[single_control]=single_control;
         }
 	
         whole_cache_control = whole_cache_control.substr(pos+1);
