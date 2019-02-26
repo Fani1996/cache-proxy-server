@@ -77,21 +77,22 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
     int client_fd = client.get_fd();
     int server_fd = server.get_fd();
 
+    int active;
     //connect server and client
     while(1){
         fd_set read_fd;
         FD_ZERO(&read_fd);
 
-        int max_fd = client_fd > server_fd ? client_fd : server_fd;
         FD_SET (client_fd, &read_fd);
         FD_SET (server_fd, &read_fd);
 
+        int max_fd = client_fd > server_fd ? client_fd : server_fd;
 	
     struct timeval timeout;
 	timeout.tv_sec = 1;
 	timeout.tv_usec = 500000;//500ms
 	
-        int active = select(max_fd+1, &read_fd, NULL, NULL, &timeout);
+        active = select(max_fd+1, &read_fd, NULL, NULL, &timeout);
         // int active = select(max_fd+1, &read_fd, NULL, NULL,NULL);
 	if(active==0){
 	  break;
@@ -140,6 +141,10 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
             }
         }
     }
+            if(active == 0){
+				std::cout<<"Tunnel closed"<<std::endl;
+				close(server_fd);	
+			}
 }
 
 // receive request.
