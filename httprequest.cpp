@@ -86,11 +86,13 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
         FD_SET (client_fd, &read_fd);
         FD_SET (server_fd, &read_fd);
 
-	/*struct timeval timeout;
+	
+    struct timeval timeout;
 	timeout.tv_sec = 1;
 	timeout.tv_usec = 500000;//500ms
-	*/
-        int active = select(max_fd+1, &read_fd, NULL, NULL,NULL);
+	
+        int active = select(max_fd+1, &read_fd, NULL, NULL, &timeout);
+        // int active = select(max_fd+1, &read_fd, NULL, NULL,NULL);
 	if(active==0){
 	  break;
 	}
