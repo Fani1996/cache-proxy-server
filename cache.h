@@ -22,7 +22,7 @@
 class cache {
 protected:
     std::size_t capacity;
-    std::mutex mtx;
+    std::mutex mtx;    
 
     // uid, Response
     std::unordered_map<std::string, std::list<std::pair<std::string, HttpResponse> >::iterator> lookup;
