@@ -44,8 +44,22 @@ HttpResponse Proxy::recv_response_from(HttpSocket sk){
 void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket &client, cache &mycache){
     HttpResponse response;
     if(request.get_method()=="GET"){
+      if(request.can_store()){
         response = mycache.returndata(server,request);
         response.send(client);
+      }
+      else{
+	request.send(server);
+        // recv from server
+        try{
+            response.receive(server);
+        }
+        catch(...){
+            return;
+        }
+        // send to client
+        response.send(client);
+      }
     }
     else if(request.get_method()=="CONNECT"){
         request.connect(server,client);

@@ -68,7 +68,7 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
     request.send(server);
     response.receive(server);
     //if request no_store and not sutisfied by cache, the new response can not be store
-    if(request.can_store()&&response.can_store()&&response.get_code()=="200")
+    if(response.can_store()&&response.get_code()=="200")
       store(request, response);
     return response;
 }
