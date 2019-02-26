@@ -222,9 +222,9 @@ void httpBase::recv_chunk(HttpSocket& sk) {
                 payload.insert(payload.end(), contentbuf.begin(), contentbuf.end());
                 content.insert(content.end(), contentbuf.begin(), contentbuf.end());
 
-                std::cout<<"=== chuck received. ==="<<std::endl;
-                std::cout<<"length: "<<length<<std::endl;
-                std::cout<<"content: "<<std::string(content.begin(), content.end())<<std::endl;
+                //std::cout<<"=== chuck received. ==="<<std::endl;
+                //std::cout<<"length: "<<length<<std::endl;
+                //std::cout<<"content: "<<std::string(content.begin(), content.end())<<std::endl;
 
                 data = "";
             }
@@ -252,9 +252,9 @@ void httpBase::recv_length(HttpSocket& sk) {
         payload.insert(payload.end(), contentbuf.begin(), contentbuf.end());
         content.insert(content.end(), contentbuf.begin(), contentbuf.end());
 
-        std::cout<<"=== content length received. ==="<<std::endl;
-        std::cout<<"length: "<<length<<std::endl;
-        std::cout<<"content: "<<std::string(content.begin(), content.end())<<std::endl;
+        //std::cout<<"=== content length received. ==="<<std::endl;
+        //std::cout<<"length: "<<length<<std::endl;
+        //std::cout<<"content: "<<std::string(content.begin(), content.end())<<std::endl;
     }
 }
 

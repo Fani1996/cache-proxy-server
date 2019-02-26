@@ -88,28 +88,28 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
 	  break;
 	}
         else{
-            std::cout<<"select active\n"<<std::endl;
+	  //            std::cout<<"select active\n"<<std::endl;
             if(FD_ISSET(client_fd, &read_fd)){
 	      // std::cout<<"=== CLIENT Active ==="<<std::endl;
-                std::vector<char> buffer(8192,0);
+                std::vector<char> buffer(10000,0);
 
-                int actual_byte = client.recv_msg(&buffer.data()[0], 8192, 0);
+                int actual_byte = client.recv_msg(&buffer.data()[0], 10000, 0);
                 buffer.resize(actual_byte);
                 //std::cout<<"actual byte"<<actual_byte<<std::endl;
                 //if connect closed
-                if(actual_byte == 0 || actual_byte == -1)
+                if(actual_byte == 0)
                     break;
                 server.send_msg(&buffer.data()[0], actual_byte);
             }
             else if(FD_ISSET(server_fd, &read_fd)){
 	      //std::cout<<"=== SERVER Active ==="<<std::endl;
-                std::vector<char> buffer(8192,0);
+                std::vector<char> buffer(10000,0);
 
-                int actual_byte = server.recv_msg(&buffer.data()[0], 8192, 0);
+                int actual_byte = server.recv_msg(&buffer.data()[0], 10000, 0);
                 buffer.resize(actual_byte);
                 //std::cout<<"actual byte"<<actual_byte<<std::endl;
                 //if connect close
-                if(actual_byte == 0 || actual_byte == -1)
+                if(actual_byte == 0)
                     break;
                 client.send_msg(&buffer.data()[0], actual_byte);
             }
