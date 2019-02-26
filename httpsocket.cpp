@@ -15,6 +15,7 @@ using namespace std;
 
 
 // constructor
+HttpSocket::HttpSocket(){}
 HttpSocket::HttpSocket(const char * port){
     create_as_server(port);
 }
