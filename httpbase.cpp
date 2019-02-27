@@ -61,10 +61,11 @@ int httpBase::recv_header(HttpSocket &sk){
 
     int flag_firstline=0;
     while(1){
-        char buffer[2];
-        memset(&buffer, 0, sizeof(buffer));
+        // char buffer[2];
+        std::vector<char> buffer(2, 0);
+        // memset(&buffer, 0, sizeof(buffer));
 
-        int actual_byte = sk.recv_msg(buffer, 1, 0);
+        int actual_byte = sk.recv_msg(&buffer.data()[0], 1, 0);
         if(actual_byte == 0){
             std::cerr<<"connect closed"<<std::endl;
             //throw
@@ -73,11 +74,13 @@ int httpBase::recv_header(HttpSocket &sk){
         content.push_back(buffer[0]);
         header.push_back(buffer[0]);
 
-        if(!strncmp(buffer, "\r", 1)){
-            char check[2];
-            memset(&check, 0, sizeof(check));
+        std::string buff_str(buffer.begin(), buffer.end());
+        if(!strncmp(buff_str.c_str(), "\r", 1)){
+            // char check[2];
+            std::vector<char> check(2, 0);
+            // memset(&check, 0, sizeof(check));
 
-            actual_byte = sk.recv_msg(check, 1, 0);
+            actual_byte = sk.recv_msg(&check.data()[0], 1, 0);
             if(actual_byte == 0){
                 std::cerr<<"connect closed"<<std::endl;
                 //throw
@@ -86,7 +89,8 @@ int httpBase::recv_header(HttpSocket &sk){
             content.push_back(check[0]);
             header.push_back(check[0]);
 
-            if(!strncmp(check,"\n",1)){
+            std::string check_str(check.begin(), check.end());
+            if(!strncmp(check_str.c_str(),"\n",1)){
                 if(flag_firstline == 0){
                     flag_firstline = 1;
                     meta_parser(metaline);
