@@ -47,7 +47,7 @@ public:
     void send(HttpSocket sk);
     bool can_store();
     bool no_cache();
-
+    bool must_revalidate();
     void send_400_bad_request(HttpSocket& sk);
     void send_502_bad_gateway(HttpSocket& sk);
 };

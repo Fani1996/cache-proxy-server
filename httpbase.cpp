@@ -426,3 +426,8 @@ bool httpBase::no_cache(){
         return true;
   return false;
 }
+bool httpBase::must_revalidate(){
+  if(cache_control.find("must-revalidate") != cache_control.end())
+        return false;
+  return true;
+}

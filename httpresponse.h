@@ -22,7 +22,6 @@ public:
     double get_current_age();
     void calculate_initial_age(time_t request_time);
     void receive(HttpSocket &sk);
-    bool must_revalidate();
 };
 
 #endif

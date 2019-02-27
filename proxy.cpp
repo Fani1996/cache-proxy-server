@@ -2,7 +2,7 @@
 #include "httpresponse.h"
 
 #include "proxy.h"
-#include "log.h"
+//#include "log.h"
 
 
 // make the server up and listen.
@@ -123,18 +123,18 @@ void Proxy::handle(int client_fd, cache& cache){
     HttpSocket server_sk;
     HttpRequest this_request;
 
-    Log log();
+    /*    Log log();
 
-    log.output("=== BEGIN Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
+	  log.output("=== BEGIN Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");*/
     try{
         client_sk = HttpSocket(client_fd);
         this_request = recv_request_from(client_sk);
-        log.output("=== SUCCESS Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
+        //log.output("=== SUCCESS Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
     }
     catch(...){
         // LOG err.
         close(client_fd);
-        log.output("=== FAILED Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
+	// log.output("=== FAILED Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
         return;
     }
 
