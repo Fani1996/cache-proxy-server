@@ -57,7 +57,7 @@ void httpBase::header_parser(std::string line) {
 
         auto pos = meta[1].find(hoststr);
         if(pos != std::string::npos){
-            meta[1] = meta[1].substr(pos + value.size());
+            meta[1] = meta[1].substr(pos + value.size() - 1);
             std::cout<<meta[1]<<std::endl;
         }
     }
