@@ -277,7 +277,7 @@ std::stirng httpBase::update_header(httpBase updated){
 
 // set the value of header key in the map, but not update the data in vector yet.
 void httpBase::set_header_kv(std::string key, std::string value){
-    headerpair[key] = value;
+    // headerpair[key] = value;
 }
 
 // void httpBase::update_header(std::string line){
@@ -377,8 +377,9 @@ void httpBase::send(HttpSocket sk){
 }
 
 void httpBase::cache_control_parser(){
-  if(headerpair.find("Cache-Control") != headerpair.end()){
-    std::string whole_cache_control = headerpair["Cache-Control"];
+    std::string cache_control_header = get_header_kv("Cache-Control");
+  if(cache_control_header != ""){
+    std::string whole_cache_control = cache_control_header;
     std::cout<<"cache_control!!!!!"<<whole_cache_control<<std::endl;
     whole_cache_control.erase(std::remove(whole_cache_control.begin(), whole_cache_control.end(), ' '), whole_cache_control.end());
     

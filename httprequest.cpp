@@ -1,16 +1,18 @@
 #include "httprequest.h"
 #include <exception>
 #include <algorithm>
+#include <cstring>
+
 
 // get hostname from request.
 std::string HttpRequest::get_host() {
     std::string host;
-    if(strstr(header.data(),"Host" == NULL) { // host not exist.
+    if(std::strstr(header.data(),"Host") == NULL) { // host not exist.
         return hostname = host;
     }
     
-    host = get_header_kv("Host").find_first_of(':')) 
-    std::size_t pos = host.find_first_of(':')) ;
+    host = get_header_kv("Host").find_first_of(':');
+    std::size_t pos = host.find_first_of(':');
     if(pos == std::string::npos)
         hostname = host;
     else {
@@ -27,7 +29,7 @@ std::string HttpRequest::get_port() {
     std::size_t pos;
     port = "";
 
-    if(strstr(header.data(),"Host" != NULL){
+    if(std::strstr(header.data(),"Host") != NULL){
         if( (pos = get_header_kv("Host").find_first_of(':')) != std::string::npos ){
             return port =  get_header_kv("Host").substr(pos+1);
         }
