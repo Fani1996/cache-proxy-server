@@ -6,7 +6,7 @@
 #include "httpresponse.h"
 
 #include "proxy.h"
-//#include "log.h"
+#include "log.h"
 
 
 // make the server up and listen.

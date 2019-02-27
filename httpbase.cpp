@@ -415,8 +415,8 @@ bool httpBase::can_store(){
     if(cache_control.find("no-store") != cache_control.end())
         return false;
 
-    if(cache_control.find("private") != cache_control.end())
-        return false;
+    //    if(cache_control.find("private") != cache_control.end())
+    //  return false;
 
     return true;
 }
