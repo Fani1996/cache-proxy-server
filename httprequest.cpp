@@ -25,6 +25,8 @@ std::string HttpRequest::get_host() {
 // get port from request.
 std::string HttpRequest::get_port() {
     std::size_t pos;
+    port = "";
+
     if(headerpair.find("Host") != headerpair.end()){
         if( (pos = headerpair["Host"].find_first_of(':')) != std::string::npos ){
             return port = headerpair["Host"].substr(pos+1);
@@ -76,8 +78,7 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
     int client_fd = client.get_fd();
     int server_fd = server.get_fd();
 
-    // int active;
-    //connect server and client
+    // connect server and client
     while(1){
         fd_set read_fd;
         FD_ZERO(&read_fd);
@@ -87,19 +88,14 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
 
         int max_fd = client_fd > server_fd ? client_fd : server_fd;
 	
-    // struct timeval timeout;
-	// timeout.tv_sec = 1;
-	// timeout.tv_usec = 500000;//500ms
-	
-        // active = select(max_fd+1, &read_fd, NULL, NULL, &timeout);
-        int active = select(max_fd+1, &read_fd, NULL, NULL,NULL);
-	if(active==0){
-	  break;
-	}
+        int active = select(max_fd+1, &read_fd, NULL, NULL, NULL);
+        if(active == 0){
+            break;
+        }
         else{
-	  //            std::cout<<"select active\n"<<std::endl;
+            // std::cout<<"select active\n"<<std::endl;
             if(FD_ISSET(client_fd, &read_fd)){
-	      // std::cout<<"=== CLIENT Active ==="<<std::endl;
+                // std::cout<<"=== CLIENT Active ==="<<std::endl;
                 std::vector<char> buffer(10000,0);
 
                 int actual_byte;
@@ -110,8 +106,8 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
                 catch(...){
                     close(client_fd);close(server_fd);  break;
                 }
-                //std::cout<<"actual byte"<<actual_byte<<std::endl;
-                //if connect closed
+                // std::cout<<"actual byte"<<actual_byte<<std::endl;
+                // if connect closed
                 if(actual_byte == 0){
                     break;
                 }
@@ -125,7 +121,7 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
                 }
             }
             else if(FD_ISSET(server_fd, &read_fd)){
-	      //std::cout<<"=== SERVER Active ==="<<std::endl;
+                // std::cout<<"=== SERVER Active ==="<<std::endl;
                 std::vector<char> buffer(10000,0);
 
                 int actual_byte;
@@ -136,8 +132,8 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
                 catch(...){
                     close(client_fd);close(server_fd);  break;
                 }
-                //std::cout<<"actual byte"<<actual_byte<<std::endl;
-                //if connect close
+                // std::cout<<"actual byte"<<actual_byte<<std::endl;
+                // if connect close
                 if(actual_byte == 0){
                     break;
                 }
@@ -152,10 +148,6 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
             }
         }
     }
-            // if(active == 0){
-			// 	std::cout<<"Tunnel closed"<<std::endl;
-			// 	close(server_fd);	
-			// }
 }
 
 

@@ -21,7 +21,7 @@ void Log::timestamp(){
     std::time_t current = time(nullptr);
 
     std::stringstream timestr;
-    timestr << "- At Time: " << std::ctime(&current) << " -\n";
+    timestr << "- At Time: " << std::ctime(&current);
 
     output(timestr.str());
 }
