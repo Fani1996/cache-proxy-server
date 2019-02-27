@@ -2,38 +2,33 @@
 #include <ostream>
 #include <istream>
 #include <fstream>
+#include <sstream>
+#include <string>
 #include <cstdlib>
 #include <unistd.h>
 
+# include "httprequest.h"
+
+
+
 class Log {
 private:
-    std::string path;
-    std::string filename;
+    std::string filepath;
 
     std::string get_working_path(){
-        std::size_t MAXPATHLEN = 512;
-        char temp[MAXPATHLEN];
+        char temp[512];
         return ( getcwd(temp, sizeof(temp)) ? std::string( temp ) : std::string("") );
     }
 
 public:
     Log() {
-        path = get_working_path();
-        filename = "log.txt";
-
-        std::string target = "mkdir " + path + filename;
-        system(target.c_str());
+        filepath = get_working_path() + "/server-log.txt";
     }
-    Log(std::string path, std::string filename) : path(path), filename(filename) {
-        std::string target = "mkdir " + path + filename;
-        system(target.c_str());
+    Log(std::string path, std::string filename) {
+        filepath = path + filename;
     }
 
-    void output(std::string output){
-        std::cin >> output;
-        std::ofstream out(path + filename);
-        out << output;
-
-        out.close();
-    }
+    void output(std::string output);
+    void timestamp();
+    void log_request(HttpRequest& request);
 };
