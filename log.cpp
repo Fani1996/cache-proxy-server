@@ -18,13 +18,10 @@ void Log::output(std::string output){
 }
 
 void Log::timestamp(){
-    auto current = time(NULL);
-
-    // std::time_t end_time = std::chrono::system_clock::to_time_t(current);
-    std::ctime(&current);
+    std::time_t current = time(nullptr);
 
     std::stringstream timestr;
-    timestr << "- At Time: " << current << " -\n";
+    timestr << "- At Time: " << std::ctime(&current) << " -\n";
 
     output(timestr.str());
 }

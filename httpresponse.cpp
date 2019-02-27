@@ -93,18 +93,18 @@ double HttpResponse::get_fresh_lifetime(){
 	}
 	//expires
 	else{
-	        struct tm date_tm;
-                memset(&date_tm, 0, sizeof(struct tm));
-                strptime(get_header_kv("Date").c_str(), " %a, %d %b %Y %H:%M:%S %Z", &date_tm);
+		struct tm date_tm;
+		memset(&date_tm, 0, sizeof(struct tm));
+		strptime(get_header_kv("Date").c_str(), " %a, %d %b %Y %H:%M:%S %Z", &date_tm);
 		time_t date = mktime(&date_tm);
-		
+
 		struct tm expires_tm;
-                memset(&expires_tm, 0, sizeof(struct tm));
-                strptime(temp.c_str(), " %a, %d %b %Y %H:%M:%S %Z", &expires_tm);
+		memset(&expires_tm, 0, sizeof(struct tm));
+		strptime(temp.c_str(), " %a, %d %b %Y %H:%M:%S %Z", &expires_tm);
 		time_t expires = mktime(&expires_tm);
-		
-		fresh_lifetime = difftime(expires,date);
-		std::cout<<"===fresh lifetime is:: "<<fresh_lifetime<<"==="<<std::endl;
+
+		fresh_lifetime = difftime(expires, date);
+		std::cout << "===fresh lifetime is:: " << fresh_lifetime << "===" << std::endl;
 	}
 
 	return fresh_lifetime;
