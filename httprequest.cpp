@@ -65,24 +65,33 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
     std::string response(get_version() + " 200 OK\r\n\r\n");
     std::cout<<"CONNECT Response: "<<response<<std::endl;
 
-    client.send_msg(const_cast<char *>(response.c_str()), response.size());
+    try{
+        client.send_msg(const_cast<char *>(response.c_str()), response.size());
+    }
+    catch(...){
+        send_502_bad_gateway(server);
+        return;
+    }
 
     int client_fd = client.get_fd();
     int server_fd = server.get_fd();
 
+    // int active;
     //connect server and client
     while(1){
         fd_set read_fd;
         FD_ZERO(&read_fd);
 
-        int max_fd = client_fd > server_fd ? client_fd : server_fd;
         FD_SET (client_fd, &read_fd);
         FD_SET (server_fd, &read_fd);
 
-	/*struct timeval timeout;
-	timeout.tv_sec = 1;
-	timeout.tv_usec = 500000;//500ms
-	*/
+        int max_fd = client_fd > server_fd ? client_fd : server_fd;
+	
+    // struct timeval timeout;
+	// timeout.tv_sec = 1;
+	// timeout.tv_usec = 500000;//500ms
+	
+        // active = select(max_fd+1, &read_fd, NULL, NULL, &timeout);
         int active = select(max_fd+1, &read_fd, NULL, NULL,NULL);
 	if(active==0){
 	  break;
@@ -93,28 +102,60 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
 	      // std::cout<<"=== CLIENT Active ==="<<std::endl;
                 std::vector<char> buffer(10000,0);
 
-                int actual_byte = client.recv_msg(&buffer.data()[0], 10000, 0);
+                int actual_byte;
+                try{
+                actual_byte = client.recv_msg(&buffer.data()[0], 10000, 0);
                 buffer.resize(actual_byte);
+                }
+                catch(...){
+                    close(client_fd);close(server_fd);  break;
+                }
                 //std::cout<<"actual byte"<<actual_byte<<std::endl;
                 //if connect closed
-                if(actual_byte == 0)
+                if(actual_byte == 0){
                     break;
-                server.send_msg(&buffer.data()[0], actual_byte);
+                }
+
+                try{
+                    server.send_msg(&buffer.data()[0], actual_byte);
+                }
+                catch(...){
+                    send_502_bad_gateway(client);
+                    close(client_fd);close(server_fd);  break;
+                }
             }
             else if(FD_ISSET(server_fd, &read_fd)){
 	      //std::cout<<"=== SERVER Active ==="<<std::endl;
                 std::vector<char> buffer(10000,0);
 
-                int actual_byte = server.recv_msg(&buffer.data()[0], 10000, 0);
-                buffer.resize(actual_byte);
+                int actual_byte;
+                try{
+                    actual_byte = server.recv_msg(&buffer.data()[0], 10000, 0);
+                    buffer.resize(actual_byte);
+                }
+                catch(...){
+                    close(client_fd);close(server_fd);  break;
+                }
                 //std::cout<<"actual byte"<<actual_byte<<std::endl;
                 //if connect close
-                if(actual_byte == 0)
+                if(actual_byte == 0){
                     break;
-                client.send_msg(&buffer.data()[0], actual_byte);
+                }
+
+                try{
+                    client.send_msg(&buffer.data()[0], actual_byte);
+                }
+                catch(...){
+                    send_502_bad_gateway(server);
+                    close(client_fd);close(server_fd);  break;
+                }
             }
         }
     }
+            // if(active == 0){
+			// 	std::cout<<"Tunnel closed"<<std::endl;
+			// 	close(server_fd);	
+			// }
 }
 
 
@@ -146,8 +187,10 @@ void HttpRequest::receive(HttpSocket& sk) {
                 throw;
             }
         }
-        else
+        else{
+            send_400_bad_request(sk);
             throw std::invalid_argument("invlalid protocol.");
+        }
     }
 
 }

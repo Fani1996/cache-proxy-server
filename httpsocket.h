@@ -14,6 +14,7 @@ private:
   int fd;
   int opt;
 public:
+  HttpSocket();
   HttpSocket(const char * port);
   HttpSocket(int sk_fd);
   HttpSocket(const char * port,const char *hostname);

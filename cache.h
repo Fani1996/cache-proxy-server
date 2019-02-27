@@ -11,6 +11,7 @@
 #include <iterator>
 #include <utility> 
 #include <unordered_map>
+#include <mutex>
 
 #include "httprequest.h"
 #include "httpresponse.h"
@@ -21,7 +22,8 @@
 class cache {
 protected:
     std::size_t capacity;
-    
+    std::mutex mtx;    
+
     // uid, Response
     std::unordered_map<std::string, std::list<std::pair<std::string, HttpResponse> >::iterator> lookup;
     std::list<std::pair<std::string, HttpResponse> > dataset;

@@ -14,6 +14,7 @@ void HttpResponse::receive(HttpSocket &sk) {
 		recv_type = recv_header(sk);
 	}
 	catch (...){
+		send_400_bad_request(sk);
 		return;
 	}
 
@@ -36,6 +37,7 @@ void HttpResponse::receive(HttpSocket &sk) {
 		}
 		else{
 			std::cerr << "Invalid Version." << std::endl;
+			send_400_bad_request(sk);
 			//throw
 			throw std::invalid_argument("invalid version.");
 		}

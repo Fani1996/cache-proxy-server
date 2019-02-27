@@ -10,38 +10,45 @@
 
 // get the response from cache.
 HttpResponse cache::get(std::string identifier){
+        std::unique_lock<std::mutex> lck(mtx, std::defer_lock);
+        lck.lock();
+
     HttpResponse response = lookup[identifier]->second;
     dataset.splice(dataset.begin(), dataset, lookup[identifier]); // send to front.
     
+            lck.unlock();
+
     return response;
 }
 
 // store the request, response pait into cache.
 void cache::store(HttpRequest request, HttpResponse response){
+    std::unique_lock<std::mutex> lck(mtx, std::defer_lock);
 
-    //reuqest time
-    time_t rawtime;
-    struct tm * ptm;
-
-    time ( &rawtime );
-    ptm = gmtime ( &rawtime );
-    time_t request_time = mktime(ptm);
-    
-    response.calculate_initial_age(request_time);
     std::string id = request.get_identifier();
     // key exists.
     if(lookup.find(id) != lookup.end()){
+        lck.lock();
+
         lookup[id]->second = response;
         dataset.splice(dataset.begin(), dataset, lookup[id]); // send to front.
+
+        lck.unlock();
+
         return;
     }
 
     // key not exist, check size before insert.
     if(dataset.size() > capacity){
         std::string erasekey = dataset.back().first;
+
+        lck.lock();
+
         dataset.pop_back();
 
         lookup.erase(erasekey);
+
+        lck.unlock();
     }
     // put newly added to the front.
     dataset.push_front(make_pair(id, response));
@@ -122,7 +129,12 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
     request.refresh();
 	
     std::cout<<"=== send re-validated request ==="<<std::endl;
-    server.send_msg(&request.get_content().data()[0], request.get_content().size());
+    try{
+        server.send_msg(&request.get_content().data()[0], request.get_content().size());
+    }
+    catch(...){
+        throw;
+    }
     
 	HttpResponse revalidate_response;
 	try{

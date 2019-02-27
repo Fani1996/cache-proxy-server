@@ -2,6 +2,8 @@
 #include "httpresponse.h"
 
 #include "proxy.h"
+#include "log.h"
+
 
 // make the server up and listen.
 void Proxy::compose_up(){
@@ -108,6 +110,7 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
     }
     else{
         //throw
+        request.send_400_bad_request(client);
         throw std::invalid_argument("invalid method.");
     }
 }
@@ -115,21 +118,35 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
 void Proxy::handle(int client_fd, cache& cache){
     std::cout<<" ----- Handling Client_FD = "<<client_fd<<" -----"<<std::endl;
     std::cout<<"  ---- In Thread "<<std::this_thread::get_id()<<" ---- "<<std::endl;
+    
+    HttpSocket client_sk;
+    HttpSocket server_sk;
+    HttpRequest this_request;
 
+    Log log();
+
+    log.output("=== BEGIN Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
     try{
-        HttpSocket client_sk(client_fd);
-
-        HttpRequest this_request = recv_request_from(client_sk);
-
-        std::cout<<" ---- Connect to Port: "<<this_request.get_port()<<", Host: "<<this_request.get_host()<<" ---- "<<std::endl;
-        HttpSocket server_sk(this_request.get_port().c_str(), this_request.get_host().c_str());
-        
-        handle_request(this_request, server_sk, client_sk, cache);
+        client_sk = HttpSocket(client_fd);
+        this_request = recv_request_from(client_sk);
+        log.output("=== SUCCESS Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
     }
     catch(...){
         // LOG err.
-
         close(client_fd);
+        log.output("=== FAILED Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
+        return;
+    }
+
+
+    try{
+        std::cout<<" ---- Connect to Port: "<<this_request.get_port()<<", Host: "<<this_request.get_host()<<" ---- "<<std::endl;
+        server_sk = HttpSocket(this_request.get_port().c_str(), this_request.get_host().c_str());
+
+        handle_request(this_request, server_sk, client_sk, cache);    
+    }
+    catch(...){
+        this_request.send_502_bad_gateway(client_sk);
         return;
     }
 }

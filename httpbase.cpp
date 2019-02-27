@@ -343,12 +343,22 @@ std::string httpBase::get_cache_control(std::string key){
 
 void httpBase::send_400_bad_request(HttpSocket& sk){
     std::string error("HTTP/1.1 400 Bad Request\r\nContent-Type:text/html\r\nContent-Length: 15\r\n\r\n400 Bad Request");
-    sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+    try{
+        sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+    }
+    catch(...){
+        return;
+    }
 }
 
 void httpBase::send_502_bad_gateway(HttpSocket& sk){
     std::string error("HTTP/1.1 502 Bad Gateway\r\nContent-Type:text/html\r\nContent-Length: 15\r\n\r\n502 Bad Gateway");
-    sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+    try{
+        sk.send_msg(const_cast<char *>(error.c_str()), error.size());
+    }
+    catch(...){
+        return;
+    }
 }
 
 void httpBase::send(HttpSocket sk){
@@ -357,8 +367,12 @@ void httpBase::send(HttpSocket sk){
     
     // char * buffer = new char [content.length()+1];
     // std::strcpy (buffer, content.c_str());
-
-    sk.send_msg(&content.data()[0], content.size()+1);
+    try{
+        sk.send_msg(&content.data()[0], content.size()+1);
+    }
+    catch(...){
+        throw std::bad_exception();
+    }
     // delete[] buffer;
 }
 
@@ -367,6 +381,7 @@ void httpBase::cache_control_parser(){
     std::string whole_cache_control = headerpair["Cache-Control"];
     std::cout<<"cache_control!!!!!"<<whole_cache_control<<std::endl;
     whole_cache_control.erase(std::remove(whole_cache_control.begin(), whole_cache_control.end(), ' '), whole_cache_control.end());
+    
     size_t pos = whole_cache_control.find(",");
     while(pos != std::string::npos){
         std::string single_control = whole_cache_control.substr(0, pos);
@@ -374,7 +389,7 @@ void httpBase::cache_control_parser(){
         size_t position = single_control.find('=');
         if(position != std::string::npos){
             cache_control[single_control.substr(0, position)] = single_control.substr(position+1);
-	    std::cout<<cache_control[single_control.substr(0, position)] <<std::endl;
+	    std::cout<<single_control.substr(0, position)<<std::endl;
         }
         else{
             cache_control[single_control]=single_control;
@@ -387,7 +402,7 @@ void httpBase::cache_control_parser(){
     size_t position = single_control.find('=');
         if(position != std::string::npos){
             cache_control[single_control.substr(0, position)] = single_control.substr(position+1);
-            std::cout<<cache_control[single_control.substr(0, position)] <<std::endl;
+            std::cout<<single_control.substr(0, position)<<std::endl;
         }
         else{
           cache_control[single_control]=single_control;
