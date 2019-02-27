@@ -22,10 +22,15 @@ std::vector<std::string> httpBase::split (const std::string &s, char delim) {
 }
 
 // get ‘/abc/page1.php?s1=1&s2=xyz’ http/1.1
-void httpBase::meta_parser(std::string metaline) {
+void httpBase::meta_parser() {
     // split into vector of meta.
     // this->meta = split(meta, ' ');
     std::size_t pre = 0;
+    char *temp=std::strstr(header.data(),"\r\n");
+    char *headertemp=header.data();
+    char *metatemp=new char[temp-headertemp+1];
+    strncpy(metatemp,header.data(),temp-headertemp);
+    std::string metaline=metatemp;
     std::size_t pos = metaline.find_first_of(' ');
     meta.push_back(metaline.substr(pre, pos-pre));
 
@@ -43,6 +48,7 @@ void httpBase::meta_parser(std::string metaline) {
     for(auto metaa:this->meta){
         std::cout<<"meta received: "<<metaa<<std::endl;
     }
+    free(metatemp);
 }
 /*
 void httpBase::header_parser(std::string line) {
@@ -92,9 +98,11 @@ int httpBase::recv_header(HttpSocket &sk){
         //generate_header();
         //refresh();
 	char * headertemp=header.data();
-	if(strstr(headertemp,"Transfer-Encoding") !=NULL)
+	char * te=strstr(headertemp,"Transfer-Encoding");
+	  char* cl=strstr(headertemp,"Content-Length");
+	if(te!=NULL)
 	  return 1;
-	else if(strstr(headertemp,"Content-Length") !=NULL)
+	else if(cl !=NULL)
 	  return -1;
         else
 	  return 0;
@@ -248,14 +256,15 @@ std::string httpBase::get_header_kv(std::string key){
     char * result = header.data();
     const char * target = key.c_str();
 
-    char * value;
-
-    if( (result = std::strstr(result, target)) != NULL ){ // find key.
-        result = std::strstr(result, ":");
-        if(result != NULL){ // find :.
-            char * pos = std::strstr(result, "\r\n");
+    //    char * value;
+    char *temp=std::strstr(result, target);
+    if( temp!= NULL ){ // find key.
+        char *temp2= std::strstr(temp, ":");
+        if(temp2 != NULL){ // find :.
+            char * pos = std::strstr(temp2, "\r\n");
             if(pos != NULL){ // find the end.
-                char * copyed = strncpy(value, header.data(), pos-result);
+	      char * copyed =new char[pos-temp2];
+		strncpy(copyed, temp2+1, pos-temp2-1);
                 std::cout<< "parsed header: " << copyed << std::endl;
                 return copyed;
             }
@@ -267,6 +276,7 @@ std::string httpBase::get_header_kv(std::string key){
     // if(headerpair.find(key) != headerpair.end())
     //     return headerpair[key];
     // return "";
+    return "";
 }
 
 
@@ -276,7 +286,16 @@ std::stirng httpBase::update_header(httpBase updated){
 */
 
 // set the value of header key in the map, but not update the data in vector yet.
-void httpBase::set_header_kv(std::string key, std::string value){
+void httpBase::set_header_kv(std::vector<char> key, std::vector<char> value){
+  std::vector<char> headerline=key;
+  headerline.push_back(':');
+  headerline.push_back(' ');
+  headerline.insert(headerline.end(),value.begin(),value.end());
+  headerline.push_back('\r');
+  headerline.push_back('\n');
+  header.insert(header.end()-2,headerline.begin(),headerline.end());
+  content=header;
+  content.insert(content.end(),payload.begin(),payload.end());
     // headerpair[key] = value;
 }
 

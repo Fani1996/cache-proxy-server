@@ -118,16 +118,22 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
 
     // use reponse to create revalidate request to server.
     if (response.get_header_kv("ETag") != "") {
-        request.set_header_kv("If-None-Match", response.get_header_kv("ETag"));
+        std::string etag=response.get_header_kv("ETag");
+        std::vector<char> etag_char;
+        std::copy( etag.begin(), etag.end(), std::back_inserter(etag_char));
+        request.set_header_kv({'I','f','-','N','o','n','e','-','M','a','t','c','h'},etag_char);
         //request.update_header("If-None-Match: " + response.get_header_kv("ETag"));
     }
     if (response.get_header_kv("Last-Modified") != "") {
-        request.set_header_kv("If-Modified-Since", response.get_header_kv("Last-Modified"));
+      std::string last_modified=response.get_header_kv("Last-Modified");
+        std::vector<char> last_char;
+        std::copy( last_modified.begin(), last_modified.end(), std::back_inserter(last_char));
+        request.set_header_kv({'I','f','-','M','o','d','i','f','i','e','d','-','S','i','n','c','e'}, last_char);
         //request.update_header("If-Modified-Since: " + response.get_header_kv("Last-Modified"));
     }
 
-    request.generate_header();
-    request.refresh();
+    //    request.generate_header();
+    // request.refresh();
 	
     std::cout<<"=== send re-validated request ==="<<std::endl;
     try{
