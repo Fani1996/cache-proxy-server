@@ -20,7 +20,7 @@ private:
 
 public:
     Log() {
-        filepath = get_working_path() + "/log.txt";
+        filepath = get_working_path() + "/server-log.txt";
     }
     Log(std::string path, std::string filename) {
         filepath = path + filename;
