@@ -11,12 +11,12 @@
 // get the response from cache.
 HttpResponse cache::get(std::string identifier){
         std::unique_lock<std::mutex> lck(mtx, std::defer_lock);
-        lck.lock();
+             lck.lock();
 
     HttpResponse response = lookup[identifier]->second;
     dataset.splice(dataset.begin(), dataset, lookup[identifier]); // send to front.
     
-            lck.unlock();
+      lck.unlock();
 
     return response;
 }
@@ -33,8 +33,8 @@ void cache::store(HttpRequest request, HttpResponse response){
         lookup[id]->second = response;
         dataset.splice(dataset.begin(), dataset, lookup[id]); // send to front.
 
-        lck.unlock();
-
+	  lck.unlock();
+	
         return;
     }
 
@@ -42,13 +42,13 @@ void cache::store(HttpRequest request, HttpResponse response){
     if(dataset.size() > capacity){
         std::string erasekey = dataset.back().first;
 
-        lck.lock();
+	        lck.lock();
 
         dataset.pop_back();
 
         lookup.erase(erasekey);
 
-        lck.unlock();
+	 lck.unlock();
     }
     // put newly added to the front.
     dataset.push_front(make_pair(id, response));

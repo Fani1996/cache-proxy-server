@@ -78,7 +78,7 @@ int httpBase::recv_header(HttpSocket &sk){
 
         int actual_byte = sk.recv_msg(&buffer.data()[0], 1, 0);
         if(actual_byte == 0){
-            std::cerr<<"connect closed"<<std::endl;
+	    std::cerr<<"connect closed"<<std::endl;
             //throw
             throw std::exception();
         }
@@ -446,6 +446,6 @@ bool httpBase::no_cache(){
 }
 bool httpBase::must_revalidate(){
   if(cache_control.find("must-revalidate") != cache_control.end())
-        return false;
-  return true;
+        return true;
+  return false;
 }

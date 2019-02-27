@@ -123,7 +123,7 @@ int HttpSocket::send_msg(void *info,size_t size) {
 	if((actual_byte = send(fd, info, size, 0)) == -1){
 		perror("");
 		std::cerr<<"Cannot send."<<std::endl;
-    throw std::exception();
+                throw std::exception();
 	}
 	return actual_byte;
 }
