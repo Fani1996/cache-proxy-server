@@ -92,6 +92,7 @@ int httpBase::recv_header(HttpSocket &sk){
                     meta_parser(metaline);
                 }
                 else{
+		  //headerline.erase(std::remove(headerline.begin(), headerline.end(), ' '), headerline.end());
                     header_parser(headerline);
                     headerline.clear();
 
@@ -372,8 +373,8 @@ void httpBase::cache_control_parser(){
 	std::cout<<"single_control====="<<single_control<<std::endl;
         size_t position = single_control.find('=');
         if(position != std::string::npos){
-            cache_control[single_control.substr(0, position)] = single_control.substr(pos+1);
-	    std::cout<<single_control.substr(0, position)<<std::endl;
+            cache_control[single_control.substr(0, position)] = single_control.substr(position+1);
+	    std::cout<<cache_control[single_control.substr(0, position)] <<std::endl;
         }
         else{
             cache_control[single_control]=single_control;
@@ -385,8 +386,8 @@ void httpBase::cache_control_parser(){
     std::string single_control = whole_cache_control;
     size_t position = single_control.find('=');
         if(position != std::string::npos){
-            cache_control[single_control.substr(0, position)] = single_control.substr(pos+1);
-            std::cout<<single_control.substr(0, position)<<std::endl;
+            cache_control[single_control.substr(0, position)] = single_control.substr(position+1);
+            std::cout<<cache_control[single_control.substr(0, position)] <<std::endl;
         }
         else{
           cache_control[single_control]=single_control;

@@ -45,7 +45,7 @@ public:
 
     // given request, return the response ready to send back.
     HttpResponse returndata(HttpSocket& server,HttpRequest &request);
-
+    
 };
 
 #endif

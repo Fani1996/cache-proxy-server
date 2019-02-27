@@ -15,15 +15,18 @@ HttpResponse cache::get(std::string identifier){
     
     return response;
 }
-
+bool cache::is_fresh(HttpRequest &request, HttpResponse &response){
+  double fresh_lifetime=request.get_fresh_lifetime();
+    double current_age = response.get_current_age();
+    std::cout<<"===current age is:: "<<current_age<<"==="<<std::endl;
+    return fresh_lifetime > current_age;
+}
 // store the request, response pait into cache.
 void cache::store(HttpRequest request, HttpResponse response){
 
     //reuqest time
-    time_t rawtime;
+    time_t rawtime=time (NULL);;
     struct tm * ptm;
-
-    time ( &rawtime );
     ptm = gmtime ( &rawtime );
     time_t request_time = mktime(ptm);
     
@@ -57,7 +60,7 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
         // if found, check valid and no_cache.
 		std::cout<<"===find a response in cache==="<<std::endl;
 		HttpResponse response_in = get(identifier);
-		if(response_in.is_fresh() && !no_cache(request,response_in)&&!response.must_revalidate(){ // valid, return response.
+		if(is_fresh(request,response_in) && !no_cache(request,response_in)){ // valid, return response.
 			std::cout<<"===response is fresh and can cache==="<<std::endl;
             return response_in;
         }
