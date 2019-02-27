@@ -2,6 +2,8 @@
 #include "httpresponse.h"
 
 #include "proxy.h"
+#include "log.h"
+
 
 // make the server up and listen.
 void Proxy::compose_up(){
@@ -120,15 +122,22 @@ void Proxy::handle(int client_fd, cache& cache){
     HttpSocket client_sk;
     HttpSocket server_sk;
     HttpRequest this_request;
+
+    Log log();
+
+    log.output("=== BEGIN Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
     try{
         client_sk = HttpSocket(client_fd);
         this_request = recv_request_from(client_sk);
+        log.output("=== SUCCESS Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
     }
     catch(...){
         // LOG err.
         close(client_fd);
+        log.output("=== FAILED Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
         return;
     }
+
 
     try{
         std::cout<<" ---- Connect to Port: "<<this_request.get_port()<<", Host: "<<this_request.get_host()<<" ---- "<<std::endl;
