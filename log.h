@@ -2,6 +2,10 @@
 #include <ostream>
 #include <istream>
 #include <fstream>
+#include <sstream>
+
+#include <string>
+
 #include <cstdlib>
 #include <unistd.h>
 

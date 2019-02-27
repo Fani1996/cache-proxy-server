@@ -139,7 +139,7 @@ void HttpResponse::calculate_initial_age(time_t request_time){
 	initial_age = std::max(apparent_age, corrected_age_value);
 }
 
-bool httpResponse::must_revalidate(){
+bool HttpResponse::must_revalidate(){
   if(cache_control.find("must-revalidate") != cache_control.end())
         return false;
   return true;

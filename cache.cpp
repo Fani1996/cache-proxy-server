@@ -64,7 +64,7 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
         // if found, check valid and no_cache.
 		std::cout<<"===find a response in cache==="<<std::endl;
 		HttpResponse response_in = get(identifier);
-		if(response_in.is_fresh() && !no_cache(request,response_in)&&!response.must_revalidate(){ // valid, return response.
+		if(response_in.is_fresh() && !no_cache(request,response_in) && !response_in.must_revalidate()){ // valid, return response.
 			std::cout<<"===response is fresh and can cache==="<<std::endl;
             return response_in;
         }

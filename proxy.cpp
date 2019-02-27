@@ -1,3 +1,7 @@
+#include <iostream>
+#include <string>
+
+
 #include "httprequest.h"
 #include "httpresponse.h"
 
@@ -123,18 +127,27 @@ void Proxy::handle(int client_fd, cache& cache){
     HttpSocket server_sk;
     HttpRequest this_request;
 
-    Log log();
+    Log log;
 
-    log.output("=== BEGIN Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
+    std::stringstream ss("=== BEGIN Recv Request From Client_FD: ");
+    ss << std::to_string(client_fd) << " in Thread: " << std::this_thread::get_id() << " ===";
+    log.output(ss.str());
+
     try{
         client_sk = HttpSocket(client_fd);
         this_request = recv_request_from(client_sk);
-        log.output("=== SUCCESS Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
+
+        std::stringstream trystr("=== SUCCESS Recv Request From Client_FD: ");
+        trystr << client_fd << " in Thread: " << std::this_thread::get_id() << " ===";
+        log.output(trystr.str());
     }
     catch(...){
         // LOG err.
         close(client_fd);
-        log.output("=== FAILED Recv Request From Client_FD: " + client_fd + " in Thread: " + std::this_thread::get_id() + " ===");
+
+        std::stringstream ss("=== FAILED Recv Request From Client_FD: ");
+        ss << std::to_string(client_fd) << " in Thread: " << std::this_thread::get_id() << " ===";
+        log.output(ss.str());
         return;
     }
 
