@@ -85,6 +85,7 @@ double HttpResponse::get_fresh_lifetime(){
 	if(temp == ""){
 		struct tm last_modified_tm;
 		memset(&last_modified_tm, 0, sizeof(struct tm));
+		std::cout<<"last modified"<<get_header_kv("Last-Modified")<<std::endl;
 		strptime(get_header_kv("Last-Modified").c_str(), " %a, %d %b %Y %H:%M:%S %Z", &last_modified_tm);
 		
 		time_t last_modified = mktime(&last_modified_tm);
@@ -96,14 +97,11 @@ double HttpResponse::get_fresh_lifetime(){
 	        struct tm date_tm;
                 memset(&date_tm, 0, sizeof(struct tm));
                 strptime(get_header_kv("Date").c_str(), " %a, %d %b %Y %H:%M:%S %Z", &date_tm);
-		time_t date = mktime(&date_tm);
-		
+
 		struct tm expires_tm;
                 memset(&expires_tm, 0, sizeof(struct tm));
                 strptime(temp.c_str(), " %a, %d %b %Y %H:%M:%S %Z", &expires_tm);
-		time_t expires = mktime(&expires_tm);
-		
-		fresh_lifetime = difftime(expires,date);
+		fresh_lifetime = difftime();
 		std::cout<<"===fresh lifetime is:: "<<fresh_lifetime<<"==="<<std::endl;
 	}
 

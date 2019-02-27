@@ -166,7 +166,8 @@ void HttpRequest::receive(HttpSocket& sk) {
         id = recv_header(sk);
     }
     catch (...) {
-        send_400_bad_request(sk);
+      std::cout<<"request receive failure"<<std::endl;
+      send_400_bad_request(sk);
         throw;
     }
 

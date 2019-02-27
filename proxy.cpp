@@ -72,17 +72,17 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
             try{
                 response = mycache.returndata(server, request);
 
-                log.output( "GET: " + request.get_host() + " from " + std::to_string(server.get_fd()) + "\n" );
-                log.timestamp();
+		// log.output( "GET: " + request.get_host() + " from " + std::to_string(server.get_fd()) + "\n" );
+		// log.timestamp();
 
                 response.send(client);
                 
-                log.output( "GET: Send Response To " + std::to_string(client.get_fd()) + "\n" );
-                log.timestamp();
+                //log.output( "GET: Send Response To " + std::to_string(client.get_fd()) + "\n" );
+                //log.timestamp();
             }
             catch(...){
-                log.output( "GET: EXCEPTION with " + request.get_identifier() + "\n");
-                log.timestamp();
+	      //log.output( "GET: EXCEPTION with " + request.get_identifier() + "\n");
+	      // log.timestamp();
 
                 throw std::exception();
             }
@@ -92,18 +92,18 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
                 // send to server
                 request.send(server);
                                 
-                log.output("GET: [Cannot Store] Send to Server for Request: " + request.get_identifier() + "\n");
-                log.timestamp();
+                //log.output("GET: [Cannot Store] Send to Server for Request: " + request.get_identifier() + "\n");
+                //log.timestamp();
 
                 // recv from server
                 response.receive(server);
 
-                log.output("GET: [Cannot Store] Receive Response from Server for Request: " + request.get_identifier() + "\n");
-                log.timestamp();
+                //log.output("GET: [Cannot Store] Receive Response from Server for Request: " + request.get_identifier() + "\n");
+                //log.timestamp();
             }
             catch(...){
-                log.output("GET: [Cannot Store] Error when communicating with server. (Request: " + request.get_identifier() + ")\n");
-                log.timestamp();
+	      //log.output("GET: [Cannot Store] Error when communicating with server. (Request: " + request.get_identifier() + ")\n");
+	      //log.timestamp();
 
                 return;
             }
@@ -117,8 +117,8 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
             request.connect(server, client);
         }
         catch(...){
-            log.output("CONNECT: Error when communicating with server/client. (Request: " + request.get_identifier() + ")\n");
-            log.timestamp();
+	  //log.output("CONNECT: Error when communicating with server/client. (Request: " + request.get_identifier() + ")\n");
+	  //log.timestamp();
 
             throw std::exception();
         }
@@ -129,25 +129,25 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
             // send to server
             request.send(server);
 
-            log.output("POST: Send to Server for Request: " + request.get_identifier() + "\n");
-            log.timestamp();
+            //log.output("POST: Send to Server for Request: " + request.get_identifier() + "\n");
+           //log.timestamp();
             
             // recv from server
             response.receive(server);
 
-            log.output("POST: Receive Response from Server for Request: " + request.get_identifier() + "\n");
-            log.timestamp();
+            //log.output("POST: Receive Response from Server for Request: " + request.get_identifier() + "\n");
+            //log.timestamp();
 
             // send to client
             response.send(client);
 
-            log.output("POST: Send Response to Client for Request: " + request.get_identifier() + "\n");
-            log.timestamp();
+	    // log.output("POST: Send Response to Client for Request: " + request.get_identifier() + "\n");
+	    // log.timestamp();
         }
         catch(...){
             // return;
-            log.output("POST: Error when communicating with server/client. (Request: " + request.get_identifier() + ")\n");
-            log.timestamp();
+	  // log.output("POST: Error when communicating with server/client. (Request: " + request.get_identifier() + ")\n");
+	  //log.timestamp();
 
             throw std::exception();
         }
@@ -171,7 +171,7 @@ void Proxy::handle(int client_fd, cache& cache){
 
     std::stringstream ss;
     ss << "=== BEGIN Recv Request From Client_FD: " << std::to_string(client_fd) << " in Thread: " << std::this_thread::get_id() << " ===\n";
-    log.output(ss.str());
+    //log.output(ss.str());
 
     try{
         client_sk = HttpSocket(client_fd);
@@ -179,18 +179,18 @@ void Proxy::handle(int client_fd, cache& cache){
 
         std::stringstream trystr;
         trystr << "=== SUCCESS Recv Request From Client_FD: " << client_fd << " in Thread: " << std::this_thread::get_id() << " ===\n";
-        log.output(trystr.str());
-        log.log_request(this_request);
-        log.timestamp();
+        //log.output(trystr.str());
+        //log.log_request(this_request);
+        //log.timestamp();
     }
     catch(...){
         // LOG err.
         close(client_fd);
         std::stringstream errstr;
         ss << "=== FAILED Recv Request From Client_FD: " << std::to_string(client_fd) << " in Thread: " << std::this_thread::get_id() << " ===\n";
-        log.output(errstr.str());
-        log.log_request(this_request);
-        log.timestamp();
+	//        log.output(errstr.str());
+        //log.log_request(this_request);
+        //log.timestamp();
 
         return;
     }
@@ -206,9 +206,9 @@ void Proxy::handle(int client_fd, cache& cache){
 
         std::stringstream errstr;
         ss << "=== FAILED Connect Server/Handle Request: " << " in Thread: " << std::this_thread::get_id() << " ===\n";
-        log.output(errstr.str());
-        log.log_request(this_request);
-        log.timestamp();
+        //log.output(errstr.str());
+        //log.log_request(this_request);
+        //log.timestamp();
         return;
     }
 }
