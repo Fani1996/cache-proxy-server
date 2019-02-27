@@ -2,9 +2,11 @@
 
 
 void Log::output(std::string output){
-    std::cin >> output;
-    std::ofstream out(path + filename);
-    out << output;
 
-    out.close();
+    std::ofstream outfile;
+
+    outfile.open(filepath, std::ios_base::app);
+    outfile << output;
+
+    outfile.close();
 }
