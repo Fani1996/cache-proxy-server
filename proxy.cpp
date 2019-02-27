@@ -180,7 +180,7 @@ void Proxy::handle(int client_fd, cache& cache){
         std::stringstream trystr;
         trystr << "=== SUCCESS Recv Request From Client_FD: " << client_fd << " in Thread: " << std::this_thread::get_id() << " ===\n";
         log.output(trystr.str());
-        // log.log_request(this_request);
+        log.log_request(this_request);
         log.timestamp();
     }
     catch(...){
@@ -190,7 +190,7 @@ void Proxy::handle(int client_fd, cache& cache){
         ss << "=== FAILED Recv Request From Client_FD: " << std::to_string(client_fd) << " in Thread: " << std::this_thread::get_id() << " ===\n";
 
         log.output(errstr.str());
-        // log.log_request(this_request);
+        log.log_request(this_request);
         log.timestamp();
 
         return;
@@ -208,7 +208,7 @@ void Proxy::handle(int client_fd, cache& cache){
         std::stringstream errstr;
         ss << "=== FAILED Connect Server/Handle Request: " << " in Thread: " << std::this_thread::get_id() << " ===\n";
         log.output(errstr.str());
-        // log.log_request(this_request);
+        log.log_request(this_request);
         log.timestamp();
         return;
     }

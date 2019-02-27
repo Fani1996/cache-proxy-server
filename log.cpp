@@ -9,12 +9,17 @@
 
 void Log::output(std::string output){
 
+    std::unique_lock<std::mutex> lck(mtx, std::defer_lock);
+    lck.lock();
+
     std::ofstream outfile;
 
     outfile.open(filepath, std::ios_base::app);
     outfile << output;
 
     outfile.close();
+
+    lck.unlock();
 }
 
 void Log::timestamp(){

@@ -14,6 +14,7 @@
 class Log {
 private:
     std::string filepath;
+    std::mutex mtx;    
 
     std::string get_working_path(){
         char temp[512];
