@@ -51,6 +51,12 @@ void httpBase::header_parser(std::string line) {
 
     headerpair[key] = value;
 
+    if(key == "Host"){
+        auto pos = meta[1].find(value);
+        meta[1] = meta[1].substr(pos + value.size());
+        std::cout<<meta[1]<<std::endl;
+    }
+
     std::cout<<"header parsed: key: "<<key<<", value: "<<value<<std::endl;
 }
 
