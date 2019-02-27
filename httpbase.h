@@ -1,3 +1,4 @@
+
 #ifndef _HTTPBASE__H
 #define _HTTPBASE__H
 
@@ -15,7 +16,7 @@ protected:
     std::vector<char> payload;
 
     std::vector<std::string> meta;
-    std::unordered_map<std::string, std::string> headerpair;
+    //    std::unordered_map<std::string, std::string> headerpair;
     std::unordered_map<std::string, std::string> cache_control;
 
     std::vector<std::string> split(const std::string &s, char delim);
