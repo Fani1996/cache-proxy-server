@@ -11,8 +11,7 @@ private:
     std::string filename;
 
     std::string get_working_path(){
-        std::size_t MAXPATHLEN = 512;
-        char temp[MAXPATHLEN];
+        char temp[512];
         return ( getcwd(temp, sizeof(temp)) ? std::string( temp ) : std::string("") );
     }
 
@@ -29,11 +28,5 @@ public:
         system(target.c_str());
     }
 
-    void output(std::string output){
-        std::cin >> output;
-        std::ofstream out(path + filename);
-        out << output;
-
-        out.close();
-    }
+    void output(std::string output);
 };
