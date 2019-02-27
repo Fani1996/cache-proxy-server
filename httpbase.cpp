@@ -92,6 +92,7 @@ int httpBase::recv_header(HttpSocket &sk){
                     meta_parser(metaline);
                 }
                 else{
+		  //headerline.erase(std::remove(headerline.begin(), headerline.end(), ' '), headerline.end());
                     header_parser(headerline);
                     headerline.clear();
 

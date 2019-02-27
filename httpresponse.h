@@ -17,10 +17,12 @@ public:
     HttpResponse() {}
 
     std::string get_code();
+    double get_fresh_lifetime();
+    bool is_fresh();
     double get_current_age();
     void calculate_initial_age(time_t request_time);
     void receive(HttpSocket &sk);
-    bool is_fresh();
+    bool must_revalidate();
 };
 
 #endif

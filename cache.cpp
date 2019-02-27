@@ -64,7 +64,7 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
         // if found, check valid and no_cache.
 		std::cout<<"===find a response in cache==="<<std::endl;
 		HttpResponse response_in = get(identifier);
-		if(response_in.is_fresh() && !no_cache(request,response_in)){ // valid, return response.
+		if(response_in.is_fresh() && !no_cache(request,response_in)&&!response.must_revalidate(){ // valid, return response.
 			std::cout<<"===response is fresh and can cache==="<<std::endl;
             return response_in;
         }
@@ -144,16 +144,7 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
 		throw std::exception();
 	}
 
-    //reuqest time
-    time_t rawtime;
-    struct tm * ptm;
-
-    time ( &rawtime );
-    ptm = gmtime ( &rawtime );
-    time_t request_time = mktime(ptm);
     
-    revalidate_response.calculate_initial_age(request_time);
-
     if(revalidate_response.get_code() == "200"){
 		std::cout<<"===get 200 from server==="<<std::endl;
 		if(revalidate_response.can_store())
