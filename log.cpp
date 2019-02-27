@@ -34,8 +34,8 @@ void Log::timestamp(){
 void Log::log_request(HttpRequest& this_request){
     std::stringstream reqstr;
 
-    reqstr << "- From: " << this_request.get_host() << ", with Port: " << this_request.get_port() << " -\n";
-    reqstr << "- Method: " << this_request.get_method() << ", Protocol: " << this_request.get_version() << " -\n";
+    reqstr << "- From: " << this_request.get_identifier() << ", with Port: " << this_request.get_port() << "\n";
+    reqstr << "- Method: " << this_request.get_method() << ", Protocol: " << this_request.get_version() << "\n";
 
     output(reqstr.str());
 }

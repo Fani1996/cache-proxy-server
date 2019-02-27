@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cstring>
 
 #include <cassert>
 #include<algorithm>
@@ -283,9 +284,28 @@ std::vector<char> httpBase::get_content(){
 
 
 std::string httpBase::get_header_kv(std::string key){
-    if(headerpair.find(key) != headerpair.end())
-        return headerpair[key];
-    return "";
+    char * result = header.data();
+    const char * target = key.c_str();
+
+    char * value;
+
+    if( (result = std::strstr(result, target)) != NULL ){ // find key.
+        result = std::strstr(result, ":");
+        if(result != NULL){ // find :.
+            char * pos = std::strstr(result, "\r\n");
+            if(pos != NULL){ // find the end.
+                char * copyed = strncpy(value, header.data(), pos-result);
+                std::cout<< "parsed header: " << copyed << std::endl;
+                return copyed;
+            }
+        }
+    }   
+    else{
+        return "";
+    }
+    // if(headerpair.find(key) != headerpair.end())
+    //     return headerpair[key];
+    // return "";
 }
 
 

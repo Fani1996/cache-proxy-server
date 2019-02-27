@@ -5,6 +5,8 @@
 #include <sstream>
 #include <string>
 #include <cstdlib>
+#include <mutex>
+
 #include <unistd.h>
 
 # include "httprequest.h"
