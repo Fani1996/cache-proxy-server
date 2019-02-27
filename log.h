@@ -3,11 +3,13 @@
 #include <istream>
 #include <fstream>
 #include <sstream>
-
 #include <string>
-
 #include <cstdlib>
 #include <unistd.h>
+
+# include "httprequest.h"
+
+
 
 class Log {
 private:
@@ -27,4 +29,6 @@ public:
     }
 
     void output(std::string output);
+    void timestamp();
+    void log_request(HttpRequest& request);
 };
