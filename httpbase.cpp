@@ -55,7 +55,7 @@ void httpBase::header_parser(std::string line) {
         std::string hoststr(value);
         hoststr.erase(std::remove(hoststr.begin(), hoststr.end(), ' '), hoststr.end());
 
-        auto pos = meta[1].find_first_of(hoststr);
+        auto pos = meta[1].find(hoststr);
         if(pos != std::string::npos){
             meta[1] = meta[1].substr(pos + value.size());
             std::cout<<meta[1]<<std::endl;
@@ -151,6 +151,9 @@ int httpBase::recv_header(HttpSocket &sk){
 
     }
     cache_control_parser();
+    generate_header();
+    refresh();
+
     if(headerpair.find("Transfer-Encoding") != headerpair.end())
         return 1;
     else if(headerpair.find("Content-Length") != headerpair.end())
