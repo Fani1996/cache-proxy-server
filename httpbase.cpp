@@ -134,25 +134,31 @@ int httpBase::recv_header(HttpSocket &sk){
 }
 
 void httpBase::recv_http_1_0(HttpSocket & sk){
-    while(1){
-        std::vector<char> buffer(127, 0);
+   int curr_len=content.size();
+   int actual_byte=0;
+   while(1){
+     content.resize(curr_len+2048);
+      //  std::vector<char> buffer(127, 0);
         try{
-            if(sk.recv_msg(&buffer.data()[0], 127, 0) == 0){
-                break;
-            }
+	  actual_byte=sk.recv_msg(content.data()+curr_len, 2048, 0);
+             
         }
         catch(...){
             throw std::exception();
         }
-        payload.insert(payload.end(), buffer.begin(), buffer.end());
-        content.insert(content.end(), buffer.begin(), buffer.end());
+     if(actual_byte==0)
+       break;
+     else curr_len+=actual_byte;
+	//        payload.insert(payload.end(), buffer.begin(), buffer.end());
+        //content.insert(content.end(), buffer.begin(), buffer.end());
     }
+   content.resize(curr_len);
 }
 
 void httpBase::recv_http_1_1(HttpSocket & sk, int type){
     if(type == 1){
         try{
-	  std::cout<<"recv chunk"<<std::endl;
+	  std::cout<<"recv chunk!!"<<std::endl;
             recv_chunk(sk);
         }
         catch(...){
@@ -161,6 +167,7 @@ void httpBase::recv_http_1_1(HttpSocket & sk, int type){
     }
     else if(type == -1){
         try{
+	  std::cout<<"recv lenght!!"<<std::endl;
             recv_length(sk);
         }
         catch(...){
@@ -168,9 +175,10 @@ void httpBase::recv_http_1_1(HttpSocket & sk, int type){
         }
     }
     else{
-        std::cerr<<"Invalid Header!"<<std::endl;
+      recv_http_1_0(sk);
+      //std::cerr<<"Invalid Header!"<<std::endl;
         //throw badHeader();
-        throw std::invalid_argument("invalid header");
+        //throw std::invalid_argument("invalid header");
     }
 }
 /*
@@ -224,28 +232,33 @@ void httpBase::recv_chunk(HttpSocket& sk) {
     }*/
 
 void httpBase::recv_chunk(HttpSocket& sk) {
-  if(strstr(content.data(),"0\r\n\r\n")!=NULL){
+  const char *end_chunk="0\r\n\r\n";
+  std::vector<char>::iterator it=search(content.begin(),content.end(),end_chunk,end_chunk+strlen(end_chunk));
+  if(it!=content.end()){
     std::cout<<"payload already in content"<<std::endl;
-      return;
+    return;
   }
   else{
     int curr_len = content.size();
     content.resize(33554432);
     int actual_byte=0;
     while(1){
-      std::cout<<"i m chunked!!"<<std::endl;
+      //      std::cout<<"i m chunked!!"<<std::endl;
       //        std::vector<char> contentbuf(2048, 0);
       std::cout<<"actual_byte::"<<actual_byte<<std::endl;
       curr_len+=actual_byte;
-       if(strstr(content.data(),"0\r\n\r\n")!=NULL){
+      const char *end_chunk="0\r\n\r\n";
+      std::vector<char>::iterator it=search(content.begin(),content.end(),end_chunk,end_chunk+strlen(end_chunk));
+      if(it!=content.end()){
+      // if(strstr(content.data(),"0\r\n\r\n")!=NULL){
            std::cout<<"end of chunk!!!"<<std::endl;
            content.resize(curr_len);
-	   std::cout<<"content received===> "<<std::endl;
-	   std::cout<<content.data()<<std::endl;
+	   //  std::cout<<"content received===> "<<std::endl;
+	   // std::cout<<content.data()<<std::endl;
            return;
         }
       try{
-          actual_byte=sk.recv_msg(content.data()+curr_len, 1024, 0);
+          actual_byte=sk.recv_msg(content.data()+curr_len, 2048, 0);
         }
         catch(...){
 	  //            contentbuf.clear();
@@ -260,30 +273,40 @@ void httpBase::recv_chunk(HttpSocket& sk) {
 
 void httpBase::recv_length(HttpSocket& sk) {
     int length = -1;
+    int actual_byte=0;
+    int sum=0;
     int curr_len=content.size();
     length = std::stoi(get_header_kv("Content-Length"));
+    int need_len=length-curr_len+header_len;
     if(length == -1){
         throw std::invalid_argument("invalid length");
     }
     else if(length > 0){
       if((curr_len-header_len) == length)
 	    return;
+      while(1){
       //        std::vector<char> contentbuf(length-payload.size(), 0);
-        content.resize(length+header_len);
-        payload_len = curr_len - header_len;
+        content.resize(curr_len+1024);
+        
 	try{
-	  sk.recv_msg(content.data()+curr_len, length - payload_len, MSG_WAITALL);
+	  actual_byte=sk.recv_msg(content.data()+curr_len, 1024, 0);
         }
         catch(...){
 	  //            contentbuf.clear();
             throw std::exception();
         }
+	curr_len+=actual_byte;
+	sum+=actual_byte;
+	if(need_len==sum||actual_byte==0)
+	  break;
+	content.resize(curr_len);
+      }
 	//        payload.insert(payload.end(), contentbuf.begin(), contentbuf.end());
 	//        content.insert(content.end(), contentbuf.begin(), contentbuf.end());
 
         //std::cout<<"=== content length received. ==="<<std::endl;
         //std::cout<<"length: "<<length<<std::endl;
-        //std::cout<<"content: "<<std::string(content.begin(), content.end())<<std::endl;
+        std::cout<<"content: \n"<<std::string(content.begin(), content.end())<<std::endl;
     }
 }
 
@@ -426,13 +449,21 @@ void httpBase::send(HttpSocket sk){
     
     // char * buffer = new char [content.length()+1];
     // std::strcpy (buffer, content.c_str());
+  int sum=0;
+  int actual_byte=0;
+  while(1){
     try{
-        sk.send_msg(&content.data()[0], content.size());
+        actual_byte=sk.send_msg(&content.data()[0], content.size());
     }
     catch(...){
         throw std::bad_exception();
     }
+    if(actual_byte!=0)
+      sum+=actual_byte;
+    if(sum==(int)content.size())
+      break;
     // delete[] buffer;
+  }
 }
 
 void httpBase::cache_control_parser(){
