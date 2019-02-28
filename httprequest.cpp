@@ -6,12 +6,12 @@
 
 // get hostname from request.
 std::string HttpRequest::get_host() {
-    std::string host;
-    if(std::strstr(header.data(),"Host") == NULL) { // host not exist.
-        return hostname = host;
-    }
-    
-    host = get_header_kv("Host").find_first_of(':');
+  std::string host = get_header_kv("Host");
+  std::cout<<"GET_HOST_HOSTTT: "<<host<<std::endl;
+  if(host == "") { // host not exist.
+    return hostname = host;
+  }
+
     std::size_t pos = host.find_first_of(':');
     if(pos == std::string::npos)
         hostname = host;
@@ -26,13 +26,15 @@ std::string HttpRequest::get_host() {
 
 // get port from request.
 std::string HttpRequest::get_port() {
-    std::size_t pos;
-    port = "";
+        port = "";
 
-    if(std::strstr(header.data(),"Host") != NULL){
-        if( (pos = get_header_kv("Host").find_first_of(':')) != std::string::npos ){
-            return port =  get_header_kv("Host").substr(pos+1);
-        }
+    std::string host = get_header_kv("Host");
+    if(host != "") { // host not exist.
+      std::size_t pos = host.find_first_of(':');
+      if(pos != std::string::npos){
+        return port = host.substr(pos+1);
+                
+      }
     }
 
     // using meta to determine port.
