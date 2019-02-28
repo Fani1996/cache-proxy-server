@@ -26,14 +26,20 @@ void httpBase::meta_parser() {
     // split into vector of meta.
     // this->meta = split(meta, ' ');
     std::size_t pre = 0;
-    char *temp=std::strstr(header.data(),"\r\n");
-    char *headertemp=header.data();
+    //    char *temp=std::strstr(content.data(),"\r\n");
+    /*    
+	  char *headertemp=content.data();
     std::cout<<"META_PARSER_SIZE:"<<temp-headertemp+1<<std::endl;
     char *metatemp=new char[temp-headertemp+1];
-    strncpy(metatemp,header.data(),temp-headertemp);
-    metatemp[temp-headertemp] = '\0';
+    strncpy(metatemp, content.data(),temp-headertemp);
+        metatemp[temp-headertemp] = '\0';
+    */
+    
+    //std::string metaline=metatemp;
+    std::string metaline = std::string(content.data());
+    std::size_t first_line = metaline.find("\r\n");
 
-    std::string metaline=metatemp;
+    metaline = metaline.substr(0, first_line);
     std::size_t pos = metaline.find_first_of(' ');
     meta.push_back(metaline.substr(pre, pos-pre));
 
@@ -51,7 +57,7 @@ void httpBase::meta_parser() {
     for(auto metaa:this->meta){
         std::cout<<"meta received: "<<metaa<<std::endl;
     }
-    delete[] metatemp;
+    //    delete[] metatemp;
 }
 /*
 void httpBase::header_parser(std::string line) {
@@ -77,42 +83,49 @@ void httpBase::header_parser(std::string line) {
 */
 //return value:1 chunk -1 length 0 none
 int httpBase::recv_header(HttpSocket &sk){
-  char * contentbuf = new char[1024];
-  std::size_t actual_byte = sk.recv_msg(contentbuf,1024,0);//std::cout<<cap<<" line 336\r\n";
-  
-  content.insert(content.end(), contentbuf, contentbuf + actual_byte);
+  //  char * contentbuf = new char[1024];
+  //  std::vector<char> contentbuf;
+  //std::size_t actual_byte = sk.recv_msg(&contentbuf.data()[0],1024,0);//std::cout<<cap<<" line 336\r\n";
+  content.clear();
+  content=std::vector<char>(33554432,0);
+  std::size_t actual_byte = sk.recv_msg(content.data(),2048,0);//std::cout<<cap<<" line 336\r\n";
+
+  //  content.insert(content.end(), contentbuf.begin(), contentbuf.end());
   //content.push_back('\0');
   if(actual_byte == 0){
     std::cerr<<"connect closed"<<std::endl;
     //throw
     throw std::exception();
   }
+  content.resize(actual_byte);
   
-  if(strstr(contentbuf, "\r\n\r\n")==NULL){
+  if(strstr(content.data(), "\r\n\r\n")==NULL){
     return 0;
     //throw
   }
-  size_t pos = strstr(contentbuf, "\r\n\r\n") - contentbuf;
+  size_t pos = strstr(content.data(), "\r\n\r\n") - content.data();
   pos+=4;
-  header.insert(header.end(), contentbuf, contentbuf + pos);
+  header_len = pos;
+  //header.insert(header.end(), content.begin(), content.begin() + pos-1);
   //header.push_back('\0');
-  if(pos+1 < actual_byte){
-  payload.insert(payload.end(), contentbuf + pos+1, contentbuf + actual_byte);
+  //if(pos+1 < actual_byte){
+    //payload.insert(payload.end(), content.begin() + pos, content.end());
   //payload.push_back('\0');
-  }
+  //}
   std::cout<<"RECV_HEADER:\nCONTENT:\n=>"<<std::string(content.begin(), content.end())<<std::endl;
-  std::cout<<"RECV_HEADER:\nHEADER:\n=>"<<std::string(header.begin(), header.end())<<std::endl;
-  std::cout<<"RECV_HEADER:\nPAYLOAD:\n=>"<<std::string(payload.begin(), payload.end())<<std::endl;
+  // std::cout<<"RECV_HEADER:\nHEADER:\n=>"<<std::string(header.begin(), header.end())<<std::endl;
+  //std::cout<<"RECV_HEADER:\nPAYLOAD:\n=>"<<std::string(payload.begin(), payload.end())<<std::endl;
 
   meta_parser();
   cache_control_parser();
 
-	char * headertemp=header.data();
+  
+  char * headertemp=content.data();
   
 	char * te=strstr(headertemp,"Transfer-Encoding");
 	  char* cl=strstr(headertemp,"Content-Length");
 
-    delete[] contentbuf;
+	  //    delete[] contentbuf;
 
 	if(te!=NULL)
 	  return 1;
@@ -212,24 +225,26 @@ void httpBase::recv_chunk(HttpSocket& sk) {
     }*/
 
 void httpBase::recv_chunk(HttpSocket& sk) {
-  if(strstr(payload.data(),"0\r\n\r\n")!=NULL){
+  if(strstr(content.data(),"0\r\n\r\n")!=NULL){
       return;
   }
   else{
+    int curr_len = content.size();
     while(1){
-        std::vector<char> contentbuf(2048, 0);
+      //        std::vector<char> contentbuf(2048, 0);
 	int actual_byte;
         try{
-          actual_byte=sk.recv_msg(&contentbuf.data()[0], 2048, 0);
+          actual_byte=sk.recv_msg(content.data()+curr_len, 2048, 0);
         }
         catch(...){
-            contentbuf.clear();
+	  //            contentbuf.clear();
             throw std::exception();
         }
-	contentbuf.resize(actual_byte);
-	payload.insert(payload.end(), contentbuf.begin(), contentbuf.end());
-        content.insert(content.end(), contentbuf.begin(), contentbuf.end());
-	if(strstr(payload.data(),"0\r\n\r\n")!=NULL)
+	curr_len += actual_byte;
+	content.resize(curr_len);
+	//	payload.insert(payload.end(), contentbuf.begin(), contentbuf.end());
+	//        content.insert(content.end(), contentbuf.begin(), contentbuf.end());
+	if(strstr(content.data(),"0\r\n\r\n")!=NULL)
 	   break;
     }	
   }
@@ -242,18 +257,19 @@ void httpBase::recv_length(HttpSocket& sk) {
         throw std::invalid_argument("invalid length");
     }
     else if(length > 0){
-        if((int)payload.size()==length)
+      if(content.size()-header_len == (std::size_t)length)
 	    return;
-        std::vector<char> contentbuf(length-payload.size(), 0);
+      //        std::vector<char> contentbuf(length-payload.size(), 0);
         try{
-	  sk.recv_msg(&contentbuf.data()[0], length-payload.size(), MSG_WAITALL);
+	  payload_len = content.size() - header_len;
+	  sk.recv_msg(content.data()+content.size(), length - payload_len, MSG_WAITALL);
         }
         catch(...){
-            contentbuf.clear();
+	  //            contentbuf.clear();
             throw std::exception();
         }
-        payload.insert(payload.end(), contentbuf.begin(), contentbuf.end());
-        content.insert(content.end(), contentbuf.begin(), contentbuf.end());
+	//        payload.insert(payload.end(), contentbuf.begin(), contentbuf.end());
+	//        content.insert(content.end(), contentbuf.begin(), contentbuf.end());
 
         //std::cout<<"=== content length received. ==="<<std::endl;
         //std::cout<<"length: "<<length<<std::endl;
@@ -267,7 +283,7 @@ std::vector<char> httpBase::get_content(){
 
 
 std::string httpBase::get_header_kv(std::string key){
-    char * result = header.data();
+    char * result = content.data();
     const char * target = key.c_str();
 
     //    char * value;
@@ -279,8 +295,8 @@ std::string httpBase::get_header_kv(std::string key){
             if(pos != NULL){ // find the end.
 	      char * copyed =new char[pos-temp2];
 		strncpy(copyed, temp2+1, pos-temp2-1);
-    //copyed[pos-temp2-1] = '\0';
-    std::cout<< "GET_HEADER_KV: key: "<<key<<", parsed header: " << copyed << std::endl;
+    copyed[pos-temp2-1] = '\0';
+    //    std::cout<< "GET_HEADER_KV: key: "<<key<<", parsed header: " << copyed << std::endl;
                 std::string value = std::string(copyed);
                 delete[] copyed;
                 return value;
@@ -292,8 +308,7 @@ std::string httpBase::get_header_kv(std::string key){
     }
     // if(headerpair.find(key) != headerpair.end())
     //     return headerpair[key];
-    // return "";
-    return "";
+     return "";
 }
 
 
@@ -404,7 +419,7 @@ void httpBase::send(HttpSocket sk){
     // char * buffer = new char [content.length()+1];
     // std::strcpy (buffer, content.c_str());
     try{
-        sk.send_msg(&content.data()[0], content.size()+1);
+        sk.send_msg(&content.data()[0], content.size());
     }
     catch(...){
         throw std::bad_exception();

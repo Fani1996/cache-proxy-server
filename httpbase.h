@@ -15,6 +15,9 @@ protected:
     std::vector<char> header;
     std::vector<char> payload;
 
+    int header_len;
+    int payload_len;
+    
     std::vector<std::string> meta;
     //    std::unordered_map<std::string, std::string> headerpair;
     std::unordered_map<std::string, std::string> cache_control;

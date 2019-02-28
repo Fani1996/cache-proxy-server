@@ -7,7 +7,7 @@
 // get hostname from request.
 std::string HttpRequest::get_host() {
   std::string host = get_header_kv("Host");
-  std::cout<<"GET_HOST_HOSTTT: "<<host<<std::endl;
+  //  std::cout<<"GET_HOST_HOSTTT: "<<host<<std::endl;
   if(host == "") { // host not exist.
     return hostname = host;
   }

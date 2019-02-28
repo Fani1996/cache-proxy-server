@@ -2321,3 +2321,1418 @@ GET: Send Response To 46
 - From: www.google.com:443, with Port: 44327 21!
 - Method: CONNECT, Protocol: HTTP/1.1
 - At Time: Wed Feb 27 21:13:35 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 140299328124672 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 140299328124672 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:35:38 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 140299313227520 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 140299313227520 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:36:36 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 110671616 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:36:53 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 110671616 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:39:36 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 110671616 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:40:25 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 139858903271168 ===
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 139983551866624 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 139983551866624 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:53:51 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 139983536969472 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 139983536969472 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:14 2019
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 139983453157120 ===
+=== SUCCESS Recv Request From Client_FD: 7 in Thread: 139983453157120 ===
+- From: safebrowsing.googleapis.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:14 2019
+=== BEGIN Recv Request From Client_FD: 9 in Thread: 139983444764416 ===
+=== SUCCESS Recv Request From Client_FD: 9 in Thread: 139983444764416 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:14 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 21:54:14 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 21:54:14 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 21:54:14 2019
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 139983444764416 ===
+=== SUCCESS Recv Request From Client_FD: 11 in Thread: 139983444764416 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:15 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 21:54:15 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 21:54:15 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 21:54:15 2019
+=== BEGIN Recv Request From Client_FD: 13 in Thread: 139983444764416 ===
+=== SUCCESS Recv Request From Client_FD: 13 in Thread: 139983444764416 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:15 2019
+=== BEGIN Recv Request From Client_FD: 15 in Thread: 139983436371712 ===
+=== SUCCESS Recv Request From Client_FD: 15 in Thread: 139983436371712 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:15 2019
+=== BEGIN Recv Request From Client_FD: 16 in Thread: 139983427979008 ===
+=== SUCCESS Recv Request From Client_FD: 16 in Thread: 139983427979008 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:15 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 21:54:15 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 21:54:15 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 21:54:15 2019
+=== BEGIN Recv Request From Client_FD: 19 in Thread: 139983436371712 ===
+=== SUCCESS Recv Request From Client_FD: 19 in Thread: 139983436371712 ===
+- From: www.google.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:18 2019
+=== BEGIN Recv Request From Client_FD: 21 in Thread: 139983427979008 ===
+=== SUCCESS Recv Request From Client_FD: 21 in Thread: 139983427979008 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:18 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 21:54:18 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 21:54:18 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 21:54:18 2019
+=== BEGIN Recv Request From Client_FD: 23 in Thread: 139983427979008 ===
+=== SUCCESS Recv Request From Client_FD: 23 in Thread: 139983427979008 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:25 2019
+[ GET ]: people.duke.edu from 26
+- At Time: Wed Feb 27 21:54:25 2019
+[ GET ]: Send Response To 23
+- At Time: Wed Feb 27 21:54:25 2019
+=== BEGIN Recv Request From Client_FD: 25 in Thread: 139983427979008 ===
+=== SUCCESS Recv Request From Client_FD: 25 in Thread: 139983427979008 ===
+- From: http://people.duke.edu/~bmr23/style.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:25 2019
+[ GET ]: people.duke.edu from 28
+- At Time: Wed Feb 27 21:54:25 2019
+[ GET ]: Send Response To 25
+- At Time: Wed Feb 27 21:54:25 2019
+=== BEGIN Recv Request From Client_FD: 27 in Thread: 139983427979008 ===
+=== SUCCESS Recv Request From Client_FD: 27 in Thread: 139983427979008 ===
+- From: http://people.duke.edu/favicon.ico, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:25 2019
+[ GET ]: people.duke.edu from 30
+- At Time: Wed Feb 27 21:54:25 2019
+[ GET ]: Send Response To 27
+- At Time: Wed Feb 27 21:54:25 2019
+=== BEGIN Recv Request From Client_FD: 29 in Thread: 139983427979008 ===
+=== SUCCESS Recv Request From Client_FD: 29 in Thread: 139983427979008 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:30 2019
+[ GET ]: www.cplusplus.com from 32
+- At Time: Wed Feb 27 21:54:30 2019
+[ GET ]: Send Response To 29
+- At Time: Wed Feb 27 21:54:30 2019
+=== BEGIN Recv Request From Client_FD: 31 in Thread: 139983427979008 ===
+=== SUCCESS Recv Request From Client_FD: 31 in Thread: 139983427979008 ===
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:54:31 2019
+=== BEGIN Recv Request From Client_FD: 36 in Thread: 139983117612800 ===
+=== BEGIN Recv Request From Client_FD: 34 in Thread: 139983411193600 ===
+=== BEGIN Recv Request From Client_FD: 35 in Thread: 139983402800896 ===
+=== BEGIN Recv Request From Client_FD: 33 in Thread: 139983419586304 ===
+[ GET ]: www.cplusplus.com from 38
+- At Time: Wed Feb 27 21:54:31 2019
+[ GET ]: Send Response To 31
+- At Time: Wed Feb 27 21:54:31 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 140716624221952 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 140716624221952 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:55:51 2019
+[ GET ]: www.cplusplus.com from 6
+- At Time: Wed Feb 27 21:55:51 2019
+[ GET ]: Send Response To 4
+- At Time: Wed Feb 27 21:55:51 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 140716624221952 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 140716624221952 ===
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:55:51 2019
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 140716609324800 ===
+=== BEGIN Recv Request From Client_FD: 8 in Thread: 140716600932096 ===
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 140716584146688 ===
+=== BEGIN Recv Request From Client_FD: 10 in Thread: 140716592539392 ===
+[ GET ]: www.cplusplus.com from 9
+- At Time: Wed Feb 27 21:55:51 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 21:55:51 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 110671616 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:57:18 2019
+[ GET ]: www.cplusplus.com from 6
+- At Time: Wed Feb 27 21:57:18 2019
+[ GET ]: Send Response To 4
+- At Time: Wed Feb 27 21:57:18 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 110671616 ===
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 21:57:18 2019
+=== BEGIN Recv Request From Client_FD: 10 in Thread: 142354176 ===
+=== BEGIN Recv Request From Client_FD: 8 in Thread: 125568768 ===
+=== BEGIN Recv Request From Client_FD: 9 in Thread: 133961472 ===
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 150746880 ===
+[ GET ]: www.cplusplus.com from 7
+- At Time: Wed Feb 27 21:57:18 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 21:57:18 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 140295820916480 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 140295820916480 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:00:14 2019
+[ GET ]: www.cplusplus.com from 6
+- At Time: Wed Feb 27 22:00:14 2019
+[ GET ]: Send Response To 4
+- At Time: Wed Feb 27 22:00:14 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 140295820916480 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 140295820916480 ===
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 140295806019328 ===
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:00:14 2019
+=== BEGIN Recv Request From Client_FD: 8 in Thread: 140295797626624 ===
+=== BEGIN Recv Request From Client_FD: 10 in Thread: 140295789233920 ===
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 140295576483584 ===
+[ GET ]: www.cplusplus.com from 9
+- At Time: Wed Feb 27 22:00:14 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 22:00:14 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 110671616 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:00:35 2019
+[ GET ]: www.cplusplus.com from 6
+- At Time: Wed Feb 27 22:00:36 2019
+[ GET ]: Send Response To 4
+- At Time: Wed Feb 27 22:00:36 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 110671616 ===
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 125568768 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 110671616 ===
+=== BEGIN Recv Request From Client_FD: 8 in Thread: 133961472 ===
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:00:36 2019
+[ GET ]: www.cplusplus.com from 10
+- At Time: Wed Feb 27 22:00:36 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 22:00:36 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 139807181408000 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 139807181408000 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:23:15 2019
+[ GET ]: www.cplusplus.com from 6
+- At Time: Wed Feb 27 22:23:15 2019
+[ GET ]: Send Response To 4
+- At Time: Wed Feb 27 22:23:15 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 139807181408000 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 139807181408000 ===
+- From: http://www.cplusplus.com/v321/main.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:23:16 2019
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 139807091062528 ===
+=== BEGIN Recv Request From Client_FD: 8 in Thread: 139807082669824 ===
+=== SUCCESS Recv Request From Client_FD: 8 in Thread: 139807082669824 ===
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:23:16 2019
+[ GET ]: www.cplusplus.com from 9
+- At Time: Wed Feb 27 22:23:16 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 22:23:16 2019
+[ GET ]: www.cplusplus.com from 11
+- At Time: Wed Feb 27 22:23:16 2019
+[ GET ]: Send Response To 8
+- At Time: Wed Feb 27 22:23:16 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 110671616 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:24:10 2019
+[ GET ]: www.cplusplus.com from 6
+- At Time: Wed Feb 27 22:24:10 2019
+[ GET ]: Send Response To 4
+- At Time: Wed Feb 27 22:24:10 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 110671616 ===
+- From: http://www.cplusplus.com/v321/main.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:24:10 2019
+=== BEGIN Recv Request From Client_FD: 8 in Thread: 125568768 ===
+=== SUCCESS Recv Request From Client_FD: 8 in Thread: 125568768 ===
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:24:10 2019
+[ GET ]: www.cplusplus.com from 9
+- At Time: Wed Feb 27 22:24:10 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 22:24:10 2019
+[ GET ]: www.cplusplus.com from 10
+- At Time: Wed Feb 27 22:24:10 2019
+[ GET ]: Send Response To 8
+- At Time: Wed Feb 27 22:24:10 2019
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 125568768 ===
+=== SUCCESS Recv Request From Client_FD: 7 in Thread: 125568768 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:24:28 2019
+[ GET ]: people.duke.edu from 12
+- At Time: Wed Feb 27 22:24:28 2019
+[ GET ]: Send Response To 7
+- At Time: Wed Feb 27 22:24:28 2019
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 125568768 ===
+=== SUCCESS Recv Request From Client_FD: 11 in Thread: 125568768 ===
+- From: http://people.duke.edu/~bmr23/style.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:24:28 2019
+[ GET ]: people.duke.edu from 14
+- At Time: Wed Feb 27 22:24:28 2019
+[ GET ]: Send Response To 11
+- At Time: Wed Feb 27 22:24:28 2019
+=== BEGIN Recv Request From Client_FD: 13 in Thread: 125568768 ===
+=== SUCCESS Recv Request From Client_FD: 13 in Thread: 125568768 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:24:30 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 110671616 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:26:32 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 192685824 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 192685824 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:26:58 2019
+[ GET ]: www.cplusplus.com from 8
+- At Time: Wed Feb 27 22:26:58 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 22:26:58 2019
+=== BEGIN Recv Request From Client_FD: 10 in Thread: 209471232 ===
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 192685824 ===
+=== BEGIN Recv Request From Client_FD: 9 in Thread: 201078528 ===
+=== SUCCESS Recv Request From Client_FD: 7 in Thread: 192685824 ===
+=== SUCCESS Recv Request From Client_FD: 9 in Thread: 201078528 ===
+- From: http://www.cplusplus.com/v321/main.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:26:59 2019
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:26:59 2019
+[ GET ]: www.cplusplus.com from 13
+- At Time: Wed Feb 27 22:26:59 2019
+[ GET ]: Send Response To 9
+- At Time: Wed Feb 27 22:26:59 2019
+[ GET ]: www.cplusplus.com from 12
+- At Time: Wed Feb 27 22:26:59 2019
+[ GET ]: Send Response To 7
+- At Time: Wed Feb 27 22:26:59 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 140632848590592 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 140632848590592 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:12 2019
+[ GET ]: www.cplusplus.com from 6
+- At Time: Wed Feb 27 22:32:12 2019
+[ GET ]: Send Response To 4
+- At Time: Wed Feb 27 22:32:12 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 140632848590592 ===
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 140632731416320 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 140632848590592 ===
+- From: http://www.cplusplus.com/v321/main.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:13 2019
+=== SUCCESS Recv Request From Client_FD: 7 in Thread: 140632731416320 ===
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:13 2019
+[ GET ]: www.cplusplus.com from 9
+- At Time: Wed Feb 27 22:32:13 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 22:32:13 2019
+[ GET ]: www.cplusplus.com from 10
+- At Time: Wed Feb 27 22:32:13 2019
+[ GET ]: Send Response To 7
+- At Time: Wed Feb 27 22:32:13 2019
+=== BEGIN Recv Request From Client_FD: 8 in Thread: 140632731416320 ===
+=== SUCCESS Recv Request From Client_FD: 8 in Thread: 140632731416320 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:22 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 139792265869056 ===
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 139792257476352 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 139792257476352 ===
+- From: http://www.cplusplus.com/favicon.ico, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:41 2019
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 139792265869056 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:41 2019
+=== BEGIN Recv Request From Client_FD: 6 in Thread: 139792209020672 ===
+=== SUCCESS Recv Request From Client_FD: 6 in Thread: 139792209020672 ===
+- From: http://www.googletagservices.com/tag/js/gpt.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:41 2019
+[ GET ]: www.cplusplus.com from 7
+- At Time: Wed Feb 27 22:32:41 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 22:32:41 2019
+[ GET ]: www.googletagservices.com from 10
+- At Time: Wed Feb 27 22:32:41 2019
+[ GET ]: Send Response To 6
+- At Time: Wed Feb 27 22:32:41 2019
+=== BEGIN Recv Request From Client_FD: 9 in Thread: 139792209020672 ===
+=== BEGIN Recv Request From Client_FD: 12 in Thread: 139792125785856 ===
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 139792257476352 ===
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 140404316645120 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 140404316645120 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:49 2019
+[ GET ]: people.duke.edu from 6
+- At Time: Wed Feb 27 22:32:49 2019
+[ GET ]: Send Response To 4
+- At Time: Wed Feb 27 22:32:49 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 140404316645120 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 140404316645120 ===
+- From: http://people.duke.edu/~bmr23/style.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:49 2019
+[ GET ]: people.duke.edu from 8
+- At Time: Wed Feb 27 22:32:49 2019
+[ GET ]: Send Response To 5
+- At Time: Wed Feb 27 22:32:49 2019
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 140404316645120 ===
+=== SUCCESS Recv Request From Client_FD: 7 in Thread: 140404316645120 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:53 2019
+=== BEGIN Recv Request From Client_FD: 10 in Thread: 140404301747968 ===
+=== SUCCESS Recv Request From Client_FD: 10 in Thread: 140404301747968 ===
+- From: safebrowsing.googleapis.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:53 2019
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 140404192175872 ===
+=== SUCCESS Recv Request From Client_FD: 11 in Thread: 140404192175872 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:53 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:32:54 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:32:54 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:32:54 2019
+=== BEGIN Recv Request From Client_FD: 13 in Thread: 140404192175872 ===
+=== SUCCESS Recv Request From Client_FD: 13 in Thread: 140404192175872 ===
+- From: snippets.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:55 2019
+=== BEGIN Recv Request From Client_FD: 15 in Thread: 140404183783168 ===
+=== SUCCESS Recv Request From Client_FD: 15 in Thread: 140404183783168 ===
+- From: getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:59 2019
+=== BEGIN Recv Request From Client_FD: 17 in Thread: 140404175390464 ===
+=== SUCCESS Recv Request From Client_FD: 17 in Thread: 140404175390464 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:32:59 2019
+=== BEGIN Recv Request From Client_FD: 19 in Thread: 140404057958144 ===
+=== SUCCESS Recv Request From Client_FD: 19 in Thread: 140404057958144 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:00 2019
+=== BEGIN Recv Request From Client_FD: 21 in Thread: 140404049565440 ===
+=== SUCCESS Recv Request From Client_FD: 21 in Thread: 140404049565440 ===
+- From: www.youtube.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:02 2019
+=== BEGIN Recv Request From Client_FD: 23 in Thread: 140404041172736 ===
+=== SUCCESS Recv Request From Client_FD: 23 in Thread: 140404041172736 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:02 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:02 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:02 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:02 2019
+=== BEGIN Recv Request From Client_FD: 25 in Thread: 140404041172736 ===
+=== SUCCESS Recv Request From Client_FD: 25 in Thread: 140404041172736 ===
+- From: fonts.googleapis.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:03 2019
+=== BEGIN Recv Request From Client_FD: 27 in Thread: 140403923740416 ===
+=== BEGIN Recv Request From Client_FD: 30 in Thread: 140403906955008 ===
+=== BEGIN Recv Request From Client_FD: 33 in Thread: 140403772737280 ===
+=== BEGIN Recv Request From Client_FD: 29 in Thread: 140403915347712 ===
+=== BEGIN Recv Request From Client_FD: 32 in Thread: 140403781129984 ===
+=== BEGIN Recv Request From Client_FD: 31 in Thread: 140403789522688 ===
+=== BEGIN Recv Request From Client_FD: 34 in Thread: 140403655304960 ===
+=== BEGIN Recv Request From Client_FD: 35 in Thread: 140403646912256 ===
+=== BEGIN Recv Request From Client_FD: 36 in Thread: 140403638519552 ===
+=== SUCCESS Recv Request From Client_FD: 36 in Thread: 140403638519552 ===
+=== SUCCESS Recv Request From Client_FD: 31 in Thread: 140403789522688 ===
+=== SUCCESS Recv Request From Client_FD: 34 in Thread: 140403655304960 ===
+- From: i.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+- From: fonts.gstatic.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+=== SUCCESS Recv Request From Client_FD: 30 in Thread: 140403906955008 ===
+- From: i.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+=== SUCCESS Recv Request From Client_FD: 32 in Thread: 140403781129984 ===
+- From: i.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+=== SUCCESS Recv Request From Client_FD: 33 in Thread: 140403772737280 ===
+- From: i.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- From: i.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+- At Time: Wed Feb 27 22:33:05 2019
+- At Time: Wed Feb 27 22:33:05 2019
+=== SUCCESS Recv Request From Client_FD: 35 in Thread: 140403646912256 ===
+=== SUCCESS Recv Request From Client_FD: 27 in Thread: 140403923740416 ===
+- From: yt3.ggpht.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+- From: fonts.gstatic.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+=== BEGIN Recv Request From Client_FD: 37 in Thread: 140403521087232 ===
+=== BEGIN Recv Request From Client_FD: 46 in Thread: 140403512694528 ===
+=== BEGIN Recv Request From Client_FD: 47 in Thread: 140403504301824 ===
+=== BEGIN Recv Request From Client_FD: 48 in Thread: 140403386869504 ===
+=== SUCCESS Recv Request From Client_FD: 29 in Thread: 140403915347712 ===
+- From: s.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+=== SUCCESS Recv Request From Client_FD: 46 in Thread: 140403512694528 ===
+- From: yt3.ggpht.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+=== SUCCESS Recv Request From Client_FD: 37 in Thread: 140403521087232 ===
+- From: i.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+=== SUCCESS Recv Request From Client_FD: 48 in Thread: 140403386869504 ===
+- From: yt3.ggpht.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+=== SUCCESS Recv Request From Client_FD: 47 in Thread: 140403504301824 ===
+- From: yt3.ggpht.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:05 2019
+=== BEGIN Recv Request From Client_FD: 59 in Thread: 140403118434048 ===
+=== BEGIN Recv Request From Client_FD: 58 in Thread: 140403235866368 ===
+=== BEGIN Recv Request From Client_FD: 56 in Thread: 140403252651776 ===
+=== BEGIN Recv Request From Client_FD: 57 in Thread: 140403244259072 ===
+=== BEGIN Recv Request From Client_FD: 49 in Thread: 140403378476800 ===
+=== BEGIN Recv Request From Client_FD: 55 in Thread: 140403370084096 ===
+=== BEGIN Recv Request From Client_FD: 60 in Thread: 140403110041344 ===
+=== BEGIN Recv Request From Client_FD: 61 in Thread: 140403101648640 ===
+=== SUCCESS Recv Request From Client_FD: 56 in Thread: 140403252651776 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:06 2019
+=== SUCCESS Recv Request From Client_FD: 55 in Thread: 140403370084096 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:06 2019
+=== SUCCESS Recv Request From Client_FD: 49 in Thread: 140403378476800 ===
+- From: yt3.ggpht.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:06 2019
+=== SUCCESS Recv Request From Client_FD: 60 in Thread: 140403110041344 ===
+- From: yt3.ggpht.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+=== SUCCESS Recv Request From Client_FD: 59 in Thread: 140403118434048 ===
+- At Time: Wed Feb 27 22:33:06 2019
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:06 2019
+=== SUCCESS Recv Request From Client_FD: 57 in Thread: 140403244259072 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:06 2019
+=== SUCCESS Recv Request From Client_FD: 58 in Thread: 140403235866368 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+=== SUCCESS Recv Request From Client_FD: 61 in Thread: 140403101648640 ===
+- From: accounts.google.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:06 2019
+=== BEGIN Recv Request From Client_FD: 62 in Thread: 140403504301824 ===
+=== BEGIN Recv Request From Client_FD: 71 in Thread: 140403110041344 ===
+=== SUCCESS Recv Request From Client_FD: 62 in Thread: 140403504301824 ===
+- From: s.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:08 2019
+=== SUCCESS Recv Request From Client_FD: 71 in Thread: 140403110041344 ===
+- From: s.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:08 2019
+=== BEGIN Recv Request From Client_FD: 72 in Thread: 140403386869504 ===
+=== SUCCESS Recv Request From Client_FD: 72 in Thread: 140403386869504 ===
+- From: googleads.g.doubleclick.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:09 2019
+=== BEGIN Recv Request From Client_FD: 75 in Thread: 140403110041344 ===
+=== BEGIN Recv Request From Client_FD: 77 in Thread: 140403504301824 ===
+=== SUCCESS Recv Request From Client_FD: 75 in Thread: 140403110041344 ===
+- From: pubads.g.doubleclick.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:11 2019
+=== SUCCESS Recv Request From Client_FD: 77 in Thread: 140403504301824 ===
+- From: www.google.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:11 2019
+=== BEGIN Recv Request From Client_FD: 78 in Thread: 140403378476800 ===
+=== BEGIN Recv Request From Client_FD: 81 in Thread: 140403906955008 ===
+=== SUCCESS Recv Request From Client_FD: 78 in Thread: 140403378476800 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:11 2019
+=== SUCCESS Recv Request From Client_FD: 81 in Thread: 140403906955008 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:11 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:11 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:11 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:11 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:11 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:11 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:11 2019
+=== BEGIN Recv Request From Client_FD: 82 in Thread: 140403906955008 ===
+=== SUCCESS Recv Request From Client_FD: 82 in Thread: 140403906955008 ===
+- From: ad.doubleclick.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:11 2019
+=== BEGIN Recv Request From Client_FD: 85 in Thread: 140403378476800 ===
+=== SUCCESS Recv Request From Client_FD: 85 in Thread: 140403378476800 ===
+- From: securepubads.g.doubleclick.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:12 2019
+=== BEGIN Recv Request From Client_FD: 87 in Thread: 140403781129984 ===
+=== SUCCESS Recv Request From Client_FD: 87 in Thread: 140403781129984 ===
+- From: secure.insightexpressai.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:14 2019
+=== BEGIN Recv Request From Client_FD: 89 in Thread: 140403781129984 ===
+=== SUCCESS Recv Request From Client_FD: 89 in Thread: 140403781129984 ===
+- From: static.doubleclick.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:15 2019
+=== BEGIN Recv Request From Client_FD: 91 in Thread: 140403772737280 ===
+=== SUCCESS Recv Request From Client_FD: 91 in Thread: 140403772737280 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:15 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:15 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:15 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:15 2019
+=== BEGIN Recv Request From Client_FD: 93 in Thread: 140403772737280 ===
+=== BEGIN Recv Request From Client_FD: 95 in Thread: 140403655304960 ===
+=== SUCCESS Recv Request From Client_FD: 93 in Thread: 140403772737280 ===
+- From: r3---sn-hjoj-gq0e.googlevideo.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:16 2019
+=== SUCCESS Recv Request From Client_FD: 95 in Thread: 140403655304960 ===
+- From: r3---sn-hjoj-gq0e.googlevideo.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:16 2019
+=== BEGIN Recv Request From Client_FD: 96 in Thread: 140403638519552 ===
+=== SUCCESS Recv Request From Client_FD: 96 in Thread: 140403638519552 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:16 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:16 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:16 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:33:16 2019
+=== BEGIN Recv Request From Client_FD: 99 in Thread: 140403638519552 ===
+=== SUCCESS Recv Request From Client_FD: 99 in Thread: 140403638519552 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:33:38 2019
+=== BEGIN Recv Request From Client_FD: 101 in Thread: 140404316645120 ===
+=== SUCCESS Recv Request From Client_FD: 101 in Thread: 140404316645120 ===
+- From: http://detectportal.firefox.com/success.txt, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:26 2019
+[ GET ]: detectportal.firefox.com from 104
+- At Time: Wed Feb 27 22:34:26 2019
+[ GET ]: Send Response To 101
+- At Time: Wed Feb 27 22:34:26 2019
+=== BEGIN Recv Request From Client_FD: 103 in Thread: 140404316645120 ===
+=== BEGIN Recv Request From Client_FD: 105 in Thread: 140403923740416 ===
+=== BEGIN Recv Request From Client_FD: 106 in Thread: 140404175390464 ===
+=== BEGIN Recv Request From Client_FD: 107 in Thread: 140404301747968 ===
+=== SUCCESS Recv Request From Client_FD: 103 in Thread: 140404316645120 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:27 2019
+=== SUCCESS Recv Request From Client_FD: 106 in Thread: 140404175390464 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:27 2019
+=== BEGIN Recv Request From Client_FD: 108 in Thread: 140404192175872 ===
+=== SUCCESS Recv Request From Client_FD: 105 in Thread: 140403923740416 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:27 2019
+=== SUCCESS Recv Request From Client_FD: 107 in Thread: 140404301747968 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:27 2019
+=== SUCCESS Recv Request From Client_FD: 108 in Thread: 140404192175872 ===
+- From: services.addons.mozilla.org:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:27 2019
+=== BEGIN Recv Request From Client_FD: 116 in Thread: 140404049565440 ===
+=== BEGIN Recv Request From Client_FD: 115 in Thread: 140404057958144 ===
+=== BEGIN Recv Request From Client_FD: 110 in Thread: 140404183783168 ===
+=== SUCCESS Recv Request From Client_FD: 116 in Thread: 140404049565440 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:28 2019
+=== SUCCESS Recv Request From Client_FD: 110 in Thread: 140404183783168 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:28 2019
+=== SUCCESS Recv Request From Client_FD: 115 in Thread: 140404057958144 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+=== BEGIN Recv Request From Client_FD: 117 in Thread: 140404041172736 ===
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+=== SUCCESS Recv Request From Client_FD: 117 in Thread: 140404041172736 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:34:28 2019
+=== BEGIN Recv Request From Client_FD: 121 in Thread: 140404041172736 ===
+=== BEGIN Recv Request From Client_FD: 123 in Thread: 140404057958144 ===
+=== SUCCESS Recv Request From Client_FD: 123 in Thread: 140404057958144 ===
+- From: safebrowsing.googleapis.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:28 2019
+=== SUCCESS Recv Request From Client_FD: 121 in Thread: 140404041172736 ===
+- From: snippets.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:28 2019
+=== BEGIN Recv Request From Client_FD: 124 in Thread: 140404183783168 ===
+=== SUCCESS Recv Request From Client_FD: 124 in Thread: 140404183783168 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:28 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:28 2019
+=== BEGIN Recv Request From Client_FD: 130 in Thread: 140403915347712 ===
+=== BEGIN Recv Request From Client_FD: 129 in Thread: 140404049565440 ===
+=== BEGIN Recv Request From Client_FD: 127 in Thread: 140404183783168 ===
+=== SUCCESS Recv Request From Client_FD: 130 in Thread: 140403915347712 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:29 2019
+=== SUCCESS Recv Request From Client_FD: 129 in Thread: 140404049565440 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:29 2019
+=== SUCCESS Recv Request From Client_FD: 127 in Thread: 140404183783168 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:29 2019
+=== BEGIN Recv Request From Client_FD: 131 in Thread: 140404049565440 ===
+=== SUCCESS Recv Request From Client_FD: 131 in Thread: 140404049565440 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:32 2019
+[ GET ]: people.duke.edu from 136
+- At Time: Wed Feb 27 22:34:32 2019
+[ GET ]: Send Response To 131
+- At Time: Wed Feb 27 22:34:32 2019
+=== BEGIN Recv Request From Client_FD: 135 in Thread: 140404049565440 ===
+=== BEGIN Recv Request From Client_FD: 137 in Thread: 140404183783168 ===
+=== SUCCESS Recv Request From Client_FD: 135 in Thread: 140404049565440 ===
+- From: shavar.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:32 2019
+=== SUCCESS Recv Request From Client_FD: 137 in Thread: 140404183783168 ===
+- From: http://people.duke.edu/~bmr23/style.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:32 2019
+[ GET ]: people.duke.edu from 140
+- At Time: Wed Feb 27 22:34:32 2019
+[ GET ]: Send Response To 137
+- At Time: Wed Feb 27 22:34:32 2019
+=== BEGIN Recv Request From Client_FD: 138 in Thread: 140404183783168 ===
+=== SUCCESS Recv Request From Client_FD: 138 in Thread: 140404183783168 ===
+- From: http://people.duke.edu/favicon.ico, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:33 2019
+[ GET ]: people.duke.edu from 142
+- At Time: Wed Feb 27 22:34:33 2019
+[ GET ]: Send Response To 138
+- At Time: Wed Feb 27 22:34:33 2019
+=== BEGIN Recv Request From Client_FD: 141 in Thread: 140404183783168 ===
+=== SUCCESS Recv Request From Client_FD: 141 in Thread: 140404183783168 ===
+- From: piazza.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:42 2019
+=== BEGIN Recv Request From Client_FD: 143 in Thread: 140403906955008 ===
+=== BEGIN Recv Request From Client_FD: 145 in Thread: 140403789522688 ===
+=== BEGIN Recv Request From Client_FD: 147 in Thread: 140403772737280 ===
+=== BEGIN Recv Request From Client_FD: 146 in Thread: 140403781129984 ===
+=== BEGIN Recv Request From Client_FD: 148 in Thread: 140403655304960 ===
+=== SUCCESS Recv Request From Client_FD: 143 in Thread: 140403906955008 ===
+- From: piazza.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:45 2019
+=== SUCCESS Recv Request From Client_FD: 145 in Thread: 140403789522688 ===
+- From: piazza.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:45 2019
+=== SUCCESS Recv Request From Client_FD: 146 in Thread: 140403781129984 ===
+- From: piazza.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:45 2019
+=== SUCCESS Recv Request From Client_FD: 147 in Thread: 140403772737280 ===
+- From: piazza.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:45 2019
+=== SUCCESS Recv Request From Client_FD: 148 in Thread: 140403655304960 ===
+- From: piazza.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:45 2019
+=== BEGIN Recv Request From Client_FD: 149 in Thread: 140403646912256 ===
+=== SUCCESS Recv Request From Client_FD: 149 in Thread: 140403646912256 ===
+- From: www.youtube-nocookie.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:45 2019
+=== BEGIN Recv Request From Client_FD: 155 in Thread: 140403521087232 ===
+=== SUCCESS Recv Request From Client_FD: 155 in Thread: 140403521087232 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:45 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:45 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:45 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:45 2019
+=== BEGIN Recv Request From Client_FD: 157 in Thread: 140403521087232 ===
+=== BEGIN Recv Request From Client_FD: 159 in Thread: 140403512694528 ===
+=== BEGIN Recv Request From Client_FD: 160 in Thread: 140403504301824 ===
+=== SUCCESS Recv Request From Client_FD: 157 in Thread: 140403521087232 ===
+- From: s.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:46 2019
+=== SUCCESS Recv Request From Client_FD: 159 in Thread: 140403512694528 ===
+- From: s.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:46 2019
+=== SUCCESS Recv Request From Client_FD: 160 in Thread: 140403504301824 ===
+- From: s.ytimg.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:46 2019
+=== BEGIN Recv Request From Client_FD: 161 in Thread: 140403386869504 ===
+=== BEGIN Recv Request From Client_FD: 165 in Thread: 140403378476800 ===
+=== BEGIN Recv Request From Client_FD: 167 in Thread: 140403252651776 ===
+=== BEGIN Recv Request From Client_FD: 166 in Thread: 140403370084096 ===
+=== SUCCESS Recv Request From Client_FD: 161 in Thread: 140403386869504 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:46 2019
+=== SUCCESS Recv Request From Client_FD: 166 in Thread: 140403370084096 ===
+- From: connect.facebook.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:46 2019
+=== SUCCESS Recv Request From Client_FD: 167 in Thread: 140403252651776 ===
+- From: www.googletagmanager.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:46 2019
+=== SUCCESS Recv Request From Client_FD: 165 in Thread: 140403378476800 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:46 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:46 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:46 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:46 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:46 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:46 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:34:46 2019
+=== BEGIN Recv Request From Client_FD: 168 in Thread: 140403521087232 ===
+=== SUCCESS Recv Request From Client_FD: 168 in Thread: 140403521087232 ===
+- From: www.facebook.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:49 2019
+=== BEGIN Recv Request From Client_FD: 173 in Thread: 140403504301824 ===
+=== SUCCESS Recv Request From Client_FD: 173 in Thread: 140403504301824 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:34:51 2019
+=== BEGIN Recv Request From Client_FD: 175 in Thread: 140403378476800 ===
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 140105253869312 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 140105253869312 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:40:06 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 139669993576192 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 139669993576192 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:40:57 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 139669945120512 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 139669945120512 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:41:20 2019
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 139669936727808 ===
+=== SUCCESS Recv Request From Client_FD: 7 in Thread: 139669936727808 ===
+- From: safebrowsing.googleapis.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:41:20 2019
+=== BEGIN Recv Request From Client_FD: 9 in Thread: 139669819877120 ===
+=== SUCCESS Recv Request From Client_FD: 9 in Thread: 139669819877120 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:41:20 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:41:21 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:41:21 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:41:21 2019
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 139669819877120 ===
+=== SUCCESS Recv Request From Client_FD: 11 in Thread: 139669819877120 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:41:26 2019
+[ GET ]: people.duke.edu from 14
+- At Time: Wed Feb 27 22:41:26 2019
+[ GET ]: Send Response To 11
+- At Time: Wed Feb 27 22:41:26 2019
+=== BEGIN Recv Request From Client_FD: 13 in Thread: 139669819877120 ===
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 110671616 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 110671616 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:41:46 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 192685824 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 192685824 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:41:58 2019
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 268195584 ===
+=== SUCCESS Recv Request From Client_FD: 7 in Thread: 268195584 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:41:58 2019
+=== BEGIN Recv Request From Client_FD: 9 in Thread: 343705344 ===
+=== SUCCESS Recv Request From Client_FD: 9 in Thread: 343705344 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:41:59 2019
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 419215104 ===
+=== SUCCESS Recv Request From Client_FD: 11 in Thread: 419215104 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:41:59 2019
+=== BEGIN Recv Request From Client_FD: 13 in Thread: 494724864 ===
+=== SUCCESS Recv Request From Client_FD: 13 in Thread: 494724864 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:02 2019
+[ GET ]: people.duke.edu from 16
+- At Time: Wed Feb 27 22:42:02 2019
+[ GET ]: Send Response To 13
+- At Time: Wed Feb 27 22:42:02 2019
+=== BEGIN Recv Request From Client_FD: 15 in Thread: 494724864 ===
+=== SUCCESS Recv Request From Client_FD: 15 in Thread: 494724864 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:05 2019
+[ GET ]: people.duke.edu from 18
+- At Time: Wed Feb 27 22:42:05 2019
+[ GET ]: Send Response To 15
+- At Time: Wed Feb 27 22:42:05 2019
+=== BEGIN Recv Request From Client_FD: 17 in Thread: 494724864 ===
+=== SUCCESS Recv Request From Client_FD: 17 in Thread: 494724864 ===
+- From: http://people.duke.edu/~bmr23/style.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:05 2019
+[ GET ]: people.duke.edu from 20
+- At Time: Wed Feb 27 22:42:05 2019
+[ GET ]: Send Response To 17
+- At Time: Wed Feb 27 22:42:05 2019
+=== BEGIN Recv Request From Client_FD: 19 in Thread: 494724864 ===
+=== SUCCESS Recv Request From Client_FD: 19 in Thread: 494724864 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:09 2019
+=== BEGIN Recv Request From Client_FD: 21 in Thread: 570234624 ===
+=== SUCCESS Recv Request From Client_FD: 21 in Thread: 570234624 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:10 2019
+=== BEGIN Recv Request From Client_FD: 23 in Thread: 645744384 ===
+=== SUCCESS Recv Request From Client_FD: 23 in Thread: 645744384 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:10 2019
+=== BEGIN Recv Request From Client_FD: 25 in Thread: 721254144 ===
+=== SUCCESS Recv Request From Client_FD: 25 in Thread: 721254144 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:10 2019
+=== BEGIN Recv Request From Client_FD: 27 in Thread: 796763904 ===
+=== SUCCESS Recv Request From Client_FD: 27 in Thread: 796763904 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:11 2019
+=== BEGIN Recv Request From Client_FD: 29 in Thread: 872273664 ===
+=== SUCCESS Recv Request From Client_FD: 29 in Thread: 872273664 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:11 2019
+=== BEGIN Recv Request From Client_FD: 31 in Thread: 947783424 ===
+=== SUCCESS Recv Request From Client_FD: 31 in Thread: 947783424 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:20 2019
+=== BEGIN Recv Request From Client_FD: 34 in Thread: 1023293184 ===
+=== SUCCESS Recv Request From Client_FD: 34 in Thread: 1023293184 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:20 2019
+=== BEGIN Recv Request From Client_FD: 35 in Thread: 1098802944 ===
+=== SUCCESS Recv Request From Client_FD: 35 in Thread: 1098802944 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:21 2019
+=== BEGIN Recv Request From Client_FD: 37 in Thread: 1174312704 ===
+=== SUCCESS Recv Request From Client_FD: 37 in Thread: 1174312704 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:28 2019
+=== BEGIN Recv Request From Client_FD: 40 in Thread: 1249822464 ===
+[ GET ]: people.duke.edu from 39
+- At Time: Wed Feb 27 22:42:29 2019
+[ GET ]: Send Response To 37
+- At Time: Wed Feb 27 22:42:29 2019
+=== SUCCESS Recv Request From Client_FD: 40 in Thread: 1249822464 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:29 2019
+[ GET ]: people.duke.edu from 42
+- At Time: Wed Feb 27 22:42:29 2019
+[ GET ]: Send Response To 40
+- At Time: Wed Feb 27 22:42:29 2019
+=== BEGIN Recv Request From Client_FD: 41 in Thread: 1249822464 ===
+=== SUCCESS Recv Request From Client_FD: 41 in Thread: 1249822464 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:37 2019
+=== BEGIN Recv Request From Client_FD: 43 in Thread: 1174312704 ===
+=== SUCCESS Recv Request From Client_FD: 43 in Thread: 1174312704 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:39 2019
+=== BEGIN Recv Request From Client_FD: 45 in Thread: 1291773696 ===
+=== SUCCESS Recv Request From Client_FD: 45 in Thread: 1291773696 ===
+- From: http://beej-zhcn.netdpi.net/02-what-is-socket, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:42:53 2019
+=== BEGIN Recv Request From Client_FD: 47 in Thread: 1367283456 ===
+=== SUCCESS Recv Request From Client_FD: 47 in Thread: 1367283456 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:43:06 2019
+=== BEGIN Recv Request From Client_FD: 49 in Thread: 1409234688 ===
+=== SUCCESS Recv Request From Client_FD: 49 in Thread: 1409234688 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:43:07 2019
+=== BEGIN Recv Request From Client_FD: 51 in Thread: 1451185920 ===
+=== SUCCESS Recv Request From Client_FD: 51 in Thread: 1451185920 ===
+- From: http://beej-zhcn.netdpi.net/02-what-is-socket, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:43:08 2019
+=== BEGIN Recv Request From Client_FD: 53 in Thread: 1459578624 ===
+=== SUCCESS Recv Request From Client_FD: 53 in Thread: 1459578624 ===
+- From: http://beej-zhcn.netdpi.net/02-what-is-socket, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:43:25 2019
+=== BEGIN Recv Request From Client_FD: 55 in Thread: 1467971328 ===
+=== SUCCESS Recv Request From Client_FD: 55 in Thread: 1467971328 ===
+- From: http://beej-zhcn.netdpi.net/02-what-is-socket, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:43:54 2019
+=== BEGIN Recv Request From Client_FD: 57 in Thread: 1476364032 ===
+=== SUCCESS Recv Request From Client_FD: 57 in Thread: 1476364032 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:44:13 2019
+=== BEGIN Recv Request From Client_FD: 59 in Thread: 1784985344 ===
+=== SUCCESS Recv Request From Client_FD: 59 in Thread: 1784985344 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:44:21 2019
+=== BEGIN Recv Request From Client_FD: 62 in Thread: 1826936576 ===
+=== SUCCESS Recv Request From Client_FD: 62 in Thread: 1826936576 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+=== BEGIN Recv Request From Client_FD: 64 in Thread: 1910839040 ===
+=== BEGIN Recv Request From Client_FD: 63 in Thread: 1902446336 ===
+- At Time: Wed Feb 27 22:44:22 2019
+=== SUCCESS Recv Request From Client_FD: 64 in Thread: 1910839040 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+=== SUCCESS Recv Request From Client_FD: 63 in Thread: 1902446336 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:44:22 2019
+- At Time: Wed Feb 27 22:44:22 2019
+=== BEGIN Recv Request From Client_FD: 67 in Thread: 1986348800 ===
+=== SUCCESS Recv Request From Client_FD: 67 in Thread: 1986348800 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:44:22 2019
+=== BEGIN Recv Request From Client_FD: 66 in Thread: 2095417088 ===
+=== SUCCESS Recv Request From Client_FD: 66 in Thread: 2095417088 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:44:23 2019
+=== BEGIN Recv Request From Client_FD: 71 in Thread: 2238043904 ===
+=== SUCCESS Recv Request From Client_FD: 71 in Thread: 2238043904 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:44:24 2019
+=== BEGIN Recv Request From Client_FD: 73 in Thread: 2279995136 ===
+=== SUCCESS Recv Request From Client_FD: 73 in Thread: 2279995136 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:44:24 2019
+=== BEGIN Recv Request From Client_FD: 76 in Thread: 2355504896 ===
+=== SUCCESS Recv Request From Client_FD: 76 in Thread: 2355504896 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:44:25 2019
+=== BEGIN Recv Request From Client_FD: 77 in Thread: 2431014656 ===
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 140399325718272 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 140399325718272 ===
+- From: http://detectportal.firefox.com/success.txt, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:02 2019
+[ GET ]: detectportal.firefox.com from 6
+- At Time: Wed Feb 27 22:46:02 2019
+[ GET ]: Send Response To 4
+- At Time: Wed Feb 27 22:46:02 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 140399325718272 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 140399325718272 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:03 2019
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 140399277262592 ===
+=== BEGIN Recv Request From Client_FD: 9 in Thread: 140399268869888 ===
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 140399192569600 ===
+=== SUCCESS Recv Request From Client_FD: 7 in Thread: 140399277262592 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:03 2019
+=== SUCCESS Recv Request From Client_FD: 9 in Thread: 140399268869888 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:03 2019
+=== SUCCESS Recv Request From Client_FD: 11 in Thread: 140399192569600 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:03 2019
+=== BEGIN Recv Request From Client_FD: 10 in Thread: 140399150618368 ===
+=== SUCCESS Recv Request From Client_FD: 10 in Thread: 140399150618368 ===
+- From: services.addons.mozilla.org:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:03 2019
+=== BEGIN Recv Request From Client_FD: 15 in Thread: 140399142225664 ===
+=== BEGIN Recv Request From Client_FD: 17 in Thread: 140398823458560 ===
+=== BEGIN Recv Request From Client_FD: 18 in Thread: 140398815065856 ===
+=== SUCCESS Recv Request From Client_FD: 17 in Thread: 140398823458560 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:03 2019
+=== SUCCESS Recv Request From Client_FD: 15 in Thread: 140399142225664 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:03 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:03 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:03 2019
+=== SUCCESS Recv Request From Client_FD: 18 in Thread: 140398815065856 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:03 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:03 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:03 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:03 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:03 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:03 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:03 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:03 2019
+=== BEGIN Recv Request From Client_FD: 19 in Thread: 140398815065856 ===
+=== SUCCESS Recv Request From Client_FD: 19 in Thread: 140398815065856 ===
+- From: safebrowsing.googleapis.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:04 2019
+=== BEGIN Recv Request From Client_FD: 23 in Thread: 140399142225664 ===
+=== SUCCESS Recv Request From Client_FD: 23 in Thread: 140399142225664 ===
+- From: http://ocsp.pki.goog/GTSGIAG3, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:04 2019
+[ POST ]: Send to Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:46:04 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:46:04 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.pki.goog/GTSGIAG3
+- At Time: Wed Feb 27 22:46:04 2019
+=== BEGIN Recv Request From Client_FD: 27 in Thread: 140398823458560 ===
+=== BEGIN Recv Request From Client_FD: 25 in Thread: 140399142225664 ===
+=== BEGIN Recv Request From Client_FD: 28 in Thread: 140398806673152 ===
+=== SUCCESS Recv Request From Client_FD: 27 in Thread: 140398823458560 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:05 2019
+=== SUCCESS Recv Request From Client_FD: 25 in Thread: 140399142225664 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:05 2019
+=== SUCCESS Recv Request From Client_FD: 28 in Thread: 140398806673152 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:05 2019
+=== BEGIN Recv Request From Client_FD: 29 in Thread: 140398689249024 ===
+=== SUCCESS Recv Request From Client_FD: 29 in Thread: 140398689249024 ===
+- From: http://ocsp.digicert.com/, with Port: 80
+- Method: POST, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:06 2019
+[ POST ]: Send to Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:06 2019
+[ POST ]: Receive Response from Server for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:06 2019
+[ POST ]: Send Response to Client for Request: http://ocsp.digicert.com/
+- At Time: Wed Feb 27 22:46:06 2019
+=== BEGIN Recv Request From Client_FD: 33 in Thread: 140398823458560 ===
+=== SUCCESS Recv Request From Client_FD: 33 in Thread: 140398823458560 ===
+- From: snippets.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:46:14 2019
+=== BEGIN Recv Request From Client_FD: 4 in Thread: 140565933238016 ===
+=== SUCCESS Recv Request From Client_FD: 4 in Thread: 140565933238016 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:49:34 2019
+=== BEGIN Recv Request From Client_FD: 5 in Thread: 140565817374464 ===
+=== SUCCESS Recv Request From Client_FD: 5 in Thread: 140565817374464 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:49:34 2019
+=== BEGIN Recv Request From Client_FD: 7 in Thread: 140565775423232 ===
+=== SUCCESS Recv Request From Client_FD: 7 in Thread: 140565775423232 ===
+- From: tiles.services.mozilla.com:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:49:41 2019
+=== BEGIN Recv Request From Client_FD: 9 in Thread: 140565767030528 ===
+=== SUCCESS Recv Request From Client_FD: 9 in Thread: 140565767030528 ===
+- From: img-getpocket.cdn.mozilla.net:443, with Port: 443
+- Method: CONNECT, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:49:43 2019
+=== BEGIN Recv Request From Client_FD: 11 in Thread: 140565656102656 ===
+=== SUCCESS Recv Request From Client_FD: 11 in Thread: 140565656102656 ===
+- From: http://beej-zhcn.netdpi.net/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:49:44 2019
+=== BEGIN Recv Request From Client_FD: 13 in Thread: 140565647709952 ===
+=== SUCCESS Recv Request From Client_FD: 13 in Thread: 140565647709952 ===
+- From: http://people.duke.edu/~bmr23/ece568/class.html, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:50:10 2019
+[ GET ]: people.duke.edu from 16
+- At Time: Wed Feb 27 22:50:10 2019
+[ GET ]: Send Response To 13
+- At Time: Wed Feb 27 22:50:10 2019
+=== BEGIN Recv Request From Client_FD: 15 in Thread: 140565647709952 ===
+=== SUCCESS Recv Request From Client_FD: 15 in Thread: 140565647709952 ===
+- From: http://people.duke.edu/~bmr23/style.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:50:11 2019
+[ GET ]: people.duke.edu from 18
+- At Time: Wed Feb 27 22:50:11 2019
+[ GET ]: Send Response To 15
+- At Time: Wed Feb 27 22:50:11 2019
+=== BEGIN Recv Request From Client_FD: 17 in Thread: 140565647709952 ===
+=== SUCCESS Recv Request From Client_FD: 17 in Thread: 140565647709952 ===
+- From: http://people.duke.edu/favicon.ico, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:50:12 2019
+[ GET ]: people.duke.edu from 20
+- At Time: Wed Feb 27 22:50:12 2019
+[ GET ]: Send Response To 17
+- At Time: Wed Feb 27 22:50:12 2019
+=== BEGIN Recv Request From Client_FD: 19 in Thread: 140565647709952 ===
+=== SUCCESS Recv Request From Client_FD: 19 in Thread: 140565647709952 ===
+- From: http://www.cplusplus.com/, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:50:34 2019
+[ GET ]: www.cplusplus.com from 22
+- At Time: Wed Feb 27 22:50:34 2019
+[ GET ]: Send Response To 19
+- At Time: Wed Feb 27 22:50:34 2019
+=== BEGIN Recv Request From Client_FD: 21 in Thread: 140565647709952 ===
+=== BEGIN Recv Request From Client_FD: 23 in Thread: 140565639317248 ===
+=== BEGIN Recv Request From Client_FD: 25 in Thread: 140565521884928 ===
+=== SUCCESS Recv Request From Client_FD: 21 in Thread: 140565647709952 ===
+- From: http://www.cplusplus.com/v321/main.css, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:50:34 2019
+=== SUCCESS Recv Request From Client_FD: 23 in Thread: 140565639317248 ===
+- From: http://www.cplusplus.com/v321/main.js, with Port: 80
+- Method: GET, Protocol: HTTP/1.1
+- At Time: Wed Feb 27 22:50:34 2019
+[ GET ]: www.cplusplus.com from 26
+- At Time: Wed Feb 27 22:50:34 2019
+[ GET ]: Send Response To 21
+- At Time: Wed Feb 27 22:50:34 2019
+[ GET ]: www.cplusplus.com from 27
+- At Time: Wed Feb 27 22:50:34 2019
+[ GET ]: Send Response To 23
+- At Time: Wed Feb 27 22:50:34 2019
+=== BEGIN Recv Request From Client_FD: 24 in Thread: 140565639317248 ===
