@@ -9,6 +9,7 @@
 #include "httpsocket.h"
 
 void HttpResponse::receive(HttpSocket &sk) {
+  std::cout<<"receive from response"<<std::endl;
 	int recv_type;
 	try{
 		recv_type = recv_header(sk);
@@ -21,18 +22,21 @@ void HttpResponse::receive(HttpSocket &sk) {
 
 	if (meta[1] != "304" && meta[1] != "204" && meta[1] != "205"){
 		if (meta[0] == "HTTP/1.0"){
+		  std::cout<<"HTTP 1.0"<<std::endl;
 			try{
-				recv_http_1_0(sk);
+			  recv_http_1_0(sk);
 			}
 			catch(...){
 				throw;
 			}
 		}
 		else if (meta[0] == "HTTP/1.1"){
+		  std::cout<<"HTTP 1.1"<<std::endl;
 			try{
 				recv_http_1_1(sk, recv_type);
 			}
 			catch(...){
+			  std::cout<<"cannot idendify type of http 1.1"<<std::endl;
 				throw;
 			}
 		}

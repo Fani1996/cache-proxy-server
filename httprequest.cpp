@@ -158,6 +158,7 @@ void HttpRequest::connect(HttpSocket& server, HttpSocket& client){
 // receive request.
 void HttpRequest::receive(HttpSocket& sk) {
     int id = 0;
+    std::cout<<"recieve from request"<<std::endl;
     try {
         id = recv_header(sk);
     }

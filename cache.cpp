@@ -85,14 +85,17 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
 	std::cout<<"===cannot find response in cache==="<<std::endl;
     // otherwise, we have to fetch data from server and store in cache.
     HttpResponse response;
-	try{
+        try{
+	  std::cout<<"send request to server"<<std::endl;
 		request.send(server);
 	}
 	catch(...){
+	  std::cout<<"send request to server fail"<<std::endl;
 		throw std::exception();
 	}
 
 	try{
+	  std::cout<<"receive response from server"<<std::endl;
 		response.receive(server);
 	}
 	catch(...){

@@ -12,7 +12,7 @@
 // make the server up and listen.
 void Proxy::compose_up(){
     try{
-        im_server_sk.listen_to(10000);
+        im_server_sk.listen_to(1000);
     }
     catch(...){
         throw;
@@ -74,7 +74,7 @@ void Proxy::handle_request(HttpRequest &request, HttpSocket &server, HttpSocket 
 
                 log.output( "[ GET ]: " + request.get_host() + " from " + std::to_string(server.get_fd()) + "\n" );
                 log.timestamp();
-
+		std::cout<<"send response to client"<<std::endl;
                 response.send(client);
                 
                 log.output( "[ GET ]: Send Response To " + std::to_string(client.get_fd()) + "\n" );
@@ -190,7 +190,7 @@ void Proxy::handle(int client_fd, cache& cache){
         ss << "=== FAILED Recv Request From Client_FD: " << std::to_string(client_fd) << " in Thread: " << std::this_thread::get_id() << " ===\n";
 
         log.output(errstr.str());
-        log.log_request(this_request);
+	//        log.log_request(this_request);
         log.timestamp();
 
         return;
