@@ -13,7 +13,6 @@ private:
     std::string hostname;
     std::string port;
 
-
 public:
     // constructor.
     HttpRequest(){}

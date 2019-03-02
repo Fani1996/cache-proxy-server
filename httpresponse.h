@@ -8,12 +8,13 @@
 #include "httpsocket.h"
 #include "httpbase.h"
 
+
 class HttpResponse : public httpBase {
 private:
    time_t response_time;
    double initial_age;
 public:
-    // constructor
+     // constructor
     HttpResponse() {}
 
     std::string get_code();

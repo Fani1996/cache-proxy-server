@@ -1,4 +1,5 @@
 #include "cache.h"
+#include "log.h"
 #include <iostream>
 #include <string>
 #include <unordered_map>
@@ -8,15 +9,15 @@
 
 
 
-// get the response from cache.
+ // get the response from cache.
 HttpResponse cache::get(std::string identifier){
         std::unique_lock<std::mutex> lck(mtx, std::defer_lock);
-             lck.lock();
+        lck.lock();
 
     HttpResponse response = lookup[identifier]->second;
     dataset.splice(dataset.begin(), dataset, lookup[identifier]); // send to front.
     
-      lck.unlock();
+            lck.unlock();
 
     return response;
 }
@@ -33,8 +34,8 @@ void cache::store(HttpRequest request, HttpResponse response){
         lookup[id]->second = response;
         dataset.splice(dataset.begin(), dataset, lookup[id]); // send to front.
 
-	  lck.unlock();
-	
+        lck.unlock();
+
         return;
     }
 
@@ -42,15 +43,15 @@ void cache::store(HttpRequest request, HttpResponse response){
     if(dataset.size() > capacity){
         std::string erasekey = dataset.back().first;
 
-	        lck.lock();
+        lck.lock();
 
         dataset.pop_back();
 
         lookup.erase(erasekey);
 
-	 lck.unlock();
+        lck.unlock();
     }
-    // put newly added to the front.
+     // put newly added to the front.
     dataset.push_front(make_pair(id, response));
     lookup[id] = dataset.begin();
 }
@@ -60,6 +61,8 @@ void cache::store(HttpRequest request, HttpResponse response){
 // given request, return the response ready to send back.
 HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
     std::string identifier = request.get_identifier();
+    Log log;
+
     if(lookup.find(identifier) != lookup.end()){ // found request id.
         // if found, check valid and no_cache.
 		std::cout<<"===find a response in cache==="<<std::endl;
@@ -67,10 +70,12 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
 		if(response_in.is_fresh() && !no_cache(request,response_in) && !response_in.must_revalidate()){ // valid, return response.
 
 			std::cout<<"===response is fresh and can cache==="<<std::endl;
+            log.output(request.get_id(), "in cache, valid.\n");
 			return response_in;
 		  }
 		else{
 			std::cout<<"===need re-validated==="<<std::endl;
+            log.output(request.get_id(), "in cache, requires validation.\n");
 			HttpResponse revalidated;
 			try{
 				revalidated = revalidate(server,request);
@@ -83,22 +88,24 @@ HttpResponse cache::returndata(HttpSocket& server,HttpRequest &request){
       }
 
 	std::cout<<"===cannot find response in cache==="<<std::endl;
+    log.output(request.get_id(), "not in cache.\n");
+    
     // otherwise, we have to fetch data from server and store in cache.
     HttpResponse response;
-        try{
-	  std::cout<<"send request to server"<<std::endl;
+	try{
 		request.send(server);
+        log.output(request.get_id(), "Requesting " + request.get_method()+" "+request.get_identifier()+" "+request.get_version() + " from " + request.get_host()+"\n");
 	}
 	catch(...){
-	  std::cout<<"send request to server fail"<<std::endl;
 		throw std::exception();
 	}
 
 	try{
-	  std::cout<<"receive response from server"<<std::endl;
 		response.receive(server);
+        log.output(request.get_id(), "Received " + response.get_code() + " from " + request.get_host()+"\n");
 	}
 	catch(...){
+	  
 		throw std::exception();
 	}
 
@@ -121,22 +128,16 @@ HttpResponse cache::revalidate(HttpSocket& server, HttpRequest& request){
 
     // use reponse to create revalidate request to server.
     if (response.get_header_kv("ETag") != "") {
-        std::string etag=response.get_header_kv("ETag");
-        std::vector<char> etag_char;
-        std::copy( etag.begin(), etag.end(), std::back_inserter(etag_char));
-        request.set_header_kv({'I','f','-','N','o','n','e','-','M','a','t','c','h'},etag_char);
+        request.set_header_kv("If-None-Match", response.get_header_kv("ETag"));
         //request.update_header("If-None-Match: " + response.get_header_kv("ETag"));
     }
     if (response.get_header_kv("Last-Modified") != "") {
-      std::string last_modified=response.get_header_kv("Last-Modified");
-        std::vector<char> last_char;
-        std::copy( last_modified.begin(), last_modified.end(), std::back_inserter(last_char));
-        request.set_header_kv({'I','f','-','M','o','d','i','f','i','e','d','-','S','i','n','c','e'}, last_char);
+        request.set_header_kv("If-Modified-Since", response.get_header_kv("Last-Modified"));
         //request.update_header("If-Modified-Since: " + response.get_header_kv("Last-Modified"));
     }
 
-    //    request.generate_header();
-    // request.refresh();
+    request.generate_header();
+    request.refresh();
 	
     std::cout<<"=== send re-validated request ==="<<std::endl;
     try{

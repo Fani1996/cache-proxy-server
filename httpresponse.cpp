@@ -1,4 +1,7 @@
 #include "httpresponse.h"
+#include "httpsocket.h"
+#include "log.h"
+
 #include <iostream>
 #include <sstream>
 #include <cassert>
@@ -6,37 +9,31 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include "httpsocket.h"
 
 void HttpResponse::receive(HttpSocket &sk) {
-  std::cout<<"receive from response"<<std::endl;
 	int recv_type;
 	try{
 		recv_type = recv_header(sk);
 	}
 	catch (...){
-	  std::cout<<"response receive failure"<<std::endl;
 		send_400_bad_request(sk);
 		return;
 	}
 
 	if (meta[1] != "304" && meta[1] != "204" && meta[1] != "205"){
 		if (meta[0] == "HTTP/1.0"){
-		  std::cout<<"HTTP 1.0"<<std::endl;
 			try{
-			  recv_http_1_0(sk);
+				recv_http_1_0(sk);
 			}
 			catch(...){
 				throw;
 			}
 		}
 		else if (meta[0] == "HTTP/1.1"){
-		  std::cout<<"HTTP 1.1"<<std::endl;
 			try{
 				recv_http_1_1(sk, recv_type);
 			}
 			catch(...){
-			  std::cout<<"cannot idendify type of http 1.1"<<std::endl;
 				throw;
 			}
 		}
@@ -48,7 +45,7 @@ void HttpResponse::receive(HttpSocket &sk) {
 		}
 	}
 	
-    //calculate response_time
+     //calculate response_time
     time_t rawtime=time(NULL);
     struct tm * ptm;
     //    memset(ptm, 0, sizeof(struct tm));
@@ -63,6 +60,8 @@ std::string HttpResponse::get_code(){
 }
 double HttpResponse::get_fresh_lifetime(){
 	double fresh_lifetime;
+	Log log;
+	
 	std::string temp = get_cache_control("s-maxage");
 	if(temp == ""){
 		temp = get_cache_control("max-age");
@@ -72,6 +71,7 @@ double HttpResponse::get_fresh_lifetime(){
 	  //s-maxage
 		fresh_lifetime = std::stod(temp);
 		std::cout<<"===fresh lifetime is:: "<<fresh_lifetime<<"==="<<std::endl;
+		log.output("in cache, but expired at" + std::to_string(fresh_lifetime) + ".\n");
 		return fresh_lifetime;
 	}
 
@@ -82,6 +82,7 @@ double HttpResponse::get_fresh_lifetime(){
 	  //max-age
 		fresh_lifetime=std::stod(temp);
 		std::cout<<"===fresh lifetime is:: "<<fresh_lifetime<<"==="<<std::endl;
+		log.output("in cache, but expired at" + std::to_string(fresh_lifetime) + ".\n");
 		return fresh_lifetime;
 	}
 
@@ -89,26 +90,19 @@ double HttpResponse::get_fresh_lifetime(){
 	if(temp == ""){
 		struct tm last_modified_tm;
 		memset(&last_modified_tm, 0, sizeof(struct tm));
+		std::cout<<"last modified"<<get_header_kv("Last-Modified")<<std::endl;
 		strptime(get_header_kv("Last-Modified").c_str(), " %a, %d %b %Y %H:%M:%S %Z", &last_modified_tm);
 		
 		time_t last_modified = mktime(&last_modified_tm);
 		fresh_lifetime = difftime(time(NULL),last_modified)*0.1;
 		std::cout<<"===fresh lifetime is:: "<<fresh_lifetime<<"==="<<std::endl;
+		log.output("in cache, but expired at" + std::to_string(fresh_lifetime) + ".\n");
 	}
 	//expires
 	else{
-		struct tm date_tm;
-		memset(&date_tm, 0, sizeof(struct tm));
-		strptime(get_header_kv("Date").c_str(), " %a, %d %b %Y %H:%M:%S %Z", &date_tm);
-		time_t date = mktime(&date_tm);
-
-		struct tm expires_tm;
-		memset(&expires_tm, 0, sizeof(struct tm));
-		strptime(temp.c_str(), " %a, %d %b %Y %H:%M:%S %Z", &expires_tm);
-		time_t expires = mktime(&expires_tm);
-
-		fresh_lifetime = difftime(expires, date);
-		std::cout << "===fresh lifetime is:: " << fresh_lifetime << "===" << std::endl;
+		fresh_lifetime = std::stod(temp)-std::stod(get_header_kv("Date"));
+		std::cout<<"===fresh lifetime is:: "<<fresh_lifetime<<"==="<<std::endl;
+		log.output("in cache, but expired at" + std::to_string(fresh_lifetime) + ".\n");
 	}
 
 	return fresh_lifetime;
@@ -150,6 +144,8 @@ void HttpResponse::calculate_initial_age(time_t request_time){
 	else age_value = std::stod(temp);
 	std::cout<<"age is:"<<age_value<<std::endl;
 	double corrected_age_value = age_value + response_delay;
+	if(corrected_age_value<0)
+	  corrected_age_value=0;
 	initial_age = std::max(apparent_age, corrected_age_value);
 }
 

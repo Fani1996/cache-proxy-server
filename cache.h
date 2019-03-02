@@ -29,7 +29,7 @@ protected:
     std::list<std::pair<std::string, HttpResponse> > dataset;
 
     // LRU operation. get/store will update the position of data.
-    // get the response from cache.
+     // get the response from cache.
     HttpResponse get(std::string identifier);
 
     // store the request, response pait into cache.
